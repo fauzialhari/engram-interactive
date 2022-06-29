@@ -6,7 +6,8 @@ const Home: NextPage = () => {
   return (
     <main className="container mx-auto">
       <h1>Gallery</h1>
-      <AnimatedHeader position="left">Woii</AnimatedHeader>
+      <AnimatedHeader text="Features" subtitle="variety of mod chips & psionics to choose"/>
+      <AnimatedHeader isLeftPositioned={false} text="Characters"  subtitle="variety of mod chips & psionics to choose"/>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
         culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
