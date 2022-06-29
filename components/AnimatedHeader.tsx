@@ -74,17 +74,20 @@ const AnimatedHeader: React.FC<{
               break;
 
             case text.length + 1:
-              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] = "calc(100% + 40px)";
+              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] =
+                "calc(100% + 40px)";
               break;
 
             case text.length + 2:
-              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] = "calc(100% + 70px)";
+              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] =
+                "calc(100% + 70px)";
               cursorHeaderElement.style.height = "18px";
               cursorHeaderElement.style.width = "18px";
               break;
 
             case text.length + 4:
-              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] = "calc(100% + 84px)";
+              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] =
+                "calc(100% + 84px)";
               break;
 
             default:
@@ -207,28 +210,44 @@ const AnimatedHeader: React.FC<{
             } mb-5`}
           >
             {text}
-            <span className={`absolute w-6 h-[60px] mx-2.5 bg-primary top-1/2 -translate-y-1/2 ${isLeftPositioned ? "left" : "right"}-full`}>
+            <span
+              className={`absolute w-6 h-[60px] mx-2.5 bg-primary top-1/2 -translate-y-1/2 ${
+                isLeftPositioned ? "left" : "right"
+              }-full`}
+            >
               &nbsp;
             </span>
           </h1>
           <div
             ref={spritesContainerRef}
-            className={`absolute w-full h-full top-1/2 -translate-y-1/2 ${isLeftPositioned ? "right" : "left"}-0 flex items-baseline`}
+            className={`absolute w-full h-full top-1/2 -translate-y-1/2 ${
+              isLeftPositioned ? "right" : "left"
+            }-0 flex items-baseline`}
           >
             <div
               ref={cursorRef}
-              className={`w-6 h-[58px] bg-primary invisible origin-${isLeftPositioned ? "right" : "left"}`}
+              className={`w-6 h-[58px] bg-primary invisible origin-${
+                isLeftPositioned ? "right" : "left"
+              }`}
             ></div>
             <div
               ref={bottomLineRef}
-              className={`border-b-2 border-primary w-full scale-x-0 absolute ${isLeftPositioned ? "origin-left" : "origin-right"} bottom-0`}
+              className={`border-b-2 border-primary w-full scale-x-0 absolute ${
+                isLeftPositioned ? "origin-left" : "origin-right"
+              } bottom-0`}
             ></div>
           </div>
         </div>
-        <div className={`flex items-center ${isLeftPositioned ? "" : "flex-row-reverse"}`}>
+        <div
+          className={`flex items-center ${
+            isLeftPositioned ? "" : "flex-row-reverse"
+          }`}
+        >
           <span
             ref={subtitleSpriteRef}
-            className={`inline-block invisible w-[5px] h-[1em] bg-primary align-middle ${isLeftPositioned ? "mr-36" : "ml-36"}`}
+            className={`inline-block invisible w-[5px] h-[1em] bg-primary align-middle ${
+              isLeftPositioned ? "mr-36" : "ml-36"
+            }`}
           >
             &nbsp;
           </span>
