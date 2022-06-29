@@ -54,6 +54,49 @@ const AnimatedHeader: React.FC<{
   const bottomLineRef = useRef<HTMLDivElement>(null);
   const subtitleSpriteRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
+  function animateTextTyping() {
+    const spriteAnimation = new FpsCtrl(12, ({ frame }) => {
+      if (headerRef.current != null) {
+        if (frame === 0) {
+          headerRef.current.childNodes[0].nodeValue = "";
+          headerRef.current.classList.remove("invisible");
+        }
+        if (!!text[frame]) {
+          headerRef.current.childNodes[0].nodeValue =
+            headerRef.current.childNodes[0].nodeValue + text[frame];
+        } else if (frame <= text.length + 4) {
+          const [cursorHeaderElement] = Array.from(
+            headerRef.current.children as HTMLCollectionOf<HTMLElement>
+          );
+          switch (frame) {
+            case text.length:
+              cursorHeaderElement.style.height = "10px";
+              break;
+
+            case text.length + 1:
+              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] = "calc(100% + 40px)";
+              break;
+
+            case text.length + 2:
+              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] = "calc(100% + 70px)";
+              cursorHeaderElement.style.height = "18px";
+              cursorHeaderElement.style.width = "18px";
+              break;
+
+            case text.length + 4:
+              cursorHeaderElement.style[isLeftPositioned ? "left" : "right"] = "calc(100% + 84px)";
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    });
+    setTimeout(() => {
+      spriteAnimation.stopAnimation();
+    }, 2000);
+  }
   useLayoutEffect(() => {
     if (
       containerRef.current != null &&
