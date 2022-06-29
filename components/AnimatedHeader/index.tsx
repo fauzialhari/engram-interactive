@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 const AnimatedHeader: React.FC<{
   text: string;
   subtitle?: string;
