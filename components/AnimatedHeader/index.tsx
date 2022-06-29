@@ -3,6 +3,57 @@ const AnimatedHeader: React.FC<{
   subtitle?: string;
   isLeftPositioned?: boolean;
 }> = ({ text, isLeftPositioned = true, subtitle }) => {
+  return (
+    <>
+      <div className={`mb-24 ${isLeftPositioned ? "" : "text-right"}`}>
+        <div ref={containerRef} className="relative inline-block mb-5">
+          <h1
+            ref={headerRef}
+            className={`relative invisible inline-block leading-[0.7] ${
+              isLeftPositioned ? "mr-28" : "ml-28"
+            } mb-5`}
+          >
+            {text}
+            <span className={`absolute w-6 h-[60px] mx-2.5 bg-primary top-1/2 -translate-y-1/2 ${isLeftPositioned ? "left" : "right"}-full`}>
+              &nbsp;
+            </span>
+          </h1>
+          <div
+            ref={spritesContainerRef}
+            className={`absolute w-full h-full top-1/2 -translate-y-1/2 ${isLeftPositioned ? "right" : "left"}-0 flex items-baseline`}
+          >
+            <div
+              ref={cursorRef}
+              className={`w-6 h-[58px] bg-primary invisible origin-${isLeftPositioned ? "right" : "left"}`}
+            ></div>
+            <div
+              ref={bottomLineRef}
+              className={`border-b-2 border-primary w-full scale-x-0 absolute ${isLeftPositioned ? "origin-left" : "origin-right"} bottom-0`}
+            ></div>
+          </div>
+        </div>
+        <div className={`flex items-center ${isLeftPositioned ? "" : "flex-row-reverse"}`}>
+          <span
+            ref={subtitleSpriteRef}
+            className={`inline-block invisible w-[5px] h-[1em] bg-primary align-middle ${isLeftPositioned ? "mr-36" : "ml-36"}`}
+          >
+            &nbsp;
+          </span>
+          <div className="inline-flex items-center overflow-hidden">
+            <p
+              ref={subtitleRef}
+              className="uppercase inline-block leading-none opacity-0 translate-x-full"
+            >
+              {subtitle}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="mb-8">
+        <button onClick={animateSprites}>animate</button>
+      </div>
+    </>
+  );
 };
 
 export default AnimatedHeader;
