@@ -15,6 +15,16 @@ module.exports = {
         tertiary: "#0b4a6a",
         mainbg: "#090e19",
       },
+      fontSize: {
+        h1: "5rem",
+      },
+      letterSpacing: {
+        button: "0.2em",
+      },
+      keyframes: {
+      },
+      animation: {
+      },
     },
   },
   plugins: [],
