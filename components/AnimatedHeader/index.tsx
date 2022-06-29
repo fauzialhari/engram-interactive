@@ -3,6 +3,26 @@ const AnimatedHeader: React.FC<{
   subtitle?: string;
   isLeftPositioned?: boolean;
 }> = ({ text, isLeftPositioned = true, subtitle }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const spritesContainerRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const bottomLineRef = useRef<HTMLDivElement>(null);
+  const subtitleSpriteRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (
+      containerRef.current != null &&
+      spritesContainerRef.current != null &&
+      bottomLineRef.current != null
+    ) {
+      const { right, left } = containerRef.current.getBoundingClientRect();
+      const bottomLineWidth = isLeftPositioned
+        ? right
+        : document.documentElement.clientWidth - left;
+      spritesContainerRef.current.style.width = `${bottomLineWidth}px `;
+    }
+  });
   return (
     <>
       <div className={`mb-24 ${isLeftPositioned ? "" : "text-right"}`}>
