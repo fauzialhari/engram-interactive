@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 
 import AnimatedHeader from "../components/AnimatedHeader";
 import Story from "../components/Story";
-import background from "../assets/bg.png";
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +9,7 @@ const Home: NextPage = () => {
       <Story
         intro="cyberpunk jrpg set in 2105 germany."
         title="Story"
-        background={background.src}
+        background="/assets/bg.png"
       >
         <div className="text-center">
           <p className="mb-96">
