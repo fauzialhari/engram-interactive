@@ -12,3 +12,8 @@
     @apply bg-secondary py-5 px-12 uppercase font-bold tracking-button;
   }
 }
+
+.clip-path-right {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 750ms ease-in-out;
+}
