@@ -10,6 +10,20 @@ const Story: React.FC<{
   const textIntroRef = useRef<HTMLDivElement>(null);
   const imageParentRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLDivElement>(null);
+  
+  function animate() {
+    if (containerIntroRef.current != null && textIntroRef.current != null && imageParentRef.current != null && articleRef.current != null) {
+      containerIntroRef.current.classList.remove("invisible");
+      textIntroRef.current.classList.add("max-w-screen-2xl");
+      textIntroRef.current.classList.remove("max-w-xs");
+      textIntroRef.current.classList.remove("invisible");
+      const imageElement = imageParentRef.current.querySelector("img.clip-path-right") as HTMLElement | null;
+      if (imageElement != null) {
+          imageElement.style.clipPath = "inset(0 0 0 0)"
+      }
+      articleRef.current.classList.remove("opacity-0")
+    }
+  }
   return (
     <section
       className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw]"
