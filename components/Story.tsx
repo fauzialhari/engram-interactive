@@ -8,6 +8,8 @@ const Story: React.FC<{
 }> = ({ intro, title, background, children }) => {
   const containerIntroRef = useRef<HTMLDivElement>(null);
   const textIntroRef = useRef<HTMLDivElement>(null);
+  const imageParentRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLDivElement>(null);
   return (
     <section
       className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw]"
@@ -38,7 +40,26 @@ const Story: React.FC<{
           ></span>
         </div>
       </div>
+      <div className="relative">
+        <div ref={imageParentRef}>
+          <Image
+            src={background}
+            alt=""
+            width="1920"
+            height="963"
+            objectFit="cover"
+            className="clip-path-right"
+          />
+        </div>
+        <article ref={articleRef} className="mx-auto absolute inset-y-[15%] w-full transition-opacity opacity-0">
+          <div className="container mx-auto">
+            <h1 className="text-center">{title}</h1>
+            {children}
+          </div>
+        </article>
+      </div>
     </section>
+  );
 };
 
 export default Story;
