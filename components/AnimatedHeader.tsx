@@ -211,8 +211,8 @@ const AnimatedHeader: React.FC<{
           {text}
           <span
             className={`absolute w-6 h-[60px] mx-2.5 bg-primary top-1/2 -translate-y-1/2 ${
-              isLeftPositioned ? "left" : "right"
-            }-full`}
+              isLeftPositioned ? "left-full" : "right-full"
+            }`}
           >
             &nbsp;
           </span>
@@ -220,13 +220,13 @@ const AnimatedHeader: React.FC<{
         <div
           ref={spritesContainerRef}
           className={`absolute w-full h-full top-1/2 -translate-y-1/2 ${
-            isLeftPositioned ? "right" : "left"
-          }-0 flex items-baseline`}
+            isLeftPositioned ? "right-0" : "left-0"
+          } flex items-baseline`}
         >
           <div
             ref={cursorRef}
-            className={`w-6 h-[58px] bg-primary invisible origin-${
-              isLeftPositioned ? "right" : "left"
+            className={`w-6 h-[58px] bg-primary invisible ${
+              isLeftPositioned ? "origin-right" : "origin-left"
             }`}
           ></div>
           <div
