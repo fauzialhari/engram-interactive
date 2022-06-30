@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       <Story
         intro="cyberpunk jrpg set in 2105 germany."
         title="Story"
-        background="/assets/bg.png"
+        background="/assets/BG.png"
       >
         <div className="text-center">
           <p className="mb-96">
