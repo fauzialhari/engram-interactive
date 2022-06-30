@@ -21,6 +21,9 @@ module.exports = {
       letterSpacing: {
         button: "0.2em",
       },
+      transitionProperty: {
+        'maxwidth': 'max-width',
+      },
       keyframes: {
       },
       animation: {
