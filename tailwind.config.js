@@ -14,6 +14,7 @@ module.exports = {
         secondary: "#103d54",
         tertiary: "#0b4a6a",
         mainbg: "#090e19",
+        secondarybg: "#051924"
       },
       fontSize: {
         h1: "5rem",

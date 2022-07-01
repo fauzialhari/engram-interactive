@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 
 import AnimatedHeader from "../components/AnimatedHeader";
 import Story from "../components/Story";
+import Carousel from "../components/Carousel";
 
 const Home: NextPage = () => {
   return (
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
         text="Characters"
         subtitle="variety of mod chips & psionics to choose"
       />
+      <Carousel />
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
         culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
