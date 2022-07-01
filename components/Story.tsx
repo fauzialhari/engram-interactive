@@ -26,7 +26,7 @@ const Story: React.FC<{
   }
   return (
     <section
-      className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw]"
+      className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
       onClick={animate}
     >
       <div className="mb-52 text-center uppercase">
