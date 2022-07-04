@@ -10,6 +10,7 @@ import FpsCtrl from "../helpers/FpsCtrl";
 import getElementRef from "../utils/getElementRef";
 import ElementSetter from "../utils/elementSetter";
 import useDidUpdate from "../utils/useDidUpdate";
+import useOnScrollEffect from "../utils/useOnScrollEffect";
 
 const Carousel: React.FC<{
   children: ReactNode;
@@ -107,23 +108,8 @@ const Carousel: React.FC<{
     }
   }
   return (
-    <div className="mb-32">
+    <div className="mb-28">
       <div className="relative pb-[55.3%]">
-        <div
-          ref={contentRef}
-          className="absolute bg-secondarybg inset-0 border border-primary invisible"
-        >
-          {Children.toArray(children).map((Child, index) => (
-            <div
-              key={index}
-              className={`h-full max-w-[98%] mx-auto ${
-                activeSlide === index ? "" : " hidden"
-              }`}
-            >
-              {Child}
-            </div>
-          ))}
-        </div>
         <div
           ref={navigatorRef}
           className="opacity-0 absolute inset-x-0 inset-y-1/2 -translate-y-1/2 w-full h-1/4 flex justify-between items-center"
@@ -190,6 +176,21 @@ const Carousel: React.FC<{
             disabled={activeSlide === Children.toArray(children).length - 1}
             onClick={() => onClickNavigator("next")}
           ></button>
+        </div>
+        <div
+          ref={contentRef}
+          className="absolute bg-secondarybg inset-0 border border-primary invisible"
+        >
+          {Children.toArray(children).map((Child, index) => (
+            <div
+              key={index}
+              className={`h-full max-w-[98%] mx-auto ${
+                activeSlide === index ? "" : " hidden"
+              }`}
+            >
+              {Child}
+            </div>
+          ))}
         </div>
       </div>
       <div ref={navigationRef} className="text-right opacity-0">
