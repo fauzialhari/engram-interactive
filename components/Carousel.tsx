@@ -97,6 +97,14 @@ const Carousel: React.FC<{
       carouselAnimation.stopAnimation();
     }, 1000);
   }, [activeSlide, animateChildren]);
+  useDidUpdate(animate);
+  function onClickNavigator(direction: "prev" | "next") {
+    if (direction === "prev" && activeSlide !== 0) {
+      setActiveSlide(activeSlide - 1);
+    } else if (activeSlide !== Children.toArray(children).length - 1) {
+      setActiveSlide(activeSlide + 1);
+    }
+  }
   return (
     <div className="mb-32">
       <div className="relative pb-[55.3%]">
@@ -148,6 +156,7 @@ const Carousel: React.FC<{
               before:border-secondary
               disabled:opacity-25"
             disabled={activeSlide === 0}
+            onClick={() => onClickNavigator("prev")}
           ></button>
           <button
             type="button"
@@ -178,6 +187,7 @@ const Carousel: React.FC<{
               before:border-secondary
               disabled:opacity-25"
             disabled={activeSlide === Children.toArray(children).length - 1}
+            onClick={() => onClickNavigator("next")}
           ></button>
           </div>
         </div>
