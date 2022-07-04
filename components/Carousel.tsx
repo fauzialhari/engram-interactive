@@ -1,14 +1,40 @@
-const Carousel: React.FC<{}> = ({}) => {
+import {
+  Children,
+  ReactNode,
+  useState,
+} from "react";
+const Carousel: React.FC<{
+  children: ReactNode;
+  animateChildren?: (activeSlide: number) => void;
+}> = ({ children, animateChildren }) => {
+  const [activeSlide, setActiveSlide] = useState(0);
   return (
-    <div className="mb-32 px-24">
-      <div className="relative">
-        <div className="relative bg-secondarybg pb-[55.3%]">
-          <div className="absolute inset-0 border border-primary">content here</div>
-          <div className="absolute inset-x-0 inset-y-1/2 -translate-y-1/2 w-full h-1/4 flex justify-between items-center">
-            <span
-              role="button"
+    <div className="mb-32">
+      <div className="relative pb-[55.3%]">
+        <div
+          ref={contentRef}
+          className="absolute bg-secondarybg inset-0 border border-primary invisible"
+        >
+          {Children.toArray(children).map((Child, index) => (
+            <div
+              key={index}
+              className={`h-full max-w-[98%] mx-auto ${
+                activeSlide === index ? "" : " hidden"
+              }`}
+            >
+              {Child}
+            </div>
+          ))}
+        </div>
+        <div
+          ref={navigatorRef}
+          className="opacity-0 absolute inset-x-0 inset-y-1/2 -translate-y-1/2 w-full h-1/4 flex justify-between items-center"
+        >
+          <button
+            type="button"
               title="Previous"
               className="
+              p-0
               h-4
               w-4
               border-primary
@@ -30,12 +56,15 @@ const Carousel: React.FC<{}> = ({}) => {
               before:box-content
               before:border-l-[5px]
               before:border-b-[5px]
-              before:border-secondary"
-            ></span>
-            <span
-              role="button"
+              before:border-secondary
+              disabled:opacity-25"
+            disabled={activeSlide === 0}
+          ></button>
+          <button
+            type="button"
               title="Next"
               className="
+              p-0
               h-4
               w-4
               border-primary
@@ -57,11 +86,23 @@ const Carousel: React.FC<{}> = ({}) => {
               before:box-content
               before:border-r-[5px]
               before:border-t-[5px]
-              before:border-secondary"
-            ></span>
+              before:border-secondary
+              disabled:opacity-25"
+            disabled={activeSlide === Children.toArray(children).length - 1}
+          ></button>
           </div>
         </div>
-        <div>navigation here</div>
+      <div ref={navigationRef} className="text-right opacity-0">
+        <ol className="inline mr-9">
+          {Children.toArray(children).map((child, index) => (
+            <li
+              key={index}
+              className={`list-none inline-block mr-2 h-1.5 w-12 ${
+                index === activeSlide ? "bg-primary" : "bg-tertiary"
+              }`}
+            ></li>
+          ))}
+        </ol>
       </div>
     </div>
   );
