@@ -98,6 +98,16 @@ const Carousel: React.FC<{
     }, 1000);
   }, [activeSlide, animateChildren]);
   useDidUpdate(animate);
+  const onScroll = useCallback(() => {
+    const contentRefTop = getElementRef(contentRef).getBoundingClientRect().top;
+    if (contentRefTop > 0 && contentRefTop < 0.5 * window.innerHeight) {
+      animate();
+      window.removeEventListener("scroll", onScroll);
+    }
+  }, [animate]);
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+  }, [onScroll]);
   function onClickNavigator(direction: "prev" | "next") {
     if (direction === "prev" && activeSlide !== 0) {
       setActiveSlide(activeSlide - 1);
@@ -129,8 +139,8 @@ const Carousel: React.FC<{
         >
           <button
             type="button"
-              title="Previous"
-              className="
+            title="Previous"
+            className="
               p-0
               h-4
               w-4
@@ -160,8 +170,8 @@ const Carousel: React.FC<{
           ></button>
           <button
             type="button"
-              title="Next"
-              className="
+            title="Next"
+            className="
               p-0
               h-4
               w-4
@@ -189,8 +199,8 @@ const Carousel: React.FC<{
             disabled={activeSlide === Children.toArray(children).length - 1}
             onClick={() => onClickNavigator("next")}
           ></button>
-          </div>
         </div>
+      </div>
       <div ref={navigationRef} className="text-right opacity-0">
         <ol className="inline mr-9">
           {Children.toArray(children).map((child, index) => (
