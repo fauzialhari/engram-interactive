@@ -3,6 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: #03c7ff;
+  --secondary-color: #103d54;
+  --tertiary-color: #0b4a6a;
+  --mainbg-color: #090e19;
+  --secondarybg-color: #051924;
+}
 
 @layer base {
   h1 {

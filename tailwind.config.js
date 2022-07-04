@@ -10,11 +10,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#03c7ff",
-        secondary: "#103d54",
-        tertiary: "#0b4a6a",
-        mainbg: "#090e19",
-        secondarybg: "#051924"
+        primary: "var(--primary-color)",
+        secondary: "var(--secondary-color)",
+        tertiary: "var(--tertiary-color)",
+        mainbg: "var(--mainbg-color)",
+        secondarybg: "var(--secondarybg-color)"
       },
       fontSize: {
         h1: "5rem",
