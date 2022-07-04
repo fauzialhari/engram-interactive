@@ -1,13 +1,102 @@
 import {
   Children,
   ReactNode,
+  useRef,
   useState,
+  useEffect,
+  useCallback,
 } from "react";
+import FpsCtrl from "../helpers/FpsCtrl";
+import getElementRef from "../utils/getElementRef";
+import ElementSetter from "../utils/elementSetter";
+import useDidUpdate from "../utils/useDidUpdate";
+
 const Carousel: React.FC<{
   children: ReactNode;
   animateChildren?: (activeSlide: number) => void;
 }> = ({ children, animateChildren }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const navigatorRef = useRef<HTMLDivElement>(null);
+  const navigationRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const animate = useCallback(() => {
+    const carouselAnimation = new FpsCtrl(12, ({ frame }) => {
+      const contentElement = new ElementSetter(getElementRef(contentRef));
+      const navigatorElement = new ElementSetter(getElementRef(navigatorRef));
+      const navigationElement = new ElementSetter(getElementRef(navigationRef));
+
+      switch (frame) {
+        case 0:
+          break;
+        case 1:
+          contentElement
+            .addStyle({
+              transform: "scale(0.07)",
+              background: "var(--primary-color)",
+            })
+            .removeClass("invisible");
+          break;
+
+        case 2:
+          contentElement.removeStyle("background");
+          break;
+
+        case 3:
+          contentElement.addStyle({
+            transform: "scale(0.15)",
+          });
+          break;
+
+        case 4:
+          contentElement.addStyle({
+            transform: "scale(0.85)",
+          });
+          break;
+
+        case 5:
+          contentElement.addStyle({
+            transform: "scale(0.95)",
+          });
+          navigatorElement
+            .addStyle({
+              opacity: "0.33",
+            })
+            .removeClass("opacity-0");
+          navigationElement
+            .addStyle({
+              opacity: "0.33",
+            })
+            .removeClass("opacity-0");
+          break;
+
+        case 6:
+          contentElement.addStyle({
+            transform: "scale(1)",
+          });
+          navigatorElement.addStyle({
+            opacity: "0.66",
+          });
+          navigationElement.addStyle({
+            opacity: "0.66",
+          });
+          if (!!animateChildren) {
+            animateChildren(activeSlide);
+          }
+          break;
+
+        case 7:
+          navigatorElement.removeStyle("opacity");
+          navigationElement.removeStyle("opacity");
+          break;
+
+        default:
+          break;
+      }
+    });
+    setTimeout(() => {
+      carouselAnimation.stopAnimation();
+    }, 1000);
+  }, [activeSlide, animateChildren]);
   return (
     <div className="mb-32">
       <div className="relative pb-[55.3%]">
