@@ -98,16 +98,7 @@ const Carousel: React.FC<{
     }, 1000);
   }, [activeSlide, animateChildren]);
   useDidUpdate(animate);
-  const onScroll = useCallback(() => {
-    const contentRefTop = getElementRef(contentRef).getBoundingClientRect().top;
-    if (contentRefTop > 0 && contentRefTop < 0.5 * window.innerHeight) {
-      animate();
-      window.removeEventListener("scroll", onScroll);
-    }
-  }, [animate]);
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-  }, [onScroll]);
+  useOnScrollEffect(contentRef, animate);
   function onClickNavigator(direction: "prev" | "next") {
     if (direction === "prev" && activeSlide !== 0) {
       setActiveSlide(activeSlide - 1);
