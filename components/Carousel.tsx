@@ -8,7 +8,7 @@ import {
 } from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
 import getElementRef from "../utils/getElementRef";
-import ElementSetter from "../utils/classElementSetter";
+import ElementSetter from "../utils/elementSetter";
 import useDidUpdate from "../utils/useDidUpdate";
 
 const Carousel: React.FC<{
