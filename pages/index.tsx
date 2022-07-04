@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 
 import AnimatedHeader from "../components/AnimatedHeader";
 import Story from "../components/Story";
-import Carousel from "../components/Carousel";
+import FeaturesSlider from "../components/FeaturesSlider";
 
 const Home: NextPage = () => {
   return (
@@ -23,16 +23,38 @@ const Home: NextPage = () => {
           <p className="italic">-Michael</p>
         </div>
       </Story>
-      <AnimatedHeader
-        text="Features"
-        subtitle="variety of mod chips & psionics to choose"
-      />
-      <AnimatedHeader
-        isLeftPositioned={false}
-        text="Characters"
-        subtitle="variety of mod chips & psionics to choose"
-      />
-      <Carousel />
+      <div className="px-24">
+        <AnimatedHeader
+          text="Features"
+          subtitle="variety of mod chips & psionics to choose"
+        />
+        <FeaturesSlider
+          featureImages={[
+            {
+              url: "/assets/features-placeholder.png",
+              id: "1",
+              title: "Placeholder",
+            },
+            {
+              url: "/assets/features-placeholder.png",
+              id: "2",
+              title: "Placeholder 2",
+            },
+            {
+              url: "/assets/features-placeholder.png",
+              id: "3",
+              title: "Placeholder 3",
+            },
+          ]}
+        />
+      </div>
+      <div className="px-24">
+        <AnimatedHeader
+          isLeftPositioned={false}
+          text="Characters"
+          subtitle="variety of mod chips & psionics to choose"
+        />
+      </div>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
         culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
