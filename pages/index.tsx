@@ -32,14 +32,19 @@ const Home: NextPage = () => {
             title: "Placeholder",
           },
           {
-            url: "/assets/features-placeholder.png",
+            url: "/assets/character2.png",
             id: "2",
             title: "Placeholder 2",
           },
           {
-            url: "/assets/features-placeholder.png",
+            url: "/assets/BG.png",
             id: "3",
             title: "Placeholder 3",
+          },
+          {
+            url: "/assets/features-placeholder.png",
+            id: "4",
+            title: "Placeholder",
           },
         ]}
       />
