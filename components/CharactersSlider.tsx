@@ -28,7 +28,7 @@ const CharactersSlider: React.FC<{
               return (
                 <div
                   className={`${
-                    index === activeSlide ? "" : "hidden "
+                    index === activeSlide ? "" : "opacity-0 "
                   }h-full flex justify-center items-stretch transtion-opacity duration-250 pointer-events-none`}
                   key={id}
                 >
@@ -39,6 +39,9 @@ const CharactersSlider: React.FC<{
                         width="907px"
                         height="1506px"
                         alt={title}
+                        className={`${
+                          index === activeSlide ? "" : "brightness-0 "
+                        } transition-filter duration-[416ms]`}
                       />
                     </div>
                   </div>

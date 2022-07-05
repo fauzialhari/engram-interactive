@@ -25,6 +25,7 @@ module.exports = {
       },
       transitionProperty: {
         'maxwidth': 'max-width',
+        'filter': 'filter'
       },
       keyframes: {
       },
