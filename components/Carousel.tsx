@@ -182,14 +182,12 @@ const Carousel: React.FC<{
           className="absolute bg-secondarybg inset-0 border border-primary invisible"
         >
           {Children.toArray(children).map((Child, index) => (
-            <div
+            activeSlide === index ? <div
               key={index}
-              className={`h-full max-w-[98%] mx-auto ${
-                activeSlide === index ? "" : " hidden"
-              }`}
+              className="h-full px-11 py-14 mx-auto"
             >
               {Child}
-            </div>
+            </div> : null
           ))}
         </div>
       </div>
