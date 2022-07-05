@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import AnimatedHeader from "../components/AnimatedHeader";
 import Story from "../components/Story";
 import FeaturesSlider from "../components/FeaturesSlider";
+import CharactersSlider from "../components/CharactersSlider";
 
 const Home: NextPage = () => {
   return (
@@ -23,33 +24,56 @@ const Home: NextPage = () => {
           <p className="italic">-Michael</p>
         </div>
       </Story>
-        <FeaturesSlider
-          featureImages={[
-            {
-              url: "/assets/features-placeholder.png",
-              id: "1",
-              title: "Placeholder",
-            },
-            {
-              url: "/assets/features-placeholder.png",
-              id: "2",
-              title: "Placeholder 2",
-            },
-            {
-              url: "/assets/features-placeholder.png",
-              id: "3",
-              title: "Placeholder 3",
-            },
-          ]}
-        />
-      </div>
-      <div className="px-24">
-        <AnimatedHeader
-          isLeftPositioned={false}
-          text="Characters"
-          subtitle="variety of mod chips & psionics to choose"
-        />
-      </div>
+      <FeaturesSlider
+        featureImages={[
+          {
+            url: "/assets/features-placeholder.png",
+            id: "1",
+            title: "Placeholder",
+          },
+          {
+            url: "/assets/features-placeholder.png",
+            id: "2",
+            title: "Placeholder 2",
+          },
+          {
+            url: "/assets/features-placeholder.png",
+            id: "3",
+            title: "Placeholder 3",
+          },
+        ]}
+      />
+      <CharactersSlider
+        charactersContent={[
+          {
+            characterImageUrl: "/assets/character2.png",
+            id: "1",
+            title: "Placeholder 1",
+            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
+              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
+              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
+              rerum?`,
+          },
+          {
+            characterImageUrl: "/assets/character.png",
+            id: "2",
+            title: "Placeholder 2",
+            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
+              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
+              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
+              rerum?`,
+          },
+          {
+            characterImageUrl: "/assets/character.png",
+            id: "3",
+            title: "Placeholder 3",
+            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
+              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
+              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
+              rerum?`,
+          },
+        ]}
+      />
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
         culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
