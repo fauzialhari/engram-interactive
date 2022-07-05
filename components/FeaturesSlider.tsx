@@ -24,11 +24,11 @@ const FeaturesSlider: React.FC<{
           return (
             <div
               className={`${
-                index === activeSlide ? "" : "hidden "
-              }h-full flex justify-center items-center transtion-opacity duration-250`}
+                index === activeSlide ? "" : "opacity-0 "
+              }h-full flex justify-center items-center transition-opacity duration-250`}
               key={id}
             >
-              <Image src={url} width="1260" height="637" alt={title} />
+              <Image src={url} width="1260" height="637" objectFit="contain" alt={title} />
             </div>
           );
         })}
