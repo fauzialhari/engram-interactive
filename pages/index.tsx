@@ -23,11 +23,6 @@ const Home: NextPage = () => {
           <p className="italic">-Michael</p>
         </div>
       </Story>
-      <div className="px-24">
-        <AnimatedHeader
-          text="Features"
-          subtitle="variety of mod chips & psionics to choose"
-        />
         <FeaturesSlider
           featureImages={[
             {
