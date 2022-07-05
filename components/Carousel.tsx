@@ -98,7 +98,11 @@ const Carousel: React.FC<{
       carouselAnimation.stopAnimation();
     }, 1000);
   }, [activeSlide, animateChildren]);
-  useDidUpdate(animate);
+  useDidUpdate(() => {
+    if (!!animateChildren) {
+      animateChildren(activeSlide);
+    }
+  });
   useOnScrollEffect(contentRef, animate);
   function onClickNavigator(direction: "prev" | "next") {
     if (direction === "prev" && activeSlide !== 0) {
