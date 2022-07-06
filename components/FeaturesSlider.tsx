@@ -9,7 +9,7 @@ const FeaturesSlider: React.FC<{
     title: string;
   }[];
 }> = ({ featureImages }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(-1);
   const animate = useCallback((CarouselActiveSlide: number) => {
     setActiveSlide(CarouselActiveSlide);
   }, []);
