@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
+import useOnScrollEffect from "../utils/useOnScrollEffect";
 const Story: React.FC<{
   intro: string;
   title: string;
@@ -24,6 +25,8 @@ const Story: React.FC<{
       articleRef.current.classList.remove("opacity-0")
     }
   }
+
+  useOnScrollEffect(containerIntroRef, animate);
   return (
     <section
       className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
