@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
+import useOnScrollEffect from "../utils/useOnScrollEffect";
 
 const AnimatedHeader: React.FC<{
   text: string;
@@ -145,6 +146,7 @@ const AnimatedHeader: React.FC<{
       spriteAnimation.stopAnimation();
     }, 1000);
   }
+  useOnScrollEffect(containerRef, animate);
   useLayoutEffect(() => {
     if (
       containerRef.current != null &&
