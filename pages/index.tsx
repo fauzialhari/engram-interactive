@@ -8,6 +8,9 @@ import CharactersSlider from "../components/CharactersSlider";
 const Home: NextPage = () => {
   return (
     <main className="container mx-auto">
+      <div className="mb-24 h-screen">
+        placeholder for laser rain here
+      </div>
       <Story
         intro="cyberpunk jrpg set in 2105 germany."
         title="Story"
