@@ -33,20 +33,26 @@ const CharactersSlider: React.FC<{
                   key={id}
                 >
                   <div className="relative w-1/2  flex items-center">
-                    <div className="absolute w-[50vw] right-[10%] -mt-[40%] ">
+                    <div
+                      className={`absolute w-[50vw] right-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out ${
+                        index === activeSlide ? "" : "-translate-x-[8%]"
+                      }`}
+                    >
                       <Image
                         src={characterImageUrl}
                         width="907px"
                         height="1506px"
                         alt={title}
                         className={`${
-                          index === activeSlide ? "" : "brightness-0 "
-                        } transition-filter duration-[416ms]`}
+                          index === activeSlide ? "" : "brightness-50 "
+                        } transition-filter duration-[416ms] delay-75 ease-out`}
                       />
                     </div>
                   </div>
                   <div className="w-1/2 flex items-end">
-                    <div className="relative inline-block px-9 py-8">
+                    <div className={`relative inline-block px-9 py-8 transition-transform duration-[416ms] delay-75 ease-out  ${
+                          index === activeSlide ? "" : "scale-[0.25]"
+                        }`}>
                       <span
                         className="
                           absolute inline-block h-full w-8 inset-y-0 left-0
@@ -56,9 +62,15 @@ const CharactersSlider: React.FC<{
                           after:border-l-2 after:border-primary after:absolute after:w-full 
                           after:h-8 after:bottom-0 after:inset-x-0"
                       ></span>
-                      <div className="bg-secondary py-12 px-[4.375rem]">
-                        <h2>{title}</h2>
-                        <p className="">{description}</p>
+                      <div
+                        className="bg-secondary py-12 px-[4.375rem]"
+                      >
+                        <article className={`transition-opacity duration-[167ms] delay-[333ms] ease-out  ${
+                          index === activeSlide ? "" : "opacity-0"
+                        }`}>
+                          <h2>{title}</h2>
+                          <p className="">{description}</p>
+                        </article>
                       </div>
                       <span
                         className="
