@@ -1,16 +1,14 @@
 import type { NextPage } from "next";
 
-import AnimatedHeader from "../components/AnimatedHeader";
 import Story from "../components/Story";
 import FeaturesSlider from "../components/FeaturesSlider";
 import CharactersSlider from "../components/CharactersSlider";
+import Landing from "../components/Landing";
 
 const Home: NextPage = () => {
   return (
     <main className="container mx-auto">
-      <div className="mb-24 h-screen">
-        placeholder for laser rain here
-      </div>
+      <Landing></Landing>
       <Story
         intro="cyberpunk jrpg set in 2105 germany."
         title="Story"
