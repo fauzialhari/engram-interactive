@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
 const Story: React.FC<{
   intro: string;
