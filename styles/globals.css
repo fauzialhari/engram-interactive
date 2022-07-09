@@ -18,6 +18,9 @@
   h2 {
     @apply text-h2 font-bold uppercase mb-16;
   }
+  p {
+    @apply mb-6;
+  }
   button {
     @apply bg-secondary py-5 px-12 uppercase font-bold tracking-button;
   }
