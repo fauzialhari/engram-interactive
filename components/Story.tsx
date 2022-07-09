@@ -48,7 +48,7 @@ const Story: React.FC<{
           <FuturisticEdge>
             <p
               ref={textIntroRef}
-              className="tracking-[0.2em] whitespace-nowrap overflow-hidden transition-maxwidth max-w-xs invisible"
+              className="tracking-[0.2em] mb-0 whitespace-nowrap overflow-hidden transition-maxwidth max-w-xs invisible"
             >
               {intro}
             </p>

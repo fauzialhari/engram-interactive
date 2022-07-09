@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-const FuturisticEdge: React.FC<{ children: ReactNode }> = ({ children }) => {
+const FuturisticEdge: React.FC<{ children?: ReactNode }> = ({ children }) => {
   return (
     <>
       <span
