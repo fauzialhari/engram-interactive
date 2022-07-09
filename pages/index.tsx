@@ -5,6 +5,7 @@ import Story from "../components/Story";
 import FeaturesSlider from "../components/FeaturesSlider";
 import CharactersSlider from "../components/CharactersSlider";
 import Gallery from "../components/Gallery";
+import News from "../components/News";
 
 const Home: NextPage = () => {
   return (
@@ -94,13 +95,16 @@ const Home: NextPage = () => {
           { url: "/assets/gallery-image.png", id: "9", title: "gallery 9" },
         ]}
       />
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-        culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-        dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-        rerum?
-      </p>
-      <button>play now</button>
+      <News
+        articles={[
+          {
+            id: "1",
+            title: "Sebvah Judul",
+            date: "Semacam tgl",
+            content: `<p>Ini paragraph</p>`,
+          },
+        ]}
+      />
     </main>
   );
 };
