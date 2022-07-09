@@ -23,7 +23,7 @@ const Gallery: React.FC<{
       }
     }
   return (
-    <section>
+    <section className="px-24">
       <AnimatedHeader text="Gallery" />
       <div ref={imagesContainer} className="grid grid-cols-3 gap-12">
         {images.map(({ url, title, id }, index) =>

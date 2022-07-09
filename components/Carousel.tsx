@@ -3,7 +3,6 @@ import {
   ReactNode,
   useRef,
   useState,
-  useEffect,
   useCallback,
 } from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
