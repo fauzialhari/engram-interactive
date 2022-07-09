@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 
+import Landing from "../components/Landing";
 import Story from "../components/Story";
 import FeaturesSlider from "../components/FeaturesSlider";
 import CharactersSlider from "../components/CharactersSlider";
-import Landing from "../components/Landing";
+import Gallery from "../components/Gallery";
 
 const Home: NextPage = () => {
   return (
@@ -78,6 +79,19 @@ const Home: NextPage = () => {
               dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
               rerum?`,
           },
+        ]}
+      />
+      <Gallery
+        images={[
+          { url: "/assets/gallery-image.png", id: "1", title: "gallery 1" },
+          { url: "/assets/gallery-image.png", id: "2", title: "gallery 2" },
+          { url: "/assets/gallery-image.png", id: "3", title: "gallery 3" },
+          { url: "/assets/gallery-image.png", id: "4", title: "gallery 4" },
+          { url: "/assets/gallery-image.png", id: "5", title: "gallery 5" },
+          { url: "/assets/gallery-image.png", id: "6", title: "gallery 6" },
+          { url: "/assets/gallery-image.png", id: "7", title: "gallery 7" },
+          { url: "/assets/gallery-image.png", id: "8", title: "gallery 8" },
+          { url: "/assets/gallery-image.png", id: "9", title: "gallery 9" },
         ]}
       />
       <p>
