@@ -52,7 +52,7 @@ const News: React.FC<{
         const loadMoreButton = new elementSetter(
           getElementRef(loadMoreButtonRef)
         );
-        loadMoreButton.removeClass("opacity-0")
+        loadMoreButton.removeClass("opacity-0");
       }
     });
     newsText.removeClass("opacity-0");
@@ -134,7 +134,12 @@ const News: React.FC<{
         </article>
       ))}
       <div className="text-center">
-        <button ref={loadMoreButtonRef} className="text-primary font-normal italic opacity-0 transition-opacity duration-[167ms]">Load more</button>
+        <button
+          ref={loadMoreButtonRef}
+          className="text-primary font-normal italic opacity-0 transition-opacity duration-[167ms]"
+        >
+          Load more
+        </button>
       </div>
     </section>
   );
