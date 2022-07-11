@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 
 class ElementSetter {
   element;
-  constructor(element: HTMLElement) {
+  constructor(element: HTMLElement) {    
     this.element = element;
   }
 
