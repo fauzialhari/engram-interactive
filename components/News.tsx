@@ -2,7 +2,7 @@ import { useRef, createRef } from "react";
 import getElementRef from "../utils/getElementRef";
 import elementSetter from "../utils/elementSetter";
 import FuturisticEdge from "./FuturisticEdge";
-import FpsCtrl from "../helpers/FpsCtrl";
+import useOnScrollEffect from "../utils/useOnScrollEffect";
 const News: React.FC<{
   articles: { title: string; date: string; content: string; id: string }[];
 }> = ({ articles }) => {
@@ -75,6 +75,7 @@ const News: React.FC<{
     });
     animateEachNews(0);
   }
+  useOnScrollEffect(titleRef, animate);
   return (
     <section
       className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96"
