@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useState } from "react";
 
 import Landing from "../components/Landing";
 import Story from "../components/Story";
@@ -8,6 +9,20 @@ import Gallery from "../components/Gallery";
 import News from "../components/News";
 
 const Home: NextPage = () => {
+  const [articles] = useState([
+    {
+      id: "1",
+      title: "Sebvah Judul",
+      date: "Semacam tgl",
+      content: `<p>Ini paragraph</p>`,
+    },
+    {
+      id: "2",
+      title: "Sebvah Judul",
+      date: "Semacam tgl",
+      content: `<p>Ini paragraph</p>`,
+    },
+  ]);
   return (
     <main className="container mx-auto">
       <Landing></Landing>
@@ -95,16 +110,7 @@ const Home: NextPage = () => {
           { url: "/assets/gallery-image.png", id: "9", title: "gallery 9" },
         ]}
       />
-      <News
-        articles={[
-          {
-            id: "1",
-            title: "Sebvah Judul",
-            date: "Semacam tgl",
-            content: `<p>Ini paragraph</p>`,
-          },
-        ]}
-      />
+      <News articles={articles} />
     </main>
   );
 };
