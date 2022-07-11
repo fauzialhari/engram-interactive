@@ -122,7 +122,7 @@ const News: React.FC<{
               <FuturisticEdge></FuturisticEdge>
             </div>
             <div className="opacity-0 transition-opacity delay-[250ms]">
-              <div dangerouslySetInnerHTML={{ __html: content }}></div>
+              <div className="line-clamp-[16] mb-9" dangerouslySetInnerHTML={{ __html: content }}></div>
               <a
                 href="#"
                 className="uppercase text-primary italic text-right float-right"
