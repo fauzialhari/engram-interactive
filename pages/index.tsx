@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 
+import HeaderNav from "../components/HeaderNav";
 import Landing from "../components/Landing";
 import Story from "../components/Story";
 import FeaturesSlider from "../components/FeaturesSlider";
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
   ]);
   return (
     <main className="container mx-auto">
+      <HeaderNav />
       <Landing></Landing>
       <Story
         intro="cyberpunk jrpg set in 2105 germany."
