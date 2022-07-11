@@ -1,8 +1,9 @@
-import { useRef, createRef } from "react";
+import { useRef, createRef, useState } from "react";
 import getElementRef from "../utils/getElementRef";
 import elementSetter from "../utils/elementSetter";
 import FuturisticEdge from "./FuturisticEdge";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
+import Modal from "./Modal";
 const News: React.FC<{
   articles: { title: string; date: string; content: string; id: string }[];
 }> = ({ articles }) => {
@@ -25,6 +26,7 @@ const News: React.FC<{
   newsContentRefs.current = articles.map(
     (_article, i) => newsContentRefs.current[i] ?? createRef()
   );
+  const [activeNewsItem, setActiveNewsItem] = useState(-1);
   function animateEachNews(index: number) {
     const newsBottomLine = new elementSetter(
       getElementRef(newsBottomLineRefs.current[index])
@@ -74,6 +76,9 @@ const News: React.FC<{
       title.addClass("text-primary").removeClass("text-transparent");
     });
     animateEachNews(0);
+  }
+  function onClickNewsItem(index: number) {
+    setActiveNewsItem(index);
   }
   useOnScrollEffect(titleRef, animate);
   return (
@@ -126,6 +131,10 @@ const News: React.FC<{
               <a
                 href="#"
                 className="uppercase text-primary italic text-right float-right"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onClickNewsItem(index);
+                }}
               >
                 Read More//
               </a>
@@ -141,6 +150,9 @@ const News: React.FC<{
           Load more
         </button>
       </div>
+      {activeNewsItem >= 0 ? (
+        <Modal {...articles[activeNewsItem]} exit={()=>setActiveNewsItem(-1)}/>
+      ) : null}
     </section>
   );
 };
