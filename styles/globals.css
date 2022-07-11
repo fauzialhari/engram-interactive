@@ -16,7 +16,7 @@
     @apply text-h1 font-bold uppercase leading-[0.95] tracking-[.06em];
   }
   h2 {
-    @apply text-h2 font-bold uppercase mb-16;
+    @apply text-h2 font-bold uppercase mb-8;
   }
   p {
     @apply mb-6;
