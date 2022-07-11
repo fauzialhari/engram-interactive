@@ -16,7 +16,7 @@ const CharactersSlider: React.FC<{
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
-    <section className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44 bg-secondarybg pt-9 pb-[0.5px]">
+    <section id="characters" className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44 bg-secondarybg pt-9 pb-[0.5px]">
       <div className="container px-24 mx-auto">
         <AnimatedHeader
           isLeftPositioned={false}

@@ -83,6 +83,7 @@ const News: React.FC<{
   useOnScrollEffect(titleRef, animate);
   return (
     <section
+      id="news"
       className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96"
       onClick={animate}
     >
@@ -127,7 +128,10 @@ const News: React.FC<{
               <FuturisticEdge></FuturisticEdge>
             </div>
             <div className="opacity-0 transition-opacity delay-[250ms]">
-              <div className="line-clamp-[16] mb-9" dangerouslySetInnerHTML={{ __html: content }}></div>
+              <div
+                className="line-clamp-[16] mb-9"
+                dangerouslySetInnerHTML={{ __html: content }}
+              ></div>
               <a
                 href="#"
                 className="uppercase text-primary italic text-right float-right"
@@ -151,7 +155,10 @@ const News: React.FC<{
         </button>
       </div>
       {activeNewsItem >= 0 ? (
-        <Modal {...articles[activeNewsItem]} exit={()=>setActiveNewsItem(-1)}/>
+        <Modal
+          {...articles[activeNewsItem]}
+          exit={() => setActiveNewsItem(-1)}
+        />
       ) : null}
     </section>
   );

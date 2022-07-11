@@ -37,6 +37,7 @@ const Story: React.FC<{
   useOnScrollEffect(containerIntroRef, animate);
   return (
     <section
+      id="story"
       className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
       onClick={animate}
     >

@@ -14,7 +14,7 @@ const FeaturesSlider: React.FC<{
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
-    <section className="px-24 mb-[26rem]">
+    <section id="features" className="px-24 mb-[26rem]">
       <AnimatedHeader
         text="Features"
         subtitle="variety of mod chips & psionics to choose"
