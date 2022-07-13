@@ -10,7 +10,9 @@ import Gallery from "../components/Gallery";
 import News from "../components/News";
 import FooterNav from "../components/FooterNav";
 
-const Home: NextPage = () => {
+const Home: NextPage<{
+  posts: []
+}> = ({posts}) => {
   const [articles] = useState([
     {
       id: "1",
@@ -30,9 +32,11 @@ const Home: NextPage = () => {
       content: `<p>Ini paragraph</p>`,
     },
   ]);
+
   return (
     <main className="container mx-auto">
       <HeaderNav />
+      {JSON.stringify(posts)}
       <Landing></Landing>
       <Story
         intro="cyberpunk jrpg set in 2105 germany."
@@ -125,3 +129,16 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+export async function getStaticProps() {
+  const res = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/posts"
+  );
+  const posts = await res.json();
+  console.log('jalan');
+  
+  return {
+    props: {
+      posts,
+    }, // will be passed to the page component as props
+  };
+}
