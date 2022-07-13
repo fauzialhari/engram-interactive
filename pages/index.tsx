@@ -8,6 +8,7 @@ import FeaturesSlider from "../components/FeaturesSlider";
 import CharactersSlider from "../components/CharactersSlider";
 import Gallery from "../components/Gallery";
 import News from "../components/News";
+import FooterNav from "../components/FooterNav";
 
 const Home: NextPage = () => {
   const [articles] = useState([
@@ -118,6 +119,7 @@ const Home: NextPage = () => {
         ]}
       />
       <News articles={articles} />
+      <FooterNav />
     </main>
   );
 };
