@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
 import { useState } from "react";
 
 import HeaderNav from "../components/HeaderNav";
@@ -11,8 +11,8 @@ import News from "../components/News";
 import FooterNav from "../components/FooterNav";
 
 const Home: NextPage<{
-  posts: []
-}> = ({posts}) => {
+  posts: [];
+}> = ({ posts }) => {
   const [articles] = useState([
     {
       id: "1",
@@ -129,16 +129,17 @@ const Home: NextPage<{
 };
 
 export default Home;
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
     "https://fc.engraminteractive.com/wp-json/wp/v2/posts"
   );
   const posts = await res.json();
-  console.log('jalan');
-  
+  console.log("jalan");
+
   return {
     props: {
       posts,
-    }, // will be passed to the page component as props
+    }, // will be passed to the page component as
+    revalidate: 60
   };
-}
+};
