@@ -13,16 +13,16 @@
 
 @layer base {
   h1 {
-    @apply text-h1 font-bold uppercase leading-[0.95] tracking-[.06em];
+    @apply text-xl lg:text-h1 font-bold uppercase leading-[0.95] tracking-[.06em];
   }
   h2 {
-    @apply text-h2 font-bold uppercase mb-8;
+    @apply text-lg lg:text-h2 font-bold uppercase mb-8;
   }
   p {
     @apply mb-6;
   }
   button {
-    @apply bg-secondary py-5 px-12 uppercase font-bold tracking-button;
+    @apply bg-secondary py-2.5 lg:py-5 px-6 lg:px-12 uppercase font-bold tracking-button;
   }
   input {
     @apply border border-primary p-3 bg-transparent focus:border-primary;
