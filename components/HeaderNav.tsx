@@ -22,7 +22,7 @@ const HeaderNav: React.FC<{}> = () => {
             </li>
             <li className="inline-block">
               <a
-                href="#"
+                href="#characters"
                 className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
                 Characters
