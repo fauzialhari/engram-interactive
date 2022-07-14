@@ -9,7 +9,8 @@ const Gallery: React.FC<{
     title: string;
     id: string;
   }[];
-}> = ({ images }) => {
+  title: string;
+}> = ({ images, title="Gallery" }) => {
   const imagesContainer = useRef(null);
   const [animating, setAnimating] = useState(false);
   useOnScrollEffect(imagesContainer, () => setAnimating(true));
@@ -24,13 +25,13 @@ const Gallery: React.FC<{
     }
   return (
     <section id="gallery" className="px-24 mb-96">
-      <AnimatedHeader text="Gallery" />
+      <AnimatedHeader text={title} />
       <div ref={imagesContainer} className="grid grid-cols-3 gap-12">
         {images.map(({ url, title, id }, index) =>
           index < 9 ? (
             <a
               key={id}
-              href=""
+              href="#"
               title="Show"
               className={`transition-all duration-[333ms] ${calculateDelayClass(
                 index
