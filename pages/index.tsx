@@ -1,4 +1,7 @@
-import type { NextPage } from "next";
+import type {
+  NextPage,
+  GetStaticProps,
+} from "next";
 import { useState } from "react";
 
 import HeaderNav from "../components/HeaderNav";
@@ -10,7 +13,16 @@ import Gallery from "../components/Gallery";
 import News from "../components/News";
 import FooterNav from "../components/FooterNav";
 
-const Home: NextPage = () => {
+const Home: NextPage<{
+  gallery: {
+    title: string;
+    images: {
+      url: string;
+      title: string;
+      id: string;
+    }[];
+  };
+}> = ({ gallery }) => {
   const [articles] = useState([
     {
       id: "1",
@@ -106,17 +118,7 @@ const Home: NextPage = () => {
         ]}
       />
       <Gallery
-        images={[
-          { url: "/assets/gallery-image.png", id: "1", title: "gallery 1" },
-          { url: "/assets/gallery-image.png", id: "2", title: "gallery 2" },
-          { url: "/assets/gallery-image.png", id: "3", title: "gallery 3" },
-          { url: "/assets/gallery-image.png", id: "4", title: "gallery 4" },
-          { url: "/assets/gallery-image.png", id: "5", title: "gallery 5" },
-          { url: "/assets/gallery-image.png", id: "6", title: "gallery 6" },
-          { url: "/assets/gallery-image.png", id: "7", title: "gallery 7" },
-          { url: "/assets/gallery-image.png", id: "8", title: "gallery 8" },
-          { url: "/assets/gallery-image.png", id: "9", title: "gallery 9" },
-        ]}
+        {...gallery}
       />
       <News articles={articles} />
       <FooterNav />
@@ -125,3 +127,31 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/pages/20"
+  );
+  const gallery = await res.json();
+
+  const parseGallery = () => {
+    const {
+      title: { rendered },
+      acf,
+    } = gallery;
+    const images = Object.keys(acf).map((key) => {
+      const { url, id, alt } = acf[key];
+      return { url, id, alt };
+    });
+    return {
+      title: rendered,
+      images,
+    };
+  };
+
+  return {
+    props: {
+      gallery: parseGallery(),
+    }, // will be passed to the page component as
+    revalidate: 60,
+  };
+};
