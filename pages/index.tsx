@@ -130,7 +130,7 @@ export const getStaticProps: GetStaticProps = async () => {
     } = gallery;
     const images = Object.keys(acf).map((key) => {
       const { url, id, alt } = acf[key];
-      return { url, id, alt };
+      return { url, id, title: alt };
     });
     return {
       title: rendered,
