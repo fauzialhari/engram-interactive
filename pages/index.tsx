@@ -34,7 +34,17 @@ const Home: NextPage<{
       title: string;
     }[];
   };
-}> = ({ gallery, story, features }) => {
+  characters: {
+    title: string;
+    subtitle: string;
+    charactersContent: {
+      characterImageUrl: string;
+      id: string;
+      title: string;
+      description: string;
+    }[];
+  };
+}> = ({ gallery, story, features, characters }) => {
   const [articles] = useState([
     {
       id: "1",
@@ -59,42 +69,12 @@ const Home: NextPage<{
   return (
     <main className="container mx-auto">
       <HeaderNav />
-      <Landing></Landing>
+      <Landing />
       <Story {...story}>
         <div className="text-center">{parse(story.content)}</div>
       </Story>
       <FeaturesSlider {...features} />
-      <CharactersSlider
-        charactersContent={[
-          {
-            characterImageUrl: "/assets/character2.png",
-            id: "1",
-            title: "Placeholder 1",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-              rerum?`,
-          },
-          {
-            characterImageUrl: "/assets/character.png",
-            id: "2",
-            title: "Placeholder 2",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-              rerum?`,
-          },
-          {
-            characterImageUrl: "/assets/character.png",
-            id: "3",
-            title: "Placeholder 3",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-              rerum?`,
-          },
-        ]}
-      />
+      <CharactersSlider {...characters} />
       <Gallery {...gallery} />
       <News articles={articles} />
       <FooterNav />
@@ -166,12 +146,36 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
+  const charactersResponse = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/pages/22?_embed"
+  );
+  const charactersJSON = await charactersResponse.json();
+  const parseCharacters = () => {
+    const {
+      title,
+      acf: { subtitle, ...characters },
+    } = charactersJSON;
+    const charactersKeys = Object.keys(characters).filter(
+      (key) => characters[key].show_this_characters
+    );
+    const charactersContent = charactersKeys.map((key) => {
+      const { title, description, image } = characters[key];
+      return { title, description, characterImageUrl: image, id: key };
+    });
+    return {
+      title: title.rendered,
+      subtitle,
+      charactersContent,
+    };
+  };
+
   return {
     props: {
       gallery: parseGallery(),
       story: parseStory(),
       features: parseFeatures(),
-    }, // will be passed to the page component as
+      characters: parseCharacters(),
+    },
     revalidate: 60,
   };
 };
