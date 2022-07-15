@@ -3,22 +3,21 @@ import Image from "next/image";
 import AnimatedHeader from "./AnimatedHeader";
 import Carousel from "./Carousel";
 const FeaturesSlider: React.FC<{
+  title: string;
+  subtitle: string;
   featureImages: {
     url: string;
     id: string;
     title: string;
   }[];
-}> = ({ featureImages }) => {
+}> = ({ featureImages, title, subtitle }) => {
   const [activeSlide, setActiveSlide] = useState(-1);
   const animate = useCallback((CarouselActiveSlide: number) => {
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
     <section id="features" className="px-24 mb-[26rem]">
-      <AnimatedHeader
-        text="Features"
-        subtitle="variety of mod chips & psionics to choose"
-      />
+      <AnimatedHeader text={title} subtitle={subtitle} />
       <Carousel animateChildren={animate}>
         {featureImages.map(({ url, id, title }, index) => {
           return (
@@ -28,7 +27,13 @@ const FeaturesSlider: React.FC<{
               }h-full flex justify-center items-center transition-opacity duration-250`}
               key={id}
             >
-              <Image src={url} width="1260" height="637" objectFit="contain" alt={title} />
+              <Image
+                src={url}
+                width="1260"
+                height="637"
+                objectFit="contain"
+                alt={title}
+              />
             </div>
           );
         })}
