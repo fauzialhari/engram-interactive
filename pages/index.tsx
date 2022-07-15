@@ -1,8 +1,6 @@
-import type {
-  NextPage,
-  GetStaticProps,
-} from "next";
+import type { NextPage, GetStaticProps } from "next";
 import { useState } from "react";
+import parse from "html-react-parser";
 
 import HeaderNav from "../components/HeaderNav";
 import Landing from "../components/Landing";
@@ -12,7 +10,6 @@ import CharactersSlider from "../components/CharactersSlider";
 import Gallery from "../components/Gallery";
 import News from "../components/News";
 import FooterNav from "../components/FooterNav";
-
 const Home: NextPage<{
   gallery: {
     title: string;
@@ -22,7 +19,13 @@ const Home: NextPage<{
       id: string;
     }[];
   };
-}> = ({ gallery }) => {
+  story: {
+    intro: string;
+    title: string;
+    background: string;
+    content: string;
+  };
+}> = ({ gallery, story }) => {
   const [articles] = useState([
     {
       id: "1",
@@ -42,25 +45,14 @@ const Home: NextPage<{
       content: `<p>Ini paragraph</p>`,
     },
   ]);
+  console.log(parse(story.content));
+
   return (
     <main className="container mx-auto">
       <HeaderNav />
       <Landing></Landing>
-      <Story
-        intro="cyberpunk jrpg set in 2105 germany."
-        title="Story"
-        background="/assets/BG.png"
-      >
-        <div className="text-center">
-          <p className="mb-96">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Accusantium voluptates laboriosam quos quaerat, tenetur alias odit
-            ullam doloribus corrupti quisquam, sed consectetur velit qui totam
-            dolores ab id nesciunt sint.
-          </p>
-          <h1 className="italic">Tatakae</h1>
-          <p className="italic">-Michael</p>
-        </div>
+      <Story {...story}>
+        <div className="text-center">{parse(story.content)}</div>
       </Story>
       <FeaturesSlider
         featureImages={[
@@ -117,9 +109,7 @@ const Home: NextPage<{
           },
         ]}
       />
-      <Gallery
-        {...gallery}
-      />
+      <Gallery {...gallery} />
       <News articles={articles} />
       <FooterNav />
     </main>
@@ -128,10 +118,10 @@ const Home: NextPage<{
 
 export default Home;
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(
+  const galleryResponse = await fetch(
     "https://fc.engraminteractive.com/wp-json/wp/v2/pages/20"
   );
-  const gallery = await res.json();
+  const gallery = await galleryResponse.json();
 
   const parseGallery = () => {
     const {
@@ -148,9 +138,32 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
+  const storyResponse = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/pages/16?_embed"
+  );
+  const story = await storyResponse.json();
+  const parseStory = () => {
+    const {
+      title,
+      content,
+      _embedded,
+      acf: { story_introduction },
+    } = story;
+    const background = _embedded["wp:featuredmedia"]
+      ? _embedded["wp:featuredmedia"]["0"].source_url
+      : "";
+    return {
+      title: title.rendered,
+      content: content.rendered,
+      background,
+      intro: story_introduction,
+    };
+  };
+
   return {
     props: {
       gallery: parseGallery(),
+      story: parseStory(),
     }, // will be passed to the page component as
     revalidate: 60,
   };
