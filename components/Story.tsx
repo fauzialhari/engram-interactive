@@ -7,7 +7,7 @@ const Story: React.FC<{
   title: string;
   background: string;
   children: JSX.Element;
-}> = ({ intro, title, background, children }) => {
+}> = ({ intro, title="Story", background, children }) => {
   const containerIntroRef = useRef<HTMLDivElement>(null);
   const textIntroRef = useRef<HTMLDivElement>(null);
   const imageParentRef = useRef<HTMLDivElement>(null);

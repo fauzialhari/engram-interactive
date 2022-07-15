@@ -4,13 +4,15 @@ import Carousel from "./Carousel";
 import AnimatedHeader from "./AnimatedHeader";
 import FuturisticEdge from "./FuturisticEdge";
 const CharactersSlider: React.FC<{
+  title?: string;
+  subtitle?: string;
   charactersContent: {
     characterImageUrl: string;
     id: string;
     title: string;
     description: string;
   }[];
-}> = ({ charactersContent }) => {
+}> = ({ charactersContent, title="Characters", subtitle }) => {
   const [activeSlide, setActiveSlide] = useState(-1);
   const animate = useCallback((CarouselActiveSlide: number) => {
     setActiveSlide(CarouselActiveSlide);
@@ -20,8 +22,8 @@ const CharactersSlider: React.FC<{
       <div className="container px-24 mx-auto">
         <AnimatedHeader
           isLeftPositioned={false}
-          text="Characters"
-          subtitle="variety of mod chips & psionics to choose"
+          text={title}
+          subtitle={subtitle}
         />
         <Carousel animateChildren={animate}>
           {charactersContent.map(
