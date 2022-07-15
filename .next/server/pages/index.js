@@ -503,7 +503,7 @@ const CharactersSlider = ({ charactersContent  })=>{
 
 
 
-const FeaturesSlider = ({ featureImages  })=>{
+const FeaturesSlider = ({ featureImages , title: title1 , subtitle  })=>{
     const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(-1);
     const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((CarouselActiveSlide)=>{
         setActiveSlide(CarouselActiveSlide);
@@ -513,8 +513,8 @@ const FeaturesSlider = ({ featureImages  })=>{
         className: "px-24 mb-[26rem]",
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                text: "Features",
-                subtitle: "variety of mod chips & psionics to choose"
+                text: title1,
+                subtitle: subtitle
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
                 animateChildren: animate,
@@ -768,7 +768,7 @@ const Gallery = ({ images , title: title1 = "Gallery"  })=>{
                 className: "grid grid-cols-3 gap-12",
                 children: images.map(({ url , title , id  }, index)=>index < 9 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                         href: "#",
-                        title: "Show",
+                        "aria-label": "show",
                         className: `transition-all duration-[333ms] ${calculateDelayClass(index)} ${animating ? "" : "translate-y-3.5 opacity-0"}`,
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
                             src: url,
@@ -1455,7 +1455,7 @@ html_react_parser__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__
 
 
 
-const Home = ({ gallery , story  })=>{
+const Home = ({ gallery , story , features  })=>{
     const { 0: articles  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([
         {
             id: "1",
@@ -1489,28 +1489,7 @@ const Home = ({ gallery , story  })=>{
                 })
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_FeaturesSlider__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                featureImages: [
-                    {
-                        url: "/assets/features-placeholder.png",
-                        id: "1",
-                        title: "Placeholder"
-                    },
-                    {
-                        url: "/assets/character2.png",
-                        id: "2",
-                        title: "Placeholder 2"
-                    },
-                    {
-                        url: "/assets/BG.png",
-                        id: "3",
-                        title: "Placeholder 3"
-                    },
-                    {
-                        url: "/assets/features-placeholder.png",
-                        id: "4",
-                        title: "Placeholder"
-                    }, 
-                ]
+                ...features
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CharactersSlider__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
                 charactersContent: [
@@ -1564,7 +1543,7 @@ const getStaticProps = async ()=>{
             return {
                 url,
                 id,
-                alt
+                title: alt
             };
         });
         return {
@@ -1584,10 +1563,31 @@ const getStaticProps = async ()=>{
             intro: story_introduction
         };
     };
+    const featuresResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/49");
+    const features = await featuresResponse.json();
+    const parseFeatures = ()=>{
+        const { title , acf: { subtitle , pictures  } ,  } = features;
+        const pictureKeys = Object.keys(pictures).filter((key)=>!!pictures[key]
+        );
+        const featureImages = pictureKeys.map((key)=>{
+            const { url , id , alt  } = pictures[key];
+            return {
+                url,
+                id,
+                title: alt
+            };
+        });
+        return {
+            title: title.rendered,
+            subtitle,
+            featureImages
+        };
+    };
     return {
         props: {
             gallery: parseGallery(),
-            story: parseStory()
+            story: parseStory(),
+            features: parseFeatures()
         },
         revalidate: 60
     };
