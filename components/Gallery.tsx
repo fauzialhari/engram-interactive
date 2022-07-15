@@ -32,7 +32,7 @@ const Gallery: React.FC<{
             <a
               key={id}
               href="#"
-              title="Show"
+              aria-label="show"
               className={`transition-all duration-[333ms] ${calculateDelayClass(
                 index
               )} ${animating ? "" : "translate-y-3.5 opacity-0"}`}
