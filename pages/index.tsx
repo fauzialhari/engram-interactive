@@ -25,7 +25,16 @@ const Home: NextPage<{
     background: string;
     content: string;
   };
-}> = ({ gallery, story }) => {
+  features: {
+    title: string;
+    subtitle: string;
+    featureImages: {
+      url: string;
+      id: string;
+      title: string;
+    }[];
+  };
+}> = ({ gallery, story, features }) => {
   const [articles] = useState([
     {
       id: "1",
@@ -54,30 +63,7 @@ const Home: NextPage<{
       <Story {...story}>
         <div className="text-center">{parse(story.content)}</div>
       </Story>
-      <FeaturesSlider
-        featureImages={[
-          {
-            url: "/assets/features-placeholder.png",
-            id: "1",
-            title: "Placeholder",
-          },
-          {
-            url: "/assets/character2.png",
-            id: "2",
-            title: "Placeholder 2",
-          },
-          {
-            url: "/assets/BG.png",
-            id: "3",
-            title: "Placeholder 3",
-          },
-          {
-            url: "/assets/features-placeholder.png",
-            id: "4",
-            title: "Placeholder",
-          },
-        ]}
-      />
+      <FeaturesSlider {...features} />
       <CharactersSlider
         charactersContent={[
           {
@@ -122,7 +108,6 @@ export const getStaticProps: GetStaticProps = async () => {
     "https://fc.engraminteractive.com/wp-json/wp/v2/pages/20"
   );
   const gallery = await galleryResponse.json();
-
   const parseGallery = () => {
     const {
       title: { rendered },
@@ -160,10 +145,32 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
+  const featuresResponse = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/pages/49"
+  );
+  const features = await featuresResponse.json();
+  const parseFeatures = () => {
+    const {
+      title,
+      acf: { subtitle, pictures },
+    } = features;
+    const pictureKeys = Object.keys(pictures).filter((key) => !!pictures[key]);
+    const featureImages = pictureKeys.map((key) => {
+      const { url, id, alt } = pictures[key];
+      return { url, id, title: alt };
+    });
+    return {
+      title: title.rendered,
+      subtitle,
+      featureImages,
+    };
+  };
+
   return {
     props: {
       gallery: parseGallery(),
       story: parseStory(),
+      features: parseFeatures(),
     }, // will be passed to the page component as
     revalidate: 60,
   };
