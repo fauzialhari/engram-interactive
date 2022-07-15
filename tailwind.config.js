@@ -18,7 +18,9 @@ module.exports = {
       },
       fontSize: {
         h1: "5rem",
-        h2: "2.5rem"
+        h2: "2.5rem",
+        h3: "2rem",
+        h4: "1.5rem"
       },
       letterSpacing: {
         button: "0.2em",

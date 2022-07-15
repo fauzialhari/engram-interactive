@@ -13,10 +13,10 @@
 
 @layer base {
   h1 {
-    @apply text-xl lg:text-h1 font-bold uppercase leading-[0.95] tracking-[.06em];
+    @apply text-xl lg:text-h1 font-bold uppercase leading-normal tracking-[.06em];
   }
   h2 {
-    @apply text-lg lg:text-h2 font-bold uppercase mb-8;
+    @apply text-lg lg:text-h2 font-bold uppercase mb-8 leading-normal;
   }
   p {
     @apply mb-6;
