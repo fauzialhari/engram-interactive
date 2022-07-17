@@ -18,10 +18,12 @@ export default function useFetchNews(
     id: string;
   }[],
   () => void,
-  boolean
+  boolean,
+  string
 ] {
   const [newsPage, setNewsPage] = useState(INITIAL_PAGE);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [articles, setArticles] = useState(initialDataArticles);
   const fetchArticles = useCallback(async () => {
     setLoading(true);
@@ -31,11 +33,13 @@ export default function useFetchNews(
       setArticles((articles) => unionBy(articles, articlesFetched, "id"));
     } catch (error) {
       console.log(error);
+      
+      setError(error as string);
     } finally {
       setLoading(false);
     }
   }, [newsPage]);
   useDidUpdate(fetchArticles);
   const loadMore = () => setNewsPage(newsPage + 1);
-  return [articles, loadMore, loading];
+  return [articles, loadMore, loading, error];
 }
