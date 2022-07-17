@@ -7,8 +7,9 @@ import Modal from "./Modal";
 const News: React.FC<{
   articles: { title: string; date: string; content: string; id: string }[];
   onLoadMore: ()=>void,
-  loading: boolean
-}> = ({ articles, onLoadMore, loading }) => {
+  loading: boolean,
+  error: string
+}> = ({ articles, onLoadMore, loading, error }) => {
   const titleRevealerRef = useRef(null);
   const titleRef = useRef(null);
   const newsBottomLineRefs = useRef([]);
@@ -86,7 +87,7 @@ const News: React.FC<{
   return (
     <section
       id="news"
-      className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96"
+      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96"
       onClick={animate}
     >
       <div className="text-center mb-28">
@@ -153,9 +154,9 @@ const News: React.FC<{
           ref={loadMoreButtonRef}
           className="text-primary font-normal italic opacity-0 transition-opacity duration-[167ms]"
           onClick={onLoadMore}
-          disabled={loading}
+          disabled={loading || !!error}
         >
-          Load more
+          {error || "Load more"}
         </button>
       </div>
       {activeNewsItem >= 0 ? (

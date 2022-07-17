@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import fetchNews from "./fetchNews";
 import useDidUpdate from "../utils/useDidUpdate";
+const unionBy = require("lodash/unionBy");
 export const INITIAL_PAGE = 1;
 export default function useFetchNews(
   initialDataArticles: {
@@ -24,9 +25,15 @@ export default function useFetchNews(
   const [articles, setArticles] = useState(initialDataArticles);
   const fetchArticles = useCallback(async () => {
     setLoading(true);
-    const articlesFetched = await fetchNews(newsPage);
-    setArticles((articles) => [...articles, ...articlesFetched]);
-    setLoading(false);
+    try {
+      const articlesFetched = await fetchNews({ page: newsPage });
+      // union the articles by id
+      setArticles((articles) => unionBy(articles, articlesFetched, "id"));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }, [newsPage]);
   useDidUpdate(fetchArticles);
   const loadMore = () => setNewsPage(newsPage + 1);
