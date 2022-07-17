@@ -2,6 +2,8 @@ import type { NextPage, GetStaticProps } from "next";
 import { useState } from "react";
 import parse from "html-react-parser";
 
+import fetchNews from "../helpers/fetchNews";
+
 import HeaderNav from "../components/HeaderNav";
 import Landing from "../components/Landing";
 import Story from "../components/Story";
@@ -44,28 +46,13 @@ const Home: NextPage<{
       description: string;
     }[];
   };
-}> = ({ gallery, story, features, characters }) => {
-  const [articles] = useState([
-    {
-      id: "1",
-      title: "Sebvah Judul",
-      date: "Semacam tgl",
-      content: `<p>Breaking News</p>
-      <p>Update fix 4.0 .12 A</p>
-      <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-      <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going.</p>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat quo non tempora beatae dolores eum, voluptatum ut rerum consectetur quidem mollitia, reiciendis iure adipisci natus assumenda quia expedita! Pariatur, dignissimos?</p>
-      `,
-    },
-    {
-      id: "2",
-      title: "Sebvah Judul",
-      date: "Semacam tgl",
-      content: `<p>Ini paragraph</p>`,
-    },
-  ]);
-  console.log(parse(story.content));
-
+  news: {
+    title: string;
+    date: string;
+    content: string;
+    id: string;
+  }[];
+}> = ({ gallery, story, features, characters, news }) => {
   return (
     <main className="container mx-auto">
       <HeaderNav />
@@ -169,12 +156,15 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
+  const news = await fetchNews(INITIAL_PAGE);
+
   return {
     props: {
       gallery: parseGallery(),
       story: parseStory(),
       features: parseFeatures(),
       characters: parseCharacters(),
+      news,
     },
     revalidate: 60,
   };
