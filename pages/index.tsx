@@ -53,7 +53,7 @@ const Home: NextPage<{
     id: string;
   }[];
 }> = ({ gallery, story, features, characters, news }) => {
-  const [articles, onLoadMore, loading] = useFetchNews(news);
+  const [articles, onLoadMore, loading, error] = useFetchNews(news);
   return (
     <main className="container mx-auto">
       <HeaderNav />
@@ -64,7 +64,7 @@ const Home: NextPage<{
       <FeaturesSlider {...features} />
       <CharactersSlider {...characters} />
       <Gallery {...gallery} />
-      <News {...{ articles, onLoadMore, loading }} />
+      <News {...{ articles, onLoadMore, loading, error }} />
       <FooterNav />
     </main>
   );
@@ -157,7 +157,7 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
-  const news = await fetchNews(INITIAL_PAGE);
+  const news = await fetchNews({ page: INITIAL_PAGE });
 
   return {
     props: {
