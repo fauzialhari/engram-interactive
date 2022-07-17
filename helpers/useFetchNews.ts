@@ -31,10 +31,8 @@ export default function useFetchNews(
       const articlesFetched = await fetchNews({ page: newsPage });
       // union the articles by id
       setArticles((articles) => unionBy(articles, articlesFetched, "id"));
-    } catch (error) {
-      console.log(error);
-      
-      setError(error as string);
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }

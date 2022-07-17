@@ -14,7 +14,7 @@ async function fetchNews({ page }: { page: number }): Promise<
     if (!newsResponse.ok) {
       if (newsResponse.status === 400) {
         throw new Error("There is no more news to show");
-      }else {
+      } else {
         throw new Error("Fail to load news, please try again later");
       }
     }
@@ -38,8 +38,8 @@ async function fetchNews({ page }: { page: number }): Promise<
         id,
       })
     );
-  } catch (error) {
-    throw error;
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 }
 
