@@ -1,10 +1,4 @@
-import {
-  Children,
-  ReactNode,
-  useRef,
-  useState,
-  useCallback,
-} from "react";
+import { Children, ReactNode, useRef, useState, useCallback } from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
 import getElementRef from "../utils/getElementRef";
 import ElementSetter from "../utils/elementSetter";
@@ -122,9 +116,6 @@ const Carousel: React.FC<{
             title="Previous"
             className="
               p-0
-              h-4
-              w-4
-              border-primary
               w-16
               h-16
               border-primary
@@ -153,9 +144,6 @@ const Carousel: React.FC<{
             title="Next"
             className="
               p-0
-              h-4
-              w-4
-              border-primary
               w-16
               h-16
               border-primary
@@ -184,14 +172,13 @@ const Carousel: React.FC<{
           ref={contentRef}
           className="absolute bg-secondarybg inset-0 border border-primary invisible"
         >
-          {Children.toArray(children).map((Child, index) => (
-            activeSlide === index ? <div
-              key={index}
-              className="h-full px-11 py-14 mx-auto"
-            >
-              {Child}
-            </div> : null
-          ))}
+          {Children.toArray(children).map((Child, index) =>
+            activeSlide === index ? (
+              <div key={index} className="h-full px-11 py-14 mx-auto">
+                {Child}
+              </div>
+            ) : null
+          )}
         </div>
       </div>
       <div ref={navigationRef} className="text-right opacity-0">
