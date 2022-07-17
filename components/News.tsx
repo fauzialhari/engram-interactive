@@ -6,7 +6,9 @@ import useOnScrollEffect from "../utils/useOnScrollEffect";
 import Modal from "./Modal";
 const News: React.FC<{
   articles: { title: string; date: string; content: string; id: string }[];
-}> = ({ articles }) => {
+  onLoadMore: ()=>void,
+  loading: boolean
+}> = ({ articles, onLoadMore, loading }) => {
   const titleRevealerRef = useRef(null);
   const titleRef = useRef(null);
   const newsBottomLineRefs = useRef([]);
@@ -150,6 +152,8 @@ const News: React.FC<{
         <button
           ref={loadMoreButtonRef}
           className="text-primary font-normal italic opacity-0 transition-opacity duration-[167ms]"
+          onClick={onLoadMore}
+          disabled={loading}
         >
           Load more
         </button>
