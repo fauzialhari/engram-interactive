@@ -1,7 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
-import { useState } from "react";
 import parse from "html-react-parser";
 
+import useFetchNews, { INITIAL_PAGE } from "../helpers/useFetchNews";
 import fetchNews from "../helpers/fetchNews";
 
 import HeaderNav from "../components/HeaderNav";
@@ -53,6 +53,7 @@ const Home: NextPage<{
     id: string;
   }[];
 }> = ({ gallery, story, features, characters, news }) => {
+  const [articles, onLoadMore, loading] = useFetchNews(news);
   return (
     <main className="container mx-auto">
       <HeaderNav />
@@ -63,7 +64,7 @@ const Home: NextPage<{
       <FeaturesSlider {...features} />
       <CharactersSlider {...characters} />
       <Gallery {...gallery} />
-      <News articles={articles} />
+      <News {...{ articles, onLoadMore, loading }} />
       <FooterNav />
     </main>
   );
