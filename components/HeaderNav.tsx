@@ -1,10 +1,71 @@
+import { useState } from "react";
 const HeaderNav: React.FC<{}> = () => {
+  const [isExpandedMobile, setIsExpanded] = useState(false);
+  function toggleExpanded() {
+    setIsExpanded((isExpanded) => !isExpanded);
+  }
   return (
-    <header className="mx-auto fixed w-screen inset-x-0 top-0 bg-secondary font-bold z-10">
-      <div className="container mx-auto">
+    <header className="fixed mt-[2.5%] md:mt-0 mx-auto w-screen max-w-[95%] md:max-w-none inset-x-0 top-0 md:font-bold z-10">
+      <button
+        type="button"
+        aria-label="Menu"
+        className={`
+            absolute
+            top-0
+            left-0
+            md:hidden
+            w-3/12
+            p-7
+            bg-secondary
+          `}
+        onClick={toggleExpanded}
+      >
+        <span
+          className={`
+            block
+            relative
+            w-full
+            py-3
+            before:content-['']
+            before:absolute
+            before:block
+            before:bg-primary
+            before:w-full
+            before:h-1
+            after:content-['']
+            after:absolute
+            after:block
+            after:bg-primary
+            after:w-full
+            after:h-1
+            ${
+              isExpandedMobile
+                ? "before:top-1/2 before:-translate-y-1/2 before:rotate-45"
+                : "before:top-0"
+            }
+            ${
+              isExpandedMobile
+                ? "after:top-1/2 after:-translate-y-1/2 after:-rotate-45"
+                : "after:bottom-0"
+            }
+          `}
+        >
+          <span
+            className={`
+              block
+              bg-primary
+              h-1
+              w-full
+              ${
+                isExpandedMobile ? "invisible" : ""}
+            `}
+          ></span>
+        </span>
+      </button>
+      <div className={`bg-secondary py-24 md:py-0 container mx-auto uppercase text-center md:text-left ${isExpandedMobile ? "": "hidden"}`}>
         <nav>
           <ol>
-            <li className="inline-block">
+            <li className="md:inline-block border-primary border-t-2 md:border-none">
               <a
                 href="#story"
                 className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
@@ -12,7 +73,7 @@ const HeaderNav: React.FC<{}> = () => {
                 Story
               </a>
             </li>
-            <li className="inline-block">
+            <li className="md:inline-block border-primary border-t-2 md:border-none">
               <a
                 href="#features"
                 className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
@@ -20,7 +81,7 @@ const HeaderNav: React.FC<{}> = () => {
                 Feature
               </a>
             </li>
-            <li className="inline-block">
+            <li className="md:inline-block border-primary border-t-2 md:border-none">
               <a
                 href="#characters"
                 className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
@@ -28,7 +89,7 @@ const HeaderNav: React.FC<{}> = () => {
                 Characters
               </a>
             </li>
-            <li className="inline-block">
+            <li className="md:inline-block border-primary border-t-2 md:border-none">
               <a
                 href="#gallery"
                 className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
@@ -36,7 +97,7 @@ const HeaderNav: React.FC<{}> = () => {
                 Gallery
               </a>
             </li>
-            <li className="inline-block">
+            <li className="md:inline-block border-primary border-t-2 border-b-2 md:border-none">
               <a
                 href="#news"
                 className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
