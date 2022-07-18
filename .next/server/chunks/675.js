@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = Image;
 var _react = _interopRequireWildcard(__webpack_require__(689));
-var _head = _interopRequireDefault(__webpack_require__(957));
+var _head = _interopRequireDefault(__webpack_require__(429));
 var _imageConfig = __webpack_require__(843);
 var _useIntersection = __webpack_require__(246);
 var _imageConfigContext = __webpack_require__(744);

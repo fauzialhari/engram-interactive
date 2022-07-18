@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(689));
-var _head = _interopRequireDefault(__webpack_require__(957));
+var _head = _interopRequireDefault(__webpack_require__(429));
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
@@ -104,7 +104,7 @@ const styles = {
 
 /***/ }),
 
-/***/ 957:
+/***/ 429:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head.js");

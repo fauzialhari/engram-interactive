@@ -206,44 +206,21 @@ const AnimatedHeader = ({ text , isLeftPositioned =true , subtitle  })=>{
 
 /***/ }),
 
-/***/ 682:
+/***/ 869:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "Z": () => (/* binding */ components_Carousel)
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(689);
-// EXTERNAL MODULE: ./helpers/FpsCtrl.ts
-var FpsCtrl = __webpack_require__(723);
-// EXTERNAL MODULE: ./utils/getElementRef.ts
-var getElementRef = __webpack_require__(752);
-// EXTERNAL MODULE: ./utils/elementSetter.ts
-var elementSetter = __webpack_require__(405);
-;// CONCATENATED MODULE: ./utils/useDidUpdate.ts
-
-function useDidUpdate(callback) {
-    const hasMount = (0,external_react_.useRef)(false);
-    (0,external_react_.useEffect)(()=>{
-        if (hasMount.current) {
-            callback();
-        } else {
-            hasMount.current = true;
-        }
-    }, [
-        callback
-    ]);
-}
-/* harmony default export */ const utils_useDidUpdate = (useDidUpdate);
-
-// EXTERNAL MODULE: ./utils/useOnScrollEffect.ts + 1 modules
-var useOnScrollEffect = __webpack_require__(39);
-;// CONCATENATED MODULE: ./components/Carousel.tsx
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers_FpsCtrl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(723);
+/* harmony import */ var _utils_getElementRef__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(752);
+/* harmony import */ var _utils_elementSetter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(405);
+/* harmony import */ var _utils_useDidUpdate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(596);
+/* harmony import */ var _utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(39);
 
 
 
@@ -252,15 +229,15 @@ var useOnScrollEffect = __webpack_require__(39);
 
 
 const Carousel = ({ children , animateChildren  })=>{
-    const contentRef = (0,external_react_.useRef)(null);
-    const navigatorRef = (0,external_react_.useRef)(null);
-    const navigationRef = (0,external_react_.useRef)(null);
-    const { 0: activeSlide , 1: setActiveSlide  } = (0,external_react_.useState)(0);
-    const animate = (0,external_react_.useCallback)(()=>{
-        const carouselAnimation = new FpsCtrl/* default */.Z(12, ({ frame  })=>{
-            const contentElement = new elementSetter/* default */.Z((0,getElementRef/* default */.Z)(contentRef));
-            const navigatorElement = new elementSetter/* default */.Z((0,getElementRef/* default */.Z)(navigatorRef));
-            const navigationElement = new elementSetter/* default */.Z((0,getElementRef/* default */.Z)(navigationRef));
+    const contentRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const navigatorRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const navigationRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(()=>{
+        const carouselAnimation = new _helpers_FpsCtrl__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z(12, ({ frame  })=>{
+            const contentElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)(contentRef));
+            const navigatorElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)(navigatorRef));
+            const navigationElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)(navigationRef));
             switch(frame){
                 case 0:
                     break;
@@ -323,49 +300,49 @@ const Carousel = ({ children , animateChildren  })=>{
         activeSlide,
         animateChildren
     ]);
-    utils_useDidUpdate(()=>{
+    (0,_utils_useDidUpdate__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(()=>{
         if (!!animateChildren) {
             animateChildren(activeSlide);
         }
     });
-    (0,useOnScrollEffect/* default */.Z)(contentRef, animate);
+    (0,_utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z)(contentRef, animate);
     function onClickNavigator(direction) {
         if (direction === "prev" && activeSlide !== 0) {
             setActiveSlide(activeSlide - 1);
-        } else if (activeSlide !== external_react_.Children.toArray(children).length - 1) {
+        } else if (activeSlide !== react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).length - 1) {
             setActiveSlide(activeSlide + 1);
         }
     }
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "mb-28",
         children: [
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 className: "relative pb-[55.3%]",
                 children: [
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         ref: navigatorRef,
                         className: "opacity-0 absolute inset-x-0 inset-y-1/2 -translate-y-1/2 w-full h-1/4 flex justify-between items-center",
                         children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 type: "button",
                                 title: "Previous",
-                                className: " p-0 h-4 w-4 border-primary w-16 h-16 border-primary border-l-[5px] border-b-[5px] rotate-45 -translate-x-full relative before:content-[''] before:absolute before:top-2.5 before:right-2.5 before:block before:w-full before:h-full before:box-content before:border-l-[5px] before:border-b-[5px] before:border-secondary disabled:opacity-25",
+                                className: " p-0 w-16 h-16 border-primary border-l-[5px] border-b-[5px] rotate-45 -translate-x-full relative before:content-[''] before:absolute before:top-2.5 before:right-2.5 before:block before:w-full before:h-full before:box-content before:border-l-[5px] before:border-b-[5px] before:border-secondary disabled:opacity-25",
                                 disabled: activeSlide === 0,
                                 onClick: ()=>onClickNavigator("prev")
                             }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 type: "button",
                                 title: "Next",
-                                className: " p-0 h-4 w-4 border-primary w-16 h-16 border-primary border-r-[5px] border-t-[5px] rotate-45 translate-x-full relative before:content-[''] before:absolute before:bottom-2.5 before:left-2.5 before:block before:w-full before:h-full before:box-content before:border-r-[5px] before:border-t-[5px] before:border-secondary disabled:opacity-25",
-                                disabled: activeSlide === external_react_.Children.toArray(children).length - 1,
+                                className: " p-0 w-16 h-16 border-primary border-r-[5px] border-t-[5px] rotate-45 translate-x-full relative before:content-[''] before:absolute before:bottom-2.5 before:left-2.5 before:block before:w-full before:h-full before:box-content before:border-r-[5px] before:border-t-[5px] before:border-secondary disabled:opacity-25",
+                                disabled: activeSlide === react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).length - 1,
                                 onClick: ()=>onClickNavigator("next")
                             })
                         ]
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         ref: contentRef,
                         className: "absolute bg-secondarybg inset-0 border border-primary invisible",
-                        children: external_react_.Children.toArray(children).map((Child, index)=>activeSlide === index ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                        children: react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).map((Child, index)=>activeSlide === index ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 className: "h-full px-11 py-14 mx-auto",
                                 children: Child
                             }, index) : null
@@ -373,12 +350,12 @@ const Carousel = ({ children , animateChildren  })=>{
                     })
                 ]
             }),
-            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                 ref: navigationRef,
                 className: "text-right opacity-0",
-                children: /*#__PURE__*/ jsx_runtime_.jsx("ol", {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ol", {
                     className: "inline mr-9",
-                    children: external_react_.Children.toArray(children).map((child, index)=>/*#__PURE__*/ jsx_runtime_.jsx("li", {
+                    children: react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).map((child, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
                             className: `list-none inline-block mr-2 h-1.5 w-12 ${index === activeSlide ? "bg-primary" : "bg-tertiary"}`
                         }, index)
                     )
@@ -387,7 +364,7 @@ const Carousel = ({ children , animateChildren  })=>{
         ]
     });
 };
-/* harmony default export */ const components_Carousel = (Carousel);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Carousel);
 
 
 /***/ }),
@@ -404,7 +381,7 @@ const Carousel = ({ children , animateChildren  })=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(675);
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(682);
+/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(869);
 /* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(748);
 /* harmony import */ var _FuturisticEdge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(164);
 
@@ -413,7 +390,7 @@ const Carousel = ({ children , animateChildren  })=>{
 
 
 
-const CharactersSlider = ({ charactersContent  })=>{
+const CharactersSlider = ({ charactersContent , title: title1 = "Characters" , subtitle  })=>{
     const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(-1);
     const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((CarouselActiveSlide)=>{
         setActiveSlide(CarouselActiveSlide);
@@ -426,8 +403,8 @@ const CharactersSlider = ({ charactersContent  })=>{
             children: [
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
                     isLeftPositioned: false,
-                    text: "Characters",
-                    subtitle: "variety of mod chips & psionics to choose"
+                    text: title1,
+                    subtitle: subtitle
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
                     animateChildren: animate,
@@ -497,13 +474,13 @@ const CharactersSlider = ({ charactersContent  })=>{
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(675);
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(748);
-/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(682);
+/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(869);
 
 
 
 
 
-const FeaturesSlider = ({ featureImages , title: title1 , subtitle  })=>{
+const FeaturesSlider = ({ featureImages , title: title1 = "Features" , subtitle  })=>{
     const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(-1);
     const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((CarouselActiveSlide)=>{
         setActiveSlide(CarouselActiveSlide);
@@ -795,59 +772,115 @@ const Gallery = ({ images , title: title1 = "Gallery"  })=>{
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
 
 const HeaderNav = ()=>{
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("header", {
-        className: "mx-auto fixed w-screen inset-x-0 top-0 bg-secondary font-bold z-10",
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            className: "container mx-auto",
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("nav", {
-                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ol", {
-                    children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                            className: "inline-block",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: "#story",
-                                className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
-                                children: "Story"
+    const { 0: isExpandedMobile , 1: setIsExpanded  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    function toggleExpanded() {
+        setIsExpanded((isExpanded)=>!isExpanded
+        );
+    }
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+        className: "fixed mt-[2.5%] lg:mt-0 mx-auto w-screen max-w-[95%] lg:max-w-none inset-x-0 top-0 lg:font-bold z-10 lg:bg-secondary",
+        children: [
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                type: "button",
+                "aria-label": "Menu",
+                className: `
+          lg:hidden
+          absolute
+          top-0
+          left-0
+          w-3/12
+          p-7
+          bg-secondary
+          max-w-[100px]
+        `,
+                onClick: toggleExpanded,
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                    className: `
+            block
+            relative
+            w-full
+            py-3
+            before:content-['']
+            before:absolute
+            before:block
+            before:bg-primary
+            before:w-full
+            before:h-1
+            after:content-['']
+            after:absolute
+            after:block
+            after:bg-primary
+            after:w-full
+            after:h-1
+            ${isExpandedMobile ? "before:top-1/2 before:-translate-y-1/2 before:rotate-45" : "before:top-0"}
+            ${isExpandedMobile ? "after:top-1/2 after:-translate-y-1/2 after:-rotate-45" : "after:bottom-0"}
+          `,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                        className: `
+              block
+              bg-primary
+              h-1
+              w-full
+              ${isExpandedMobile ? "invisible" : ""}
+            `
+                    })
+                })
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: `bg-secondary py-24 lg:py-0 container mx-auto uppercase text-center lg:text-left ${isExpandedMobile ? "" : "hidden"} lg:block`,
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("nav", {
+                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ol", {
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                className: "lg:inline-block border-primary border-t-2 lg:border-none",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    href: "#story",
+                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    children: "Story"
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                className: "lg:inline-block border-primary border-t-2 lg:border-none",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    href: "#features",
+                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    children: "Feature"
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                className: "lg:inline-block border-primary border-t-2 lg:border-none",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    href: "#characters",
+                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    children: "Characters"
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                className: "lg:inline-block border-primary border-t-2 lg:border-none",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    href: "#gallery",
+                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    children: "Gallery"
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                className: "lg:inline-block border-primary border-t-2 border-b-2 lg:border-none",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    href: "#news",
+                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    children: "News"
+                                })
                             })
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                            className: "inline-block",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: "#features",
-                                className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
-                                children: "Feature"
-                            })
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                            className: "inline-block",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: "#characters",
-                                className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
-                                children: "Characters"
-                            })
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                            className: "inline-block",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: "#gallery",
-                                className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
-                                children: "Gallery"
-                            })
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                            className: "inline-block",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: "#news",
-                                className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
-                                children: "News"
-                            })
-                        })
-                    ]
+                        ]
+                    })
                 })
             })
-        })
+        ]
     });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeaderNav);
@@ -1045,6 +1078,8 @@ var elementSetter = __webpack_require__(405);
 var FuturisticEdge = __webpack_require__(164);
 // EXTERNAL MODULE: ./utils/useOnScrollEffect.ts + 1 modules
 var useOnScrollEffect = __webpack_require__(39);
+// EXTERNAL MODULE: ./utils/useDidUpdate.ts
+var useDidUpdate = __webpack_require__(596);
 ;// CONCATENATED MODULE: ./components/Modal.tsx
 
 
@@ -1131,7 +1166,8 @@ const Modal = ({ title , date , content , exit  })=>{
 
 
 
-const News = ({ articles  })=>{
+
+const News = ({ articles , onLoadMore , loading , error  })=>{
     const titleRevealerRef = (0,external_react_.useRef)(null);
     const titleRef = (0,external_react_.useRef)(null);
     const newsBottomLineRefs = (0,external_react_.useRef)([]);
@@ -1148,7 +1184,8 @@ const News = ({ articles  })=>{
     newsContentRefs.current = articles.map((_article, i)=>newsContentRefs.current[i] ?? /*#__PURE__*/ (0,external_react_.createRef)()
     );
     const { 0: activeNewsItem , 1: setActiveNewsItem  } = (0,external_react_.useState)(-1);
-    function animateEachNews(index) {
+    const lastAnimatedArticleIndex = (0,external_react_.useRef)(0);
+    const animateEachNews = (0,external_react_.useCallback)((index)=>{
         const newsBottomLine = new elementSetter/* default */.Z((0,getElementRef/* default */.Z)(newsBottomLineRefs.current[index]));
         newsBottomLine.removeClass("scale-x-0");
         const newsTitle = new elementSetter/* default */.Z((0,getElementRef/* default */.Z)(newsTitleRefs.current[index]));
@@ -1167,7 +1204,10 @@ const News = ({ articles  })=>{
             }
         });
         newsText.removeClass("opacity-0");
-    }
+        lastAnimatedArticleIndex.current = index + 1;
+    }, [
+        articles
+    ]);
     function animate() {
         const titleElement = (0,getElementRef/* default */.Z)(titleRef);
         const titleElementRight = titleElement.getBoundingClientRect().right;
@@ -1190,10 +1230,15 @@ const News = ({ articles  })=>{
         setActiveNewsItem(index);
     }
     (0,useOnScrollEffect/* default */.Z)(titleRef, animate);
+    const onArticlesAdded = (0,external_react_.useCallback)(()=>{
+        animateEachNews(lastAnimatedArticleIndex.current);
+    }, [
+        animateEachNews
+    ]);
+    (0,useDidUpdate/* default */.Z)(onArticlesAdded);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
         id: "news",
-        className: "mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96",
-        onClick: animate,
+        className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96",
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: "text-center mb-28",
@@ -1270,7 +1315,9 @@ const News = ({ articles  })=>{
                 children: /*#__PURE__*/ jsx_runtime_.jsx("button", {
                     ref: loadMoreButtonRef,
                     className: "text-primary font-normal italic opacity-0 transition-opacity duration-[167ms]",
-                    children: "Load more"
+                    onClick: onLoadMore,
+                    disabled: loading || !!error,
+                    children: error || "Load more"
                 })
             }),
             activeNewsItem >= 0 ? /*#__PURE__*/ jsx_runtime_.jsx(components_Modal, {
@@ -1304,7 +1351,7 @@ const News = ({ articles  })=>{
 
 
 
-const Story = ({ intro , title , background , children  })=>{
+const Story = ({ intro , title ="Story" , background , children  })=>{
     const containerIntroRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const textIntroRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const imageParentRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
@@ -1420,6 +1467,91 @@ class FpsCtrl {
 
 /***/ }),
 
+/***/ 339:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+async function fetchNews({ page  }) {
+    try {
+        const newsResponse = await fetch(`https://fc.engraminteractive.com/wp-json/wp/v2/posts?page=${page}&per_page=2`);
+        if (!newsResponse.ok) {
+            if (newsResponse.status === 400) {
+                throw new Error("There is no more news to show");
+            } else {
+                throw new Error("Fail to load news, please try again later");
+            }
+        }
+        const newsJSON = await newsResponse.json();
+        return newsJSON.map(({ title , date , content , id  })=>({
+                title: typeof title === "string" ? "" : title.rendered,
+                date,
+                content: typeof content === "string" ? "" : content.rendered,
+                id
+            })
+        );
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fetchNews);
+
+
+/***/ }),
+
+/***/ 644:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ useFetchNews),
+/* harmony export */   "q": () => (/* binding */ INITIAL_PAGE)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fetchNews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(339);
+/* harmony import */ var _utils_useDidUpdate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(596);
+
+
+
+const unionBy = __webpack_require__(830);
+const INITIAL_PAGE = 1;
+function useFetchNews(initialDataArticles) {
+    const { 0: newsPage , 1: setNewsPage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(INITIAL_PAGE);
+    const { 0: loading , 1: setLoading  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+    const { 0: error1 , 1: setError  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+    const { 0: articles1 , 1: setArticles  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialDataArticles);
+    const fetchArticles = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(async ()=>{
+        setLoading(true);
+        try {
+            const articlesFetched = await (0,_fetchNews__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)({
+                page: newsPage
+            });
+            // union the articles by id
+            setArticles((articles)=>unionBy(articles, articlesFetched, "id")
+            );
+        } catch (error) {
+            setError(error.message);
+        } finally{
+            setLoading(false);
+        }
+    }, [
+        newsPage
+    ]);
+    (0,_utils_useDidUpdate__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(fetchArticles);
+    const loadMore = ()=>setNewsPage(newsPage + 1)
+    ;
+    return [
+        articles1,
+        loadMore,
+        loading,
+        error1
+    ];
+};
+
+
+/***/ }),
+
 /***/ 186:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -1431,9 +1563,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(905);
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(905);
+/* harmony import */ var _helpers_useFetchNews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(644);
+/* harmony import */ var _helpers_fetchNews__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(339);
 /* harmony import */ var _components_HeaderNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(206);
 /* harmony import */ var _components_Landing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
 /* harmony import */ var _components_Story__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(991);
@@ -1442,8 +1574,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Gallery__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(68);
 /* harmony import */ var _components_News__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(416);
 /* harmony import */ var _components_FooterNav__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(690);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([html_react_parser__WEBPACK_IMPORTED_MODULE_2__]);
-html_react_parser__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([html_react_parser__WEBPACK_IMPORTED_MODULE_1__]);
+html_react_parser__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
 
 
@@ -1455,27 +1587,9 @@ html_react_parser__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__
 
 
 
-const Home = ({ gallery , story , features  })=>{
-    const { 0: articles  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([
-        {
-            id: "1",
-            title: "Sebvah Judul",
-            date: "Semacam tgl",
-            content: `<p>Breaking News</p>
-      <p>Update fix 4.0 .12 A</p>
-      <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-      <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going.</p>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat quo non tempora beatae dolores eum, voluptatum ut rerum consectetur quidem mollitia, reiciendis iure adipisci natus assumenda quia expedita! Pariatur, dignissimos?</p>
-      `
-        },
-        {
-            id: "2",
-            title: "Sebvah Judul",
-            date: "Semacam tgl",
-            content: `<p>Ini paragraph</p>`
-        }, 
-    ]);
-    console.log((0,html_react_parser__WEBPACK_IMPORTED_MODULE_2__["default"])(story.content));
+
+const Home = ({ gallery , story , features , characters , news  })=>{
+    const [articles, onLoadMore, loading, error] = (0,_helpers_useFetchNews__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(news);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
         className: "container mx-auto",
         children: [
@@ -1485,48 +1599,23 @@ const Home = ({ gallery , story , features  })=>{
                 ...story,
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                     className: "text-center",
-                    children: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_2__["default"])(story.content)
+                    children: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_1__["default"])(story.content)
                 })
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_FeaturesSlider__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
                 ...features
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CharactersSlider__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
-                charactersContent: [
-                    {
-                        characterImageUrl: "/assets/character2.png",
-                        id: "1",
-                        title: "Placeholder 1",
-                        description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-              rerum?`
-                    },
-                    {
-                        characterImageUrl: "/assets/character.png",
-                        id: "2",
-                        title: "Placeholder 2",
-                        description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-              rerum?`
-                    },
-                    {
-                        characterImageUrl: "/assets/character.png",
-                        id: "3",
-                        title: "Placeholder 3",
-                        description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, facere
-              culpa, ut optio reprehenderit dolore itaque fuga perferendis magni ea
-              dicta voluptas provident vitae molestiae? Obcaecati dolorum iusto neque
-              rerum?`
-                    }, 
-                ]
+                ...characters
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Gallery__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
                 ...gallery
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_News__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {
-                articles: articles
+                articles,
+                onLoadMore,
+                loading,
+                error
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_FooterNav__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {})
         ]
@@ -1583,11 +1672,37 @@ const getStaticProps = async ()=>{
             featureImages
         };
     };
+    const charactersResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/22?_embed");
+    const charactersJSON = await charactersResponse.json();
+    const parseCharacters = ()=>{
+        const { title: title1 , acf: { subtitle , ...characters } ,  } = charactersJSON;
+        const charactersKeys = Object.keys(characters).filter((key)=>characters[key].show_this_characters
+        );
+        const charactersContent = charactersKeys.map((key)=>{
+            const { title , description , image  } = characters[key];
+            return {
+                title,
+                description,
+                characterImageUrl: image,
+                id: key
+            };
+        });
+        return {
+            title: title1.rendered,
+            subtitle,
+            charactersContent
+        };
+    };
+    const news = await (0,_helpers_fetchNews__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z)({
+        page: _helpers_useFetchNews__WEBPACK_IMPORTED_MODULE_2__/* .INITIAL_PAGE */ .q
+    });
     return {
         props: {
             gallery: parseGallery(),
             story: parseStory(),
-            features: parseFeatures()
+            features: parseFeatures(),
+            characters: parseCharacters(),
+            news
         },
         revalidate: 60
     };
@@ -1664,6 +1779,38 @@ function getElement(RefElement) {
 
 /***/ }),
 
+/***/ 596:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function useDidUpdate(callback) {
+    const hasMountForStrictMode = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+    const hasMount = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        if (hasMountForStrictMode.current) {
+            if (hasMount.current) {
+                callback();
+            } else {
+                hasMount.current = true;
+            }
+        }
+        return ()=>{
+            hasMountForStrictMode.current = true;
+        };
+    }, [
+        callback
+    ]);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDidUpdate);
+
+
+/***/ }),
+
 /***/ 39:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1713,7 +1860,14 @@ function useOnScroll(contentRef, callback) {
 
 /***/ }),
 
-/***/ 957:
+/***/ 830:
+/***/ ((module) => {
+
+module.exports = require("lodash/unionBy");
+
+/***/ }),
+
+/***/ 429:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head.js");
