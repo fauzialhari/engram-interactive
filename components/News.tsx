@@ -1,14 +1,15 @@
-import { useRef, createRef, useState } from "react";
+import { useRef, createRef, useState, useCallback } from "react";
 import getElementRef from "../utils/getElementRef";
 import elementSetter from "../utils/elementSetter";
 import FuturisticEdge from "./FuturisticEdge";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
+import useDidUpdate from "../utils/useDidUpdate";
 import Modal from "./Modal";
 const News: React.FC<{
   articles: { title: string; date: string; content: string; id: string }[];
-  onLoadMore: ()=>void,
-  loading: boolean,
-  error: string
+  onLoadMore: () => void;
+  loading: boolean;
+  error: string;
 }> = ({ articles, onLoadMore, loading, error }) => {
   const titleRevealerRef = useRef(null);
   const titleRef = useRef(null);
@@ -30,38 +31,43 @@ const News: React.FC<{
     (_article, i) => newsContentRefs.current[i] ?? createRef()
   );
   const [activeNewsItem, setActiveNewsItem] = useState(-1);
-  function animateEachNews(index: number) {
-    const newsBottomLine = new elementSetter(
-      getElementRef(newsBottomLineRefs.current[index])
-    );
-    newsBottomLine.removeClass("scale-x-0");
-    const newsTitle = new elementSetter(
-      getElementRef(newsTitleRefs.current[index])
-    );
-    newsTitle.removeClass("opacity-0");
-    const newsDate = new elementSetter(
-      getElementRef(newsDateRefs.current[index])
-    );
-    newsDate.removeClass("opacity-0");
-    const newsContent = new elementSetter(
-      getElementRef(newsContentRefs.current[index])
-    );
-    newsContent.removeClass("scale-0");
-    const newsText = new elementSetter(
-      newsContent.element.childNodes[1] as HTMLElement
-    );
-    newsText.element.addEventListener("transitionend", () => {
-      if (index + 1 < articles.length) {
-        animateEachNews(index + 1);
-      } else {
-        const loadMoreButton = new elementSetter(
-          getElementRef(loadMoreButtonRef)
-        );
-        loadMoreButton.removeClass("opacity-0");
-      }
-    });
-    newsText.removeClass("opacity-0");
-  }
+  const lastAnimatedArticleIndex = useRef(0);
+  const animateEachNews = useCallback(
+    (index: number) => {
+      const newsBottomLine = new elementSetter(
+        getElementRef(newsBottomLineRefs.current[index])
+      );
+      newsBottomLine.removeClass("scale-x-0");
+      const newsTitle = new elementSetter(
+        getElementRef(newsTitleRefs.current[index])
+      );
+      newsTitle.removeClass("opacity-0");
+      const newsDate = new elementSetter(
+        getElementRef(newsDateRefs.current[index])
+      );
+      newsDate.removeClass("opacity-0");
+      const newsContent = new elementSetter(
+        getElementRef(newsContentRefs.current[index])
+      );
+      newsContent.removeClass("scale-0");
+      const newsText = new elementSetter(
+        newsContent.element.childNodes[1] as HTMLElement
+      );
+      newsText.element.addEventListener("transitionend", () => {
+        if (index + 1 < articles.length) {
+          animateEachNews(index + 1);
+        } else {
+          const loadMoreButton = new elementSetter(
+            getElementRef(loadMoreButtonRef)
+          );
+          loadMoreButton.removeClass("opacity-0");
+        }
+      });
+      newsText.removeClass("opacity-0");
+      lastAnimatedArticleIndex.current = index + 1;
+    },
+    [articles]
+  );
   function animate() {
     const titleElement = getElementRef(titleRef);
     const titleElementRight = titleElement.getBoundingClientRect().right;
@@ -84,11 +90,14 @@ const News: React.FC<{
     setActiveNewsItem(index);
   }
   useOnScrollEffect(titleRef, animate);
+  const onArticlesAdded = useCallback(() => {
+    animateEachNews(lastAnimatedArticleIndex.current);
+  }, [animateEachNews]);
+  useDidUpdate(onArticlesAdded);
   return (
     <section
       id="news"
       className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96"
-      onClick={animate}
     >
       <div className="text-center mb-28">
         <h1
