@@ -97,9 +97,9 @@ const News: React.FC<{
   return (
     <section
       id="news"
-      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96"
+      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-72"
     >
-      <div className="text-center mb-28">
+      <div className="text-center mb-20">
         <h1
           ref={titleRef}
           className="inline-block mx-auto leading-[0.7] relative text-transparent"
@@ -108,12 +108,12 @@ const News: React.FC<{
           News
           <span
             ref={titleRevealerRef}
-            className="h-[57px] mt-[2px] bg-primary absolute right-0 top-1/2 -translate-y-1/2 scale-x-0 origin-left transition-transform duration-[333ms]"
+            className="h-[42px] m-px bg-primary absolute right-0 top-1/2 -translate-y-1/2 scale-x-0 origin-left transition-transform duration-[333ms]"
           ></span>
         </h1>
       </div>
       {articles.map(({ title, date, content, id }, index) => (
-        <article key={id} className="grid grid-cols-3 gap-24 mb-48">
+        <article key={id} className="grid grid-cols-3 gap-16 mb-36">
           <div className="text-right text-primary">
             <h2
               ref={newsTitleRefs.current[index]}
@@ -123,7 +123,7 @@ const News: React.FC<{
             </h2>
             <hr
               ref={newsBottomLineRefs.current[index]}
-              className="my-6 border-primary scale-x-0 origin-left transition-transform duration-[417ms]"
+              className="my-4 border-primary scale-x-0 origin-left transition-transform duration-[417ms]"
             />
             <h2
               ref={newsDateRefs.current[index]}
@@ -134,14 +134,14 @@ const News: React.FC<{
           </div>
           <div
             ref={newsContentRefs.current[index]}
-            className="relative bg-tertiary p-14 transition-transform scale-0 duration-[167ms]"
+            className="relative bg-tertiary p-10 transition-transform scale-0 duration-[167ms]"
           >
             <div className="absolute -z-[1] w-[calc(100%+5.6rem)] h-[calc(100%+5.6rem)] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
               <FuturisticEdge></FuturisticEdge>
             </div>
             <div className="opacity-0 transition-opacity delay-[250ms]">
               <div
-                className="line-clamp-[16] mb-9"
+                className="line-clamp-[16] mb-7"
                 dangerouslySetInnerHTML={{ __html: content }}
               ></div>
               <a

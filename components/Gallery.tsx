@@ -24,7 +24,7 @@ const Gallery: React.FC<{
       }
     }
   return (
-    <section id="gallery" className="px-24 mb-96">
+    <section id="gallery" className="px-64 mb-72">
       <AnimatedHeader text={title} />
       <div ref={imagesContainer} className="grid grid-cols-3 gap-12">
         {images.map(({ url, title, id }, index) =>
@@ -37,7 +37,7 @@ const Gallery: React.FC<{
                 index
               )} ${animating ? "" : "translate-y-3.5 opacity-0"}`}
             >
-              <Image src={url} width={478} height={293} alt={title} />
+              <Image src={url} width={358} height={220} alt={title} />
             </a>
           ) : null
         )}

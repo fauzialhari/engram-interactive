@@ -17,13 +17,13 @@ module.exports = {
         secondarybg: "var(--secondarybg-color)"
       },
       fontSize: {
-        h1: "5rem",
-        h2: "2.5rem",
-        h3: "2rem",
-        h4: "1.5rem"
+        h1: "3.75rem",
+        h2: "1.875rem",
+        h3: "1.5rem",
+        h4: "1.1255rem"
       },
       letterSpacing: {
-        button: "0.2em",
+        button: "0.15em",
       },
       transitionProperty: {
         'maxwidth': 'max-width',

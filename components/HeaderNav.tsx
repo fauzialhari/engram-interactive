@@ -69,7 +69,7 @@ const HeaderNav: React.FC<{}> = () => {
             <li className="lg:inline-block border-primary border-t-2 lg:border-none">
               <a
                 href="#story"
-                className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
+                className="inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
                 Story
               </a>
@@ -77,7 +77,7 @@ const HeaderNav: React.FC<{}> = () => {
             <li className="lg:inline-block border-primary border-t-2 lg:border-none">
               <a
                 href="#features"
-                className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
+                className="inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
                 Feature
               </a>
@@ -85,7 +85,7 @@ const HeaderNav: React.FC<{}> = () => {
             <li className="lg:inline-block border-primary border-t-2 lg:border-none">
               <a
                 href="#characters"
-                className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
+                className="inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
                 Characters
               </a>
@@ -93,7 +93,7 @@ const HeaderNav: React.FC<{}> = () => {
             <li className="lg:inline-block border-primary border-t-2 lg:border-none">
               <a
                 href="#gallery"
-                className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
+                className="inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
                 Gallery
               </a>
@@ -101,7 +101,7 @@ const HeaderNav: React.FC<{}> = () => {
             <li className="lg:inline-block border-primary border-t-2 border-b-2 lg:border-none">
               <a
                 href="#news"
-                className="inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
+                className="inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
                 News
               </a>

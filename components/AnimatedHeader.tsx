@@ -162,16 +162,16 @@ const AnimatedHeader: React.FC<{
   });
   return (
     <div className={`mb-24 ${isLeftPositioned ? "" : "text-right"}`} onClick={animate}>
-      <div ref={containerRef} className="relative inline-block mb-5">
+      <div ref={containerRef} className="relative inline-block mb-4">
         <h1
           ref={headerRef}
           className={`relative invisible inline-block leading-[0.7] ${
-            isLeftPositioned ? "mr-28" : "ml-28"
-          } mb-5`}
+            isLeftPositioned ? "mr-20" : "ml-20"
+          } mb-4`}
         >
           {text}
           <span
-            className={`absolute w-6 h-[60px] mx-2.5 bg-primary top-1/2 -translate-y-1/2 ${
+            className={`absolute w-5 h-11 mx-2 bg-primary top-1/2 -translate-y-1/2 ${
               isLeftPositioned ? "left-full" : "right-full"
             }`}
           >
@@ -186,7 +186,7 @@ const AnimatedHeader: React.FC<{
         >
           <div
             ref={cursorRef}
-            className={`w-6 h-[58px] bg-primary invisible ${
+            className={`w-4 h-11 bg-primary invisible ${
               isLeftPositioned ? "origin-right" : "origin-left"
             }`}
           ></div>
@@ -205,8 +205,8 @@ const AnimatedHeader: React.FC<{
       >
         <span
           ref={subtitleSpriteRef}
-          className={`inline-block invisible w-[5px] h-[1em] bg-primary align-middle ${
-            isLeftPositioned ? "mr-36" : "ml-36"
+          className={`inline-block invisible w-1 h-[1em] bg-primary align-middle ${
+            isLeftPositioned ? "mr-28" : "ml-28"
           }`}
         >
           &nbsp;

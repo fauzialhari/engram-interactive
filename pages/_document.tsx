@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, minimum-scale=1" />
         </Head>
-        <body className="bg-mainbg text-white lg:text-2xl overflow-x-hidden">
+        <body className="bg-mainbg text-white lg:text-lg overflow-x-hidden">
           <Main />
           <NextScript />
         </body>

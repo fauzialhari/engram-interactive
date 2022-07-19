@@ -16,7 +16,7 @@ const FeaturesSlider: React.FC<{
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
-    <section id="features" className="px-24 mb-[26rem]">
+    <section id="features" className="px-64 mb-80">
       <AnimatedHeader text={title} subtitle={subtitle} />
       <Carousel animateChildren={animate}>
         {featureImages.map(({ url, id, title }, index) => {
@@ -29,8 +29,8 @@ const FeaturesSlider: React.FC<{
             >
               <Image
                 src={url}
-                width="1260"
-                height="637"
+                width="945"
+                height="477"
                 objectFit="contain"
                 alt={title}
               />

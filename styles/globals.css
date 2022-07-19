@@ -16,13 +16,13 @@
     @apply text-xl lg:text-h1 font-bold uppercase leading-normal tracking-[.06em];
   }
   h2 {
-    @apply text-lg lg:text-h2 font-bold uppercase mb-8 leading-normal;
+    @apply text-lg lg:text-h2 font-bold uppercase mb-6 leading-normal;
   }
   p {
-    @apply mb-6;
+    @apply mb-4;
   }
   button {
-    @apply bg-secondary py-2.5 lg:py-5 px-6 lg:px-12 uppercase disabled:opacity-50 font-bold tracking-button;
+    @apply bg-secondary py-2.5 lg:py-4 px-6 lg:px-9 uppercase disabled:opacity-50 font-bold tracking-button;
   }
   input {
     @apply border border-primary p-3 bg-transparent focus:border-primary;

@@ -105,7 +105,7 @@ const Carousel: React.FC<{
     }
   }
   return (
-    <div className="mb-28">
+    <div className="mb-20">
       <div className="relative pb-[55.3%]">
         <div
           ref={navigatorRef}
@@ -116,11 +116,11 @@ const Carousel: React.FC<{
             title="Previous"
             className="
               p-0
-              w-16
-              h-16
+              w-12
+              h-12
               border-primary
-              border-l-[5px]
-              border-b-[5px]
+              border-l-4
+              border-b-4
               rotate-45
               -translate-x-full
               relative
@@ -132,8 +132,8 @@ const Carousel: React.FC<{
               before:w-full
               before:h-full
               before:box-content
-              before:border-l-[5px]
-              before:border-b-[5px]
+              before:border-l-4
+              before:border-b-4
               before:border-secondary
               disabled:opacity-25"
             disabled={activeSlide === 0}
@@ -144,11 +144,11 @@ const Carousel: React.FC<{
             title="Next"
             className="
               p-0
-              w-16
-              h-16
+              w-12
+              h-12
               border-primary
-              border-r-[5px]
-              border-t-[5px]
+              border-r-4
+              border-t-4
               rotate-45
               translate-x-full
               relative
@@ -160,8 +160,8 @@ const Carousel: React.FC<{
               before:w-full
               before:h-full
               before:box-content
-              before:border-r-[5px]
-              before:border-t-[5px]
+              before:border-r-4
+              before:border-t-4
               before:border-secondary
               disabled:opacity-25"
             disabled={activeSlide === Children.toArray(children).length - 1}
@@ -174,7 +174,7 @@ const Carousel: React.FC<{
         >
           {Children.toArray(children).map((Child, index) =>
             activeSlide === index ? (
-              <div key={index} className="h-full px-11 py-14 mx-auto">
+              <div key={index} className="h-full px-8 py-10 mx-auto">
                 {Child}
               </div>
             ) : null
@@ -182,11 +182,11 @@ const Carousel: React.FC<{
         </div>
       </div>
       <div ref={navigationRef} className="text-right opacity-0">
-        <ol className="inline mr-9">
+        <ol className="inline mr-7-">
           {Children.toArray(children).map((child, index) => (
             <li
               key={index}
-              className={`list-none inline-block mr-2 h-1.5 w-12 ${
+              className={`list-none inline-block mr-1 h-1 w-9 ${
                 index === activeSlide ? "bg-primary" : "bg-tertiary"
               }`}
             ></li>

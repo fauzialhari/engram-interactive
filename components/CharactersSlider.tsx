@@ -18,8 +18,8 @@ const CharactersSlider: React.FC<{
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
-    <section id="characters" className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44 bg-secondarybg pt-9 pb-[0.5px]">
-      <div className="container px-24 mx-auto">
+    <section id="characters" className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-32 bg-secondarybg pt-7 pb-[0.5px]">
+      <div className="container px-64 mx-auto">
         <AnimatedHeader
           isLeftPositioned={false}
           text={title}
@@ -37,14 +37,14 @@ const CharactersSlider: React.FC<{
                 >
                   <div className="relative w-1/2  flex items-center">
                     <div
-                      className={`absolute w-[50vw] right-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out ${
+                      className={`absolute w-[50vw] right-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out text-right ${
                         index === activeSlide ? "" : "-translate-x-[8%]"
                       }`}
                     >
                       <Image
                         src={characterImageUrl}
-                        width="907px"
-                        height="1506px"
+                        width="680px"
+                        height="1120px"
                         alt={title}
                         className={`${
                           index === activeSlide ? "" : "brightness-50 "
@@ -54,12 +54,12 @@ const CharactersSlider: React.FC<{
                   </div>
                   <div className="w-1/2 flex items-end">
                     <div
-                      className={`relative inline-block px-9 py-8 transition-transform duration-[416ms] delay-75 ease-out  ${
+                      className={`relative inline-block px-7 py-6 transition-transform duration-[416ms] delay-75 ease-out  ${
                         index === activeSlide ? "" : "scale-[0.25]"
                       }`}
                     >
                       <FuturisticEdge>
-                        <div className="bg-secondary py-12 px-[4.375rem]">
+                        <div className="bg-secondary py-9 px-[3.28rem]">
                           <article
                             className={`transition-opacity duration-[167ms] delay-[333ms] ease-out  ${
                               index === activeSlide ? "" : "opacity-0"

@@ -38,13 +38,13 @@ const Story: React.FC<{
   return (
     <section
       id="story"
-      className="mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
+      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
       onClick={animate}
     >
-      <div className="mb-52 text-center uppercase">
+      <div className="mb-36 text-center uppercase">
         <div
           ref={containerIntroRef}
-          className="inline-block px-16 py-12 relative invisible"
+          className="inline-block px-12 py-9 relative invisible"
         >
           <FuturisticEdge>
             <p
