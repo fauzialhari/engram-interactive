@@ -113,7 +113,7 @@ const News: React.FC<{
         </h1>
       </div>
       {articles.map(({ title, date, content, id }, index) => (
-        <article key={id} className="grid grid-cols-3 gap-16 mb-36">
+        <article key={id} className="grid grid-cols-[1fr_27%_1fr] gap-16 mb-36">
           <div className="text-right text-primary">
             <h2
               ref={newsTitleRefs.current[index]}
@@ -136,7 +136,7 @@ const News: React.FC<{
             ref={newsContentRefs.current[index]}
             className="relative bg-tertiary p-10 transition-transform scale-0 duration-[167ms]"
           >
-            <div className="absolute -z-[1] w-[calc(100%+5.6rem)] h-[calc(100%+5.6rem)] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+            <div className="absolute -z-[1] w-[calc(100%+4.2rem)] h-[calc(100%+4.2rem)] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
               <FuturisticEdge></FuturisticEdge>
             </div>
             <div className="opacity-0 transition-opacity delay-[250ms]">
