@@ -9,6 +9,7 @@ const Modal: React.FC<{
   exit: () => void;
 }> = ({ title, date, content, exit }) => {
   const containerRef = useRef(null);
+  const exitButtonRef = useRef(null);
   const contentRef = useRef(null);
   useLayoutEffect(() => {
     animate();
@@ -33,7 +34,7 @@ const Modal: React.FC<{
     }
   }
   function onBackdropClick(event: MouseEvent) {
-    if (event.target === containerRef.current) {
+    if (event.target === containerRef.current || event.target === exitButtonRef.current) {
       animate(false, exit);
     }
   }
@@ -45,21 +46,61 @@ const Modal: React.FC<{
   return (
     <div
       ref={containerRef}
-      className="scale-0 transition-transform duration-[167ms] fixed inset-0 backdrop-blur flex justify-center items-center"
+      className="scale-0 transition-transform duration-[167ms] fixed inset-0 backdrop-blur flex justify-center items-center z-20"
       tabIndex={0}
       onClick={onBackdropClick}
       onKeyUp={onKeyEscapePressed}
     >
       <div className="absolute w-10/12 h-4/5 px-9 py-8 ">
         <FuturisticEdge>
-          <div className="h-full bg-tertiary px-44 py-32 overflow-auto overscroll-contain">
-            <div
-              ref={contentRef}
-              className="opacity-0 transition-opacity duration-[167ms] delay-[167ms]"
+          <div className="h-full relative">
+            <button
+              ref={exitButtonRef}
+              type="button"
+              aria-label="Close article"
+              className={`
+                absolute
+                top-0
+                right-0
+                w-3/12
+                p-7
+                max-w-[100px]
+              `}
+              onClick={onBackdropClick}
             >
-              <h2 className="text-primary font-normal">{title}</h2>
-              <h2 className="text-primary font-normal text-right">{date}</h2>
-              <div dangerouslySetInnerHTML={{ __html: content }}></div>
+              <span
+                className={`
+                  pointer-events-none
+                  block
+                  relative
+                  w-full
+                  py-3
+                  before:content-['']
+                  before:absolute
+                  before:block
+                  before:bg-primary
+                  before:w-full
+                  before:h-1
+                  before:top-1/2 before:-translate-y-1/2 before:rotate-45
+                  after:content-['']
+                  after:absolute
+                  after:block
+                  after:bg-primary
+                  after:w-full
+                  after:h-1
+                  after:top-1/2 after:-translate-y-1/2 after:-rotate-45
+                `}
+              ></span>
+            </button>
+            <div className="h-full bg-tertiary px-44 py-32 overflow-auto overscroll-contain">
+              <div
+                ref={contentRef}
+                className="opacity-0 transition-opacity duration-[167ms] delay-[167ms]"
+              >
+                <h2 className="text-primary font-normal">{title}</h2>
+                <h2 className="text-primary font-normal text-right">{date}</h2>
+                <div dangerouslySetInnerHTML={{ __html: content }}></div>
+              </div>
             </div>
           </div>
         </FuturisticEdge>
