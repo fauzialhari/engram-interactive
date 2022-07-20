@@ -12,19 +12,18 @@ const CharactersSlider: React.FC<{
     title: string;
     description: string;
   }[];
-}> = ({ charactersContent, title="Characters", subtitle }) => {
+}> = ({ charactersContent, title = "Characters", subtitle }) => {
   const [activeSlide, setActiveSlide] = useState(-1);
   const animate = useCallback((CarouselActiveSlide: number) => {
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
-    <section id="characters" className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-32 bg-secondarybg pt-7 pb-[0.5px]">
+    <section
+      id="characters"
+      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-32 bg-secondarybg pt-7 pb-[0.5px]"
+    >
       <div className="container px-64 mx-auto">
-        <AnimatedHeader
-          isLeftPositioned={false}
-          text={title}
-          subtitle={subtitle}
-        />
+        <AnimatedHeader text={title} subtitle={subtitle} />
         <Carousel animateChildren={animate}>
           {charactersContent.map(
             ({ characterImageUrl, id, title, description }, index) => {
@@ -35,23 +34,6 @@ const CharactersSlider: React.FC<{
                   }h-full flex justify-center items-stretch transtion-opacity duration-250 pointer-events-none`}
                   key={id}
                 >
-                  <div className="relative w-1/2  flex items-center">
-                    <div
-                      className={`absolute w-[50vw] right-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out text-right ${
-                        index === activeSlide ? "" : "-translate-x-[8%]"
-                      }`}
-                    >
-                      <Image
-                        src={characterImageUrl}
-                        width="680px"
-                        height="1120px"
-                        alt={title}
-                        className={`${
-                          index === activeSlide ? "" : "brightness-50 "
-                        } transition-filter duration-[416ms] delay-75 ease-out`}
-                      />
-                    </div>
-                  </div>
                   <div className="w-1/2 flex items-end">
                     <div
                       className={`relative inline-block px-7 py-6 transition-transform duration-[416ms] delay-75 ease-out  ${
@@ -66,10 +48,27 @@ const CharactersSlider: React.FC<{
                             }`}
                           >
                             <h2>{title}</h2>
-                            <p className="">{description}</p>
+                            <p className="line-clamp-[10]">{description}</p>
                           </article>
                         </div>
                       </FuturisticEdge>
+                    </div>
+                  </div>
+                  <div className="relative w-1/2  flex items-center">
+                    <div
+                      className={`absolute w-[50vw] left-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out ${
+                        index === activeSlide ? "" : "-translate-x-[8%]"
+                      }`}
+                    >
+                      <Image
+                        src={characterImageUrl}
+                        width="680px"
+                        height="1120px"
+                        alt={title}
+                        className={`${
+                          index === activeSlide ? "" : "brightness-50 "
+                        } transition-filter duration-[416ms] delay-75 ease-out`}
+                      />
                     </div>
                   </div>
                 </div>
