@@ -21,6 +21,7 @@ const Modal: React.FC<{
     if (isEntrance) {
       container.removeClass("scale-0");
       contentElement.removeClass("opacity-0");
+      document.body.classList.add("overflow-y-hidden")
     } else {
       container.addClass(["scale-0", "delay-[167ms]"]);
       contentElement.removeClass("delay-[167ms]");
@@ -31,6 +32,7 @@ const Modal: React.FC<{
           onTransitionEnd
         );
       }
+      document.body.classList.remove("overflow-y-hidden")
     }
   }
   function onBackdropClick(event: MouseEvent) {
