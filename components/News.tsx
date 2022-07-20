@@ -113,7 +113,7 @@ const News: React.FC<{
         </h1>
       </div>
       {articles.map(({ title, date, content, id }, index) => (
-        <article key={id} className="grid grid-cols-[1fr_27%_1fr] gap-16 mb-36">
+        <article key={id} className="grid grid-cols-[1fr_20%_1fr] gap-16 mb-36">
           <div className="text-right text-primary">
             <h2
               ref={newsTitleRefs.current[index]}
