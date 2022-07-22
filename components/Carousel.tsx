@@ -7,12 +7,15 @@ import useOnScrollEffect from "../utils/useOnScrollEffect";
 
 const Carousel: React.FC<{
   children: ReactNode;
+  isSlideEffect?: boolean;
   animateChildren?: (activeSlide: number) => void;
-}> = ({ children, animateChildren }) => {
+}> = ({ children, isSlideEffect = false, animateChildren }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const navigatorRef = useRef<HTMLDivElement>(null);
   const navigationRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [onSliding, setOnSliding] = useState(false);
   const animate = useCallback(() => {
     const carouselAnimation = new FpsCtrl(12, ({ frame }) => {
       const contentElement = new ElementSetter(getElementRef(contentRef));
@@ -103,10 +106,88 @@ const Carousel: React.FC<{
     } else if (activeSlide !== Children.toArray(children).length - 1) {
       setActiveSlide(activeSlide + 1);
     }
+    if (isSlideEffect) {
+      const sliderElement = getElementRef(sliderRef);
+      let slideLeftAnimation = 0;
+      const slideSpeed = sliderElement.offsetWidth * 0.06;
+      setOnSliding(true);
+      const slideLeft = () => {
+        slideLeftAnimation = requestAnimationFrame(slideLeft);
+        if (
+          sliderElement.scrollLeft >
+          (activeSlide - 1) * sliderElement.offsetWidth
+        ) {
+          const nextMovement = sliderElement.scrollLeft - slideSpeed;
+          const lastPointTarget = (activeSlide - 1) * sliderElement.offsetWidth;
+          const isNextMoveBeyondLimit = nextMovement < lastPointTarget;
+          sliderElement.scrollTo({
+            left: isNextMoveBeyondLimit ? lastPointTarget : nextMovement,
+          });
+        } else {
+          cancelAnimationFrame(slideLeftAnimation);
+          setOnSliding(false);
+        }
+      };
+      let slideRightAnimation = 0;
+      const slideRight = () => {
+        slideRightAnimation = requestAnimationFrame(slideRight);
+        if (
+          sliderElement.scrollLeft <
+          (activeSlide + 1) * sliderElement.offsetWidth
+        ) {
+          const nextMovement = sliderElement.scrollLeft + slideSpeed;
+          const lastPointTarget = (activeSlide + 1) * sliderElement.offsetWidth;
+          const isNextMoveBeyondLimit = nextMovement > lastPointTarget;
+          sliderElement.scrollTo({
+            left: isNextMoveBeyondLimit ? lastPointTarget : nextMovement,
+          });
+        } else {
+          cancelAnimationFrame(slideRightAnimation);
+          setOnSliding(false);
+        }
+      };
+      if (direction === "prev" && activeSlide !== 0) {
+        slideLeft();
+      } else if (activeSlide !== Children.toArray(children).length - 1) {
+        slideRight();
+      }
+    }
   }
   return (
     <div className="mb-20">
       <div className="relative pb-[55.3%]">
+        <div
+          ref={contentRef}
+          className="absolute bg-secondarybg inset-0 border border-primary invisible"
+        >
+          {isSlideEffect ? (
+            <div className="h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto">
+              <div ref={sliderRef} className="overflow-hidden h-full">
+                <div className="inline whitespace-nowrap">
+                  {Children.toArray(children).map((Child, index) => (
+                    <div
+                      className="inline-block w-full h-full whitespace-normal"
+                      key={index}
+                    >
+                      {Child}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            Children.toArray(children).map((Child, index) =>
+              activeSlide === index ? (
+                <div
+                  key={index}
+                  className="h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto"
+                >
+                  {Child}
+                </div>
+              ) : null
+            )
+          )}
+        </div>
         <div
           ref={navigatorRef}
           className="opacity-0 absolute inset-x-0 inset-y-1/2 -translate-y-1/2 w-full h-1/4 flex justify-between items-center"
@@ -144,7 +225,7 @@ const Carousel: React.FC<{
               md:before:border-b-4
               before:border-secondary
               disabled:opacity-25"
-            disabled={activeSlide === 0}
+            disabled={activeSlide === 0 || onSliding}
             onClick={() => onClickNavigator("prev")}
           ></button>
           <button
@@ -180,21 +261,11 @@ const Carousel: React.FC<{
               md:before:border-t-4
               before:border-secondary
               disabled:opacity-25"
-            disabled={activeSlide === Children.toArray(children).length - 1}
+            disabled={
+              activeSlide === Children.toArray(children).length - 1 || onSliding
+            }
             onClick={() => onClickNavigator("next")}
           ></button>
-        </div>
-        <div
-          ref={contentRef}
-          className="absolute bg-secondarybg inset-0 border border-primary invisible"
-        >
-          {Children.toArray(children).map((Child, index) =>
-            activeSlide === index ? (
-              <div key={index} className="h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto">
-                {Child}
-              </div>
-            ) : null
-          )}
         </div>
       </div>
       <div ref={navigationRef} className="text-right opacity-0">

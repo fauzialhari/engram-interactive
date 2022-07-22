@@ -11,20 +11,14 @@ const FeaturesSlider: React.FC<{
     title: string;
   }[];
 }> = ({ featureImages, title="Features", subtitle }) => {
-  const [activeSlide, setActiveSlide] = useState(-1);
-  const animate = useCallback((CarouselActiveSlide: number) => {
-    setActiveSlide(CarouselActiveSlide);
-  }, []);
   return (
     <section id="features" className="px-11 lg:px-64 mb-24 lg:mb-80">
       <AnimatedHeader text={title} subtitle={subtitle} />
-      <Carousel animateChildren={animate}>
-        {featureImages.map(({ url, id, title }, index) => {
+      <Carousel isSlideEffect={true}>
+        {featureImages.map(({ url, id, title }) => {
           return (
             <div
-              className={`${
-                index === activeSlide ? "" : "opacity-0 "
-              }h-full flex justify-center items-center transition-opacity duration-250`}
+              className="h-full flex justify-center items-center transition-opacity duration-250`"
               key={id}
             >
               <Image
