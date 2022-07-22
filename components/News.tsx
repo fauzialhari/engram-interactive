@@ -94,6 +94,10 @@ const News: React.FC<{
     animateEachNews(lastAnimatedArticleIndex.current);
   }, [animateEachNews]);
   useDidUpdate(onArticlesAdded);
+  function formatDate(datestring:string){
+    const dateObject = new Date(datestring);
+    return `${dateObject.getMonth()}//${dateObject.getDate()}//${dateObject.getFullYear()}`
+  }
   return (
     <section
       id="news"
@@ -112,7 +116,7 @@ const News: React.FC<{
         </h1>
       </div>
       {articles.map(({ title, date, content, id }, index) => (
-        <article key={id} className="grid grid-cols-[1fr_2fr] md:grid-cols-[1fr_40%_1fr] lg:grid-cols-[1fr_20%_1fr] gap-4 mb-36">
+        <article key={id} className="grid grid-cols-[1fr_2fr] md:grid-cols-[1fr_40%_1fr] lg:grid-cols-[1fr_20%_1fr] gap-4 lg:gap-16 mb-36">
           <div className="text-right text-primary">
             <h2
               ref={newsTitleRefs.current[index]}
@@ -128,7 +132,7 @@ const News: React.FC<{
               ref={newsDateRefs.current[index]}
               className="opacity-0 transition-opacity duration-[250ms] delay-200 font-normal"
             >
-              {date}
+              {formatDate(date)}
             </h2>
           </div>
           <div
