@@ -102,18 +102,17 @@ const News: React.FC<{
       <div className="text-center mb-20">
         <h1
           ref={titleRef}
-          className="inline-block mx-auto leading-[0.7] relative text-transparent"
+          className="inline-block mx-auto leading-[0.7] lg:leading-[0.73] relative text-transparent"
         >
-          <span></span>
           News
           <span
             ref={titleRevealerRef}
-            className="h-[42px] m-px bg-primary absolute right-0 top-1/2 -translate-y-1/2 scale-x-0 origin-left transition-transform duration-[333ms]"
+            className="h-full lg:h-[96%] lg:mt-px bg-primary absolute right-0 top-1/2 -translate-y-1/2 scale-x-0 origin-left transition-transform duration-[333ms]"
           ></span>
         </h1>
       </div>
       {articles.map(({ title, date, content, id }, index) => (
-        <article key={id} className="grid grid-cols-[1fr_20%_1fr] gap-16 mb-36">
+        <article key={id} className="grid grid-cols-[1fr_2fr] md:grid-cols-[1fr_40%_1fr] lg:grid-cols-[1fr_20%_1fr] gap-4 mb-36">
           <div className="text-right text-primary">
             <h2
               ref={newsTitleRefs.current[index]}

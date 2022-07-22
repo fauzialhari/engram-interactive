@@ -15,60 +15,66 @@ const Footer: React.FC<{}> = () => {
         <div className="xl:flex">
           <div className="grow mb-6 xl:mb-0">
             <ol className="grid grid-cols-3 gap-3">
-              <li>
-                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-9">
+              <li className="text-center">
+                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faTwitter}
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
+                <br className="lg:hidden"/>
                 <a href="">Twitter</a>
               </li>
-              <li>
-                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-9">
+              <li className="text-center">
+                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faFacebookF}
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
+                <br className="lg:hidden"/>
                 <a href="" className="inline-block">
                   Facebook
                 </a>
               </li>
-              <li>
-                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-9">
+              <li className="text-center">
+                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faYoutube}
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
+                <br className="lg:hidden"/>
                 <a href="">Youtube</a>
               </li>
-              <li>
-                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-9">
+              <li className="text-center">
+                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faInstagram}
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
+                <br className="lg:hidden"/>
                 <a href="">Instagram</a>
               </li>
-              <li>
-                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-9">
+              <li className="text-center">
+                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faDiscord}
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
+                <br className="lg:hidden"/>
                 <a href="">Discord</a>
               </li>
-              <li>
-                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-9">
+              <li className="text-center">
+                <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faSteam}
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
+                <br className="lg:hidden"/>
                 <a href="">Steam</a>
               </li>
             </ol>

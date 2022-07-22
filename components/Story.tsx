@@ -41,7 +41,7 @@ const Story: React.FC<{
       className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
       onClick={animate}
     >
-      <div className="mb-36 text-center uppercase">
+      <div className="mb-12 lg:mb-36 text-center uppercase">
         <div
           ref={containerIntroRef}
           className="inline-block px-12 py-9 relative invisible"
@@ -49,7 +49,7 @@ const Story: React.FC<{
           <FuturisticEdge>
             <p
               ref={textIntroRef}
-              className="tracking-[0.2em] mb-0 whitespace-nowrap overflow-hidden transition-maxwidth max-w-xs invisible"
+              className="tracking-[0.2em] mb-0 lg:whitespace-nowrap overflow-hidden transition-maxwidth max-w-xs invisible"
             >
               {intro}
             </p>

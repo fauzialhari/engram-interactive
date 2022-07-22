@@ -116,24 +116,32 @@ const Carousel: React.FC<{
             title="Previous"
             className="
               p-0
-              w-12
-              h-12
+              w-5
+              h-5
+              md:w-12
+              md:h-12
               border-primary
-              border-l-4
-              border-b-4
+              border-l-2
+              border-b-2
+              md:border-l-4
+              md:border-b-4
               rotate-45
               -translate-x-full
               relative
               before:content-['']
               before:absolute
-              before:top-2.5
-              before:right-2.5
+              before:top-1
+              before:right-1
+              md:before:top-2.5
+              md:before:right-2.5
               before:block
               before:w-full
               before:h-full
               before:box-content
-              before:border-l-4
-              before:border-b-4
+              before:border-l-2
+              before:border-b-2
+              md:before:border-l-4
+              md:before:border-b-4
               before:border-secondary
               disabled:opacity-25"
             disabled={activeSlide === 0}
@@ -144,24 +152,32 @@ const Carousel: React.FC<{
             title="Next"
             className="
               p-0
-              w-12
-              h-12
+              w-5
+              h-5
+              md:w-12
+              md:h-12
               border-primary
-              border-r-4
-              border-t-4
+              border-r-2
+              border-t-2
+              md:border-r-4
+              md:border-t-4
               rotate-45
               translate-x-full
               relative
               before:content-['']
               before:absolute
-              before:bottom-2.5
-              before:left-2.5
+              before:bottom-1
+              before:left-1
+              md:before:bottom-2.5
+              md:before:left-2.5
               before:block
               before:w-full
               before:h-full
               before:box-content
-              before:border-r-4
-              before:border-t-4
+              before:border-r-2
+              before:border-t-2
+              md:before:border-r-4
+              md:before:border-t-4
               before:border-secondary
               disabled:opacity-25"
             disabled={activeSlide === Children.toArray(children).length - 1}
@@ -174,7 +190,7 @@ const Carousel: React.FC<{
         >
           {Children.toArray(children).map((Child, index) =>
             activeSlide === index ? (
-              <div key={index} className="h-full px-8 py-10 mx-auto">
+              <div key={index} className="h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto">
                 {Child}
               </div>
             ) : null
@@ -186,7 +202,7 @@ const Carousel: React.FC<{
           {Children.toArray(children).map((child, index) => (
             <li
               key={index}
-              className={`list-none inline-block mr-1 h-1 w-9 ${
+              className={`list-none inline-block mr-1 h-0.5 w-4 lg:h-1 lg:w-9 ${
                 index === activeSlide ? "bg-primary" : "bg-tertiary"
               }`}
             ></li>

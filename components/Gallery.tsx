@@ -24,18 +24,19 @@ const Gallery: React.FC<{
       }
     }
   return (
-    <section id="gallery" className="px-64 mb-72">
+    <section id="gallery" className="px-5 lg:px-64 mb-32 lg:mb-72">
       <AnimatedHeader text={title} />
-      <div ref={imagesContainer} className="grid grid-cols-3 gap-12">
+      <div ref={imagesContainer} className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-9">
         {images.map(({ url, title, id }, index) =>
           index < 9 ? (
             <a
               key={id}
-              href="#"
+              href=""
               aria-label="show"
               className={`transition-all duration-[333ms] ${calculateDelayClass(
                 index
               )} ${animating ? "" : "translate-y-3.5 opacity-0"}`}
+              onClick={(event)=>event.preventDefault()}
             >
               <Image src={url} width={358} height={220} alt={title} />
             </a>
