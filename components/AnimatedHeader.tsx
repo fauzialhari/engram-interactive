@@ -214,7 +214,7 @@ const AnimatedHeader: React.FC<{
         <div className="inline-flex items-center overflow-hidden">
           <p
             ref={subtitleRef}
-            className="uppercase inline-block leading-none opacity-0 translate-x-full"
+            className="uppercase inline-block leading-none opacity-0 translate-x-full mb-0"
           >
             {subtitle}
           </p>
