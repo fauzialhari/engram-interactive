@@ -187,7 +187,7 @@ const AnimatedHeader: React.FC<{
           <div
             ref={cursorRef}
             className={`w-4 h-11 bg-primary invisible ${
-              isLeftPositioned ? "origin-right" : "origin-left"
+              isLeftPositioned ? "origin-left" : "origin-right"
             }`}
           ></div>
           <div
