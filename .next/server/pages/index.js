@@ -17,6 +17,10 @@ exports.modules = {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _helpers_FpsCtrl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(723);
 /* harmony import */ var _utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(39);
+/* harmony import */ var _utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(752);
+/* harmony import */ var _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(405);
+
+
 
 
 
@@ -66,100 +70,56 @@ const AnimatedHeader = ({ text , isLeftPositioned =true , subtitle  })=>{
         }, 2000);
     }
     function animate() {
-        const spriteAnimation = new _helpers_FpsCtrl__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z(12, ({ frame  })=>{
-            if (headerRef.current != null && bottomLineRef.current != null && cursorRef.current != null && containerRef.current != null && subtitleSpriteRef.current != null && subtitleRef.current != null) {
-                const leftSpace = containerRef.current.getBoundingClientRect().left;
-                const containerWidth = containerRef.current.getBoundingClientRect().width;
-                switch(frame){
-                    case 1:
-                        bottomLineRef.current.style.transform = "scaleX(3.9%)";
-                        cursorRef.current.style.visibility = "visible";
-                        containerRef.current.style.width = `${containerWidth}px`;
-                        subtitleSpriteRef.current.style.transform = "translateY(6rem) scaleY(0.5)";
-                        subtitleSpriteRef.current.style.transformOrigin = "bottom";
-                        subtitleSpriteRef.current.classList.remove("invisible");
-                        break;
-                    case 2:
-                        bottomLineRef.current.style.transform = "scaleX(12.74%)";
-                        const cursorWidth = cursorRef.current.getBoundingClientRect().width;
-                        cursorRef.current.style.transform = `scaleX(${leftSpace / cursorWidth})`;
-                        subtitleSpriteRef.current.style.transform = "translateY(6rem) scaleY(1.5)";
-                        break;
-                    case 3:
-                        bottomLineRef.current.style.transform = "scaleX(25.61%)";
-                        cursorRef.current.style.removeProperty("visibility");
-                        subtitleSpriteRef.current.style.transform = "translateY(3rem) scaleY(3)";
-                        subtitleSpriteRef.current.style.transformOrigin = "top";
-                        animateTextTyping();
-                        break;
-                    case 4:
-                        bottomLineRef.current.style.transform = "scaleX(36.65%)";
-                        break;
-                    case 5:
-                        bottomLineRef.current.style.transform = "scaleX(57.16%)";
-                        subtitleSpriteRef.current.style.transform = "translateY(100%) scaleY(1.25)";
-                        subtitleRef.current.style.transform = "translateX(85.8%)";
-                        subtitleRef.current.style.opacity = "25%";
-                        break;
-                    case 6:
-                        bottomLineRef.current.style.transform = "scaleX(69.78%)";
-                        subtitleSpriteRef.current.style.removeProperty("transform");
-                        subtitleRef.current.style.transform = "translateX(71.5%)";
-                        subtitleRef.current.style.opacity = "50%";
-                        break;
-                    case 7:
-                        bottomLineRef.current.style.transform = "scaleX(87.01%)";
-                        subtitleRef.current.style.transform = "translateX(57.2%)";
-                        subtitleRef.current.style.opacity = "75%";
-                        break;
-                    case 8:
-                        bottomLineRef.current.style.transform = "scaleX(95.75%)";
-                        subtitleRef.current.style.transform = "translateX(42.9%)";
-                        subtitleRef.current.style.opacity = "100%";
-                        break;
-                    case 9:
-                        bottomLineRef.current.style.transform = "scaleX(98.42%)";
-                        subtitleRef.current.style.transform = "translateX(28.6%)";
-                        break;
-                    case 10:
-                        bottomLineRef.current.style.transform = "scaleX(100%)";
-                        subtitleRef.current.style.transform = "translateX(14.3%)";
-                        break;
-                    case 11:
-                        subtitleRef.current.style.transform = "translateX(0)";
-                        break;
-                    default:
-                        break;
-                }
-            }
+        const bottomLineElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(bottomLineRef));
+        bottomLineElement.removeClass("scale-x-0");
+        const subtitleElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(subtitleRef));
+        subtitleElement.removeClass([
+            "opacity-0",
+            "translate-x-full"
+        ]);
+        const subtitleSpriteElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(subtitleSpriteRef));
+        const animateSubtitleSprite = ()=>{
+            subtitleSpriteElement.removeClass([
+                "scale-y-[7]",
+                "translate-y-[6em]"
+            ]);
+            subtitleSpriteElement.element.removeEventListener("transitionend", animateSubtitleSprite);
+        };
+        subtitleSpriteElement.removeClass("invisible").addClass("scale-y-[7]").element.addEventListener("transitionend", animateSubtitleSprite);
+        const containerElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(containerRef));
+        const { right , left  } = containerElement.element.getBoundingClientRect();
+        const bottomLineWidth = isLeftPositioned ? right : document.documentElement.clientWidth - left;
+        const spritesContainerElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(spritesContainerRef));
+        spritesContainerElement.addStyle({
+            width: `${bottomLineWidth}px `
         });
-        setTimeout(()=>{
-            spriteAnimation.stopAnimation();
-        }, 1000);
+        const cursorElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(cursorRef));
+        cursorElement.removeClass("invisible");
+        const cursorWidth = cursorElement.element.getBoundingClientRect().width;
+        const leftSpace = containerElement.element.getBoundingClientRect().left;
+        cursorElement.addStyle({
+            transform: `scaleX(${leftSpace / cursorWidth})`
+        });
+        cursorElement.element.addEventListener("transitionend", ()=>{
+            cursorElement.addClass("invisible");
+            animateTextTyping();
+        });
     }
     (0,_utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(containerRef, animate);
-    (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(()=>{
-        if (containerRef.current != null && spritesContainerRef.current != null && bottomLineRef.current != null) {
-            const { right , left  } = containerRef.current.getBoundingClientRect();
-            const bottomLineWidth = isLeftPositioned ? right : document.documentElement.clientWidth - left;
-            spritesContainerRef.current.style.width = `${bottomLineWidth}px `;
-        }
-    });
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: `mb-24 ${isLeftPositioned ? "" : "text-right"}`,
-        onClick: animate,
+        className: `mb-10 lg:mb-16 ${isLeftPositioned ? "" : "text-right"}`,
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 ref: containerRef,
-                className: "relative inline-block mb-5",
+                className: "relative inline-block mb-4",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
                         ref: headerRef,
-                        className: `relative invisible inline-block leading-[0.7] ${isLeftPositioned ? "mr-28" : "ml-28"} mb-5`,
+                        className: `relative invisible inline-block leading-[0.7] ${isLeftPositioned ? "mr-20" : "ml-20"} mb-4`,
                         children: [
                             text,
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                className: `absolute w-6 h-[60px] mx-2.5 bg-primary top-1/2 -translate-y-1/2 ${isLeftPositioned ? "left-full" : "right-full"}`,
+                                className: `absolute w-5 h-11 mx-2 bg-primary top-1/2 -translate-y-1/2 ${isLeftPositioned ? "left-full" : "right-full"}`,
                                 children: "\xa0"
                             })
                         ]
@@ -170,11 +130,11 @@ const AnimatedHeader = ({ text , isLeftPositioned =true , subtitle  })=>{
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 ref: cursorRef,
-                                className: `w-6 h-[58px] bg-primary invisible ${isLeftPositioned ? "origin-right" : "origin-left"}`
+                                className: `w-4 h-11 bg-primary invisible transition-transform duration-[83ms] delay-[83ms] ${isLeftPositioned ? "origin-left" : "origin-right"}`
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 ref: bottomLineRef,
-                                className: `border-b-2 border-primary w-full scale-x-0 absolute ${isLeftPositioned ? "origin-left" : "origin-right"} bottom-0`
+                                className: `border-b-2 border-primary w-full scale-x-0 absolute ${isLeftPositioned ? "origin-left" : "origin-right"} bottom-0 duration-1000`
                             })
                         ]
                     })
@@ -185,14 +145,14 @@ const AnimatedHeader = ({ text , isLeftPositioned =true , subtitle  })=>{
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                         ref: subtitleSpriteRef,
-                        className: `inline-block invisible w-[5px] h-[1em] bg-primary align-middle ${isLeftPositioned ? "mr-36" : "ml-36"}`,
+                        className: `invisible inline-block w-1 h-[1em] bg-primary align-middle transition-transform duration-500 translate-y-[6em] origin-bottom ${isLeftPositioned ? "mr-28" : "ml-28"}`,
                         children: "\xa0"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         className: "inline-flex items-center overflow-hidden",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                             ref: subtitleRef,
-                            className: "uppercase inline-block leading-none opacity-0 translate-x-full",
+                            className: "uppercase inline-block leading-none opacity-0 translate-x-full transition-all duration-700 delay-[417ms] mb-0",
                             children: subtitle
                         })
                     })
@@ -228,11 +188,13 @@ const AnimatedHeader = ({ text , isLeftPositioned =true , subtitle  })=>{
 
 
 
-const Carousel = ({ children , animateChildren  })=>{
+const Carousel = ({ children , isSlideEffect =false , animateChildren  })=>{
     const contentRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     const navigatorRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     const navigationRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const sliderRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const { 0: onSliding , 1: setOnSliding  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
     const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(()=>{
         const carouselAnimation = new _helpers_FpsCtrl__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z(12, ({ frame  })=>{
             const contentElement = new _utils_elementSetter__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z((0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)(contentRef));
@@ -312,13 +274,75 @@ const Carousel = ({ children , animateChildren  })=>{
         } else if (activeSlide !== react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).length - 1) {
             setActiveSlide(activeSlide + 1);
         }
+        if (isSlideEffect) {
+            const sliderElement = (0,_utils_getElementRef__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)(sliderRef);
+            let slideLeftAnimation = 0;
+            const slideSpeed = sliderElement.offsetWidth * 0.06;
+            setOnSliding(true);
+            const slideLeft = ()=>{
+                slideLeftAnimation = requestAnimationFrame(slideLeft);
+                if (sliderElement.scrollLeft > (activeSlide - 1) * sliderElement.offsetWidth) {
+                    const nextMovement = sliderElement.scrollLeft - slideSpeed;
+                    const lastPointTarget = (activeSlide - 1) * sliderElement.offsetWidth;
+                    const isNextMoveBeyondLimit = nextMovement < lastPointTarget;
+                    sliderElement.scrollTo({
+                        left: isNextMoveBeyondLimit ? lastPointTarget : nextMovement
+                    });
+                } else {
+                    cancelAnimationFrame(slideLeftAnimation);
+                    setOnSliding(false);
+                }
+            };
+            let slideRightAnimation = 0;
+            const slideRight = ()=>{
+                slideRightAnimation = requestAnimationFrame(slideRight);
+                if (sliderElement.scrollLeft < (activeSlide + 1) * sliderElement.offsetWidth) {
+                    const nextMovement = sliderElement.scrollLeft + slideSpeed;
+                    const lastPointTarget = (activeSlide + 1) * sliderElement.offsetWidth;
+                    const isNextMoveBeyondLimit = nextMovement > lastPointTarget;
+                    sliderElement.scrollTo({
+                        left: isNextMoveBeyondLimit ? lastPointTarget : nextMovement
+                    });
+                } else {
+                    cancelAnimationFrame(slideRightAnimation);
+                    setOnSliding(false);
+                }
+            };
+            if (direction === "prev" && activeSlide !== 0) {
+                slideLeft();
+            } else if (activeSlide !== react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).length - 1) {
+                slideRight();
+            }
+        }
     }
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "mb-28",
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 className: "relative pb-[55.3%]",
                 children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        ref: contentRef,
+                        className: "absolute bg-secondarybg inset-0 border border-primary invisible",
+                        children: isSlideEffect ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                ref: sliderRef,
+                                className: "overflow-hidden h-full",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    className: "inline whitespace-nowrap",
+                                    children: react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).map((Child, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "inline-block w-full h-full whitespace-normal",
+                                            children: Child
+                                        }, index)
+                                    )
+                                })
+                            })
+                        }) : react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).map((Child, index)=>activeSlide === index ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                className: "h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto",
+                                children: Child
+                            }, index) : null
+                        )
+                    }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         ref: navigatorRef,
                         className: "opacity-0 absolute inset-x-0 inset-y-1/2 -translate-y-1/2 w-full h-1/4 flex justify-between items-center",
@@ -326,27 +350,18 @@ const Carousel = ({ children , animateChildren  })=>{
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 type: "button",
                                 title: "Previous",
-                                className: " p-0 w-16 h-16 border-primary border-l-[5px] border-b-[5px] rotate-45 -translate-x-full relative before:content-[''] before:absolute before:top-2.5 before:right-2.5 before:block before:w-full before:h-full before:box-content before:border-l-[5px] before:border-b-[5px] before:border-secondary disabled:opacity-25",
-                                disabled: activeSlide === 0,
+                                className: " p-0 w-5 h-5 md:w-12 md:h-12 border-primary border-l-2 border-b-2 md:border-l-4 md:border-b-4 rotate-45 -translate-x-full relative before:content-[''] before:absolute before:top-1 before:right-1 md:before:top-2.5 md:before:right-2.5 before:block before:w-full before:h-full before:box-content before:border-l-2 before:border-b-2 md:before:border-l-4 md:before:border-b-4 before:border-secondary disabled:opacity-25",
+                                disabled: activeSlide === 0 || onSliding,
                                 onClick: ()=>onClickNavigator("prev")
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 type: "button",
                                 title: "Next",
-                                className: " p-0 w-16 h-16 border-primary border-r-[5px] border-t-[5px] rotate-45 translate-x-full relative before:content-[''] before:absolute before:bottom-2.5 before:left-2.5 before:block before:w-full before:h-full before:box-content before:border-r-[5px] before:border-t-[5px] before:border-secondary disabled:opacity-25",
-                                disabled: activeSlide === react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).length - 1,
+                                className: " p-0 w-5 h-5 md:w-12 md:h-12 border-primary border-r-2 border-t-2 md:border-r-4 md:border-t-4 rotate-45 translate-x-full relative before:content-[''] before:absolute before:bottom-1 before:left-1 md:before:bottom-2.5 md:before:left-2.5 before:block before:w-full before:h-full before:box-content before:border-r-2 before:border-t-2 md:before:border-r-4 md:before:border-t-4 before:border-secondary disabled:opacity-25",
+                                disabled: activeSlide === react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).length - 1 || onSliding,
                                 onClick: ()=>onClickNavigator("next")
                             })
                         ]
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        ref: contentRef,
-                        className: "absolute bg-secondarybg inset-0 border border-primary invisible",
-                        children: react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).map((Child, index)=>activeSlide === index ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "h-full px-11 py-14 mx-auto",
-                                children: Child
-                            }, index) : null
-                        )
                     })
                 ]
             }),
@@ -354,9 +369,9 @@ const Carousel = ({ children , animateChildren  })=>{
                 ref: navigationRef,
                 className: "text-right opacity-0",
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ol", {
-                    className: "inline mr-9",
+                    className: "inline mr-7-",
                     children: react__WEBPACK_IMPORTED_MODULE_1__.Children.toArray(children).map((child, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                            className: `list-none inline-block mr-2 h-1.5 w-12 ${index === activeSlide ? "bg-primary" : "bg-tertiary"}`
+                            className: `list-none inline-block mr-1 h-0.5 w-4 lg:h-1 lg:w-9 ${index === activeSlide ? "bg-primary" : "bg-tertiary"}`
                         }, index)
                     )
                 })
@@ -382,8 +397,10 @@ const Carousel = ({ children , animateChildren  })=>{
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(675);
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(869);
-/* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(748);
-/* harmony import */ var _FuturisticEdge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(164);
+/* harmony import */ var _OneScreenContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(291);
+/* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(748);
+/* harmony import */ var _FuturisticEdge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(164);
+
 
 
 
@@ -395,64 +412,68 @@ const CharactersSlider = ({ charactersContent , title: title1 = "Characters" , s
     const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((CarouselActiveSlide)=>{
         setActiveSlide(CarouselActiveSlide);
     }, []);
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-        id: "characters",
-        className: "mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44 bg-secondarybg pt-9 pb-[0.5px]",
-        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "container px-24 mx-auto",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
-                    isLeftPositioned: false,
-                    text: title1,
-                    subtitle: subtitle
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                    animateChildren: animate,
-                    children: charactersContent.map(({ characterImageUrl , id , title , description  }, index)=>{
-                        return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: `${index === activeSlide ? "" : "opacity-0 "}h-full flex justify-center items-stretch transtion-opacity duration-250 pointer-events-none`,
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "relative w-1/2 flex items-center",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: `absolute w-[50vw] right-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out ${index === activeSlide ? "" : "-translate-x-[8%]"}`,
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
-                                            src: characterImageUrl,
-                                            width: "907px",
-                                            height: "1506px",
-                                            alt: title,
-                                            className: `${index === activeSlide ? "" : "brightness-50 "} transition-filter duration-[416ms] delay-75 ease-out`
-                                        })
-                                    })
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "w-1/2 flex items-end",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: `relative inline-block px-9 py-8 transition-transform duration-[416ms] delay-75 ease-out  ${index === activeSlide ? "" : "scale-[0.25]"}`,
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_FuturisticEdge__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+            className: "h-full w-full flex items-center bg-secondarybg",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "container mx-auto",
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                    id: "characters",
+                    className: "relative w-full px-11 lg:px-64",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                            text: title1,
+                            subtitle: subtitle
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+                            animateChildren: animate,
+                            children: charactersContent.map(({ characterImageUrl , id , title , description  }, index)=>{
+                                return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: `${index === activeSlide ? "" : "opacity-0 "}h-full flex justify-center items-stretch transtion-opacity duration-250 pointer-events-none`,
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "w-2/3 lg:w-1/2 flex items-end",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "bg-secondary py-12 px-[4.375rem]",
-                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: `transition-opacity duration-[167ms] delay-[333ms] ease-out  ${index === activeSlide ? "" : "opacity-0"}`,
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            children: title
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "",
-                                                            children: description
+                                                className: `relative inline-block px-3 py-3 lg:px-7 lg:py-6 transition-transform duration-[416ms] delay-75 ease-out  ${index === activeSlide ? "" : "scale-[0.25]"}`,
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_FuturisticEdge__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "bg-secondary py-3 px-3 lg:py-9 lg:px-[3.28rem]",
+                                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
+                                                            className: `transition-opacity duration-[167ms] delay-[333ms] ease-out  ${index === activeSlide ? "" : "opacity-0"}`,
+                                                            children: [
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                                                    children: title
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                                    className: "line-clamp-[10]",
+                                                                    children: description
+                                                                })
+                                                            ]
                                                         })
-                                                    ]
+                                                    })
+                                                })
+                                            })
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "relative w-1/3 lg:w-1/2 flex items-center",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                className: `absolute w-[50vw] left-[10%] -mt-[40%] transition-transform duration-[416ms] delay-75 ease-out ${index === activeSlide ? "" : "-translate-x-[8%]"}`,
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                                    src: characterImageUrl,
+                                                    width: "680px",
+                                                    height: "1120px",
+                                                    alt: title,
+                                                    className: `${index === activeSlide ? "" : "brightness-50 "} transition-filter duration-[416ms] delay-75 ease-out`
                                                 })
                                             })
                                         })
-                                    })
-                                })
-                            ]
-                        }, id);
-                    })
+                                    ]
+                                }, id);
+                            })
+                        })
+                    ]
                 })
-            ]
+            })
         })
     });
 };
@@ -469,10 +490,9 @@ const CharactersSlider = ({ charactersContent , title: title1 = "Characters" , s
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(675);
-/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(675);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _OneScreenContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(291);
 /* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(748);
 /* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(869);
 
@@ -481,34 +501,35 @@ const CharactersSlider = ({ charactersContent , title: title1 = "Characters" , s
 
 
 const FeaturesSlider = ({ featureImages , title: title1 = "Features" , subtitle  })=>{
-    const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(-1);
-    const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((CarouselActiveSlide)=>{
-        setActiveSlide(CarouselActiveSlide);
-    }, []);
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-        id: "features",
-        className: "px-24 mb-[26rem]",
-        children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                text: title1,
-                subtitle: subtitle
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
-                animateChildren: animate,
-                children: featureImages.map(({ url , id , title  }, index)=>{
-                    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: `${index === activeSlide ? "" : "opacity-0 "}h-full flex justify-center items-center transition-opacity duration-250`,
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
-                            src: url,
-                            width: "1260",
-                            height: "637",
-                            objectFit: "contain",
-                            alt: title
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+            className: "container mx-auto h-full w-full flex items-center",
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                id: "features",
+                className: "px-11 lg:px-64 w-full",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+                        text: title1,
+                        subtitle: subtitle
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
+                        isSlideEffect: true,
+                        children: featureImages.map(({ url , id , title  })=>{
+                            return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                className: "h-full flex justify-center items-center transition-opacity duration-250`",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
+                                    src: url,
+                                    width: "945",
+                                    height: "477",
+                                    objectFit: "contain",
+                                    alt: title
+                                })
+                            }, id);
                         })
-                    }, id);
-                })
+                    })
+                ]
             })
-        ]
+        })
     });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FeaturesSlider);
@@ -537,30 +558,34 @@ const free_brands_svg_icons_namespaceObject = require("@fortawesome/free-brands-
 
 const Footer = ()=>{
     return /*#__PURE__*/ jsx_runtime_.jsx("footer", {
-        className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-secondarybg pt-20 pb-44",
+        className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-secondarybg pt-14 pb-32",
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
             className: "container mx-auto text-primary",
             children: [
                 /*#__PURE__*/ jsx_runtime_.jsx("h1", {
-                    className: "text-center mb-24",
+                    className: "text-center mb-16",
                     children: "Contact Us"
                 }),
                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                     className: "xl:flex",
                     children: [
                         /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                            className: "grow mb-8 xl:mb-0",
+                            className: "grow mb-6 xl:mb-0",
                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("ol", {
                                 className: "grid grid-cols-3 gap-3",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                        className: "text-center",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-20 h-20 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-12",
+                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
                                                     icon: free_brands_svg_icons_namespaceObject.faTwitter,
                                                     className: "fa-2xl relative top-1/2 -translate-y-1/2"
                                                 })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                                className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
                                                 href: "",
@@ -569,13 +594,17 @@ const Footer = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                        className: "text-center",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-20 h-20 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-12",
+                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
                                                     icon: free_brands_svg_icons_namespaceObject.faFacebookF,
                                                     className: "fa-2xl relative top-1/2 -translate-y-1/2"
                                                 })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                                className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
                                                 href: "",
@@ -585,13 +614,17 @@ const Footer = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                        className: "text-center",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-20 h-20 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-12",
+                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
                                                     icon: free_brands_svg_icons_namespaceObject.faYoutube,
                                                     className: "fa-2xl relative top-1/2 -translate-y-1/2"
                                                 })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                                className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
                                                 href: "",
@@ -600,13 +633,17 @@ const Footer = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                        className: "text-center",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-20 h-20 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-12",
+                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
                                                     icon: free_brands_svg_icons_namespaceObject.faInstagram,
                                                     className: "fa-2xl relative top-1/2 -translate-y-1/2"
                                                 })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                                className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
                                                 href: "",
@@ -615,13 +652,17 @@ const Footer = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                        className: "text-center",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-20 h-20 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-12",
+                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
                                                     icon: free_brands_svg_icons_namespaceObject.faDiscord,
                                                     className: "fa-2xl relative top-1/2 -translate-y-1/2"
                                                 })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                                className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
                                                 href: "",
@@ -630,13 +671,17 @@ const Footer = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                        className: "text-center",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-20 h-20 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mr-12",
+                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
                                                     icon: free_brands_svg_icons_namespaceObject.faSteam,
                                                     className: "fa-2xl relative top-1/2 -translate-y-1/2"
                                                 })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                                className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
                                                 href: "",
@@ -652,7 +697,7 @@ const Footer = ()=>{
                             children: [
                                 /*#__PURE__*/ jsx_runtime_.jsx("label", {
                                     htmlFor: "",
-                                    className: "mb-7 block",
+                                    className: "mb-5 block",
                                     children: "Newsletter"
                                 }),
                                 /*#__PURE__*/ jsx_runtime_.jsx("input", {
@@ -686,11 +731,11 @@ const FuturisticEdge = ({ children  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                className: " absolute inline-block h-full w-8 inset-y-0 left-0 before:content-[''] before:border-t-8 before:border-l-8 before:border-primary before:absolute before:w-full before:h-8 before:top-0 before:inset-x-0 after:content-[''] after:border-b-8 after:border-l-8 after:border-primary after:absolute after:w-full after:h-8 after:bottom-0 after:inset-x-0"
+                className: " absolute inline-block h-full w-6 inset-y-0 left-0 before:content-[''] before:border-t-4 before:border-l-4 before:border-primary before:absolute before:w-full before:h-6 before:top-0 before:inset-x-0 after:content-[''] after:border-b-4 after:border-l-4 after:border-primary after:absolute after:w-full after:h-6 after:bottom-0 after:inset-x-0"
             }),
             children,
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                className: " absolute inline-block h-full w-8 inset-y-0 right-0 before:content-[''] before:border-t-8 before:border-r-8 before:border-primary before:absolute before:w-full before:h-8 before:top-0 before:inset-x-0 after:content-[''] after:border-b-8 after:border-r-8 after:border-primary after:absolute after:w-full after:h-8 after:bottom-0 after:inset-x-0"
+                className: " absolute inline-block h-full w-6 inset-y-0 right-0 before:content-[''] before:border-t-4 before:border-r-4 before:border-primary before:absolute before:w-full before:h-6 before:top-0 before:inset-x-0 after:content-[''] after:border-b-4 after:border-r-4 after:border-primary after:absolute after:w-full after:h-6 after:bottom-0 after:inset-x-0"
             })
         ]
     });
@@ -713,7 +758,9 @@ const FuturisticEdge = ({ children  })=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(39);
-/* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(748);
+/* harmony import */ var _OneScreenContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(291);
+/* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(748);
+
 
 
 
@@ -733,30 +780,37 @@ const Gallery = ({ images , title: title1 = "Gallery"  })=>{
             return "delay-[500ms]";
         }
     };
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-        id: "gallery",
-        className: "px-24 mb-96",
-        children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
-                text: title1
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                ref: imagesContainer,
-                className: "grid grid-cols-3 gap-12",
-                children: images.map(({ url , title , id  }, index)=>index < 9 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                        href: "#",
-                        "aria-label": "show",
-                        className: `transition-all duration-[333ms] ${calculateDelayClass(index)} ${animating ? "" : "translate-y-3.5 opacity-0"}`,
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
-                            src: url,
-                            width: 478,
-                            height: 293,
-                            alt: title
-                        })
-                    }, id) : null
-                )
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+            className: "container mx-auto h-full w-full flex items-center",
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                id: "gallery",
+                className: "px-5 lg:px-64 w-full",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                        text: title1
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        ref: imagesContainer,
+                        className: "grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-9",
+                        children: images.map(({ url , title , id  }, index)=>index < 9 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                href: "",
+                                "aria-label": "show",
+                                className: `transition-all duration-[333ms] ${calculateDelayClass(index)} ${animating ? "" : "translate-y-3.5 opacity-0"}`,
+                                onClick: (event)=>event.preventDefault()
+                                ,
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
+                                    src: url,
+                                    width: 358,
+                                    height: 220,
+                                    alt: title
+                                })
+                            }, id) : null
+                        )
+                    })
+                ]
             })
-        ]
+        })
     });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery);
@@ -840,7 +894,7 @@ const HeaderNav = ()=>{
                                 className: "lg:inline-block border-primary border-t-2 lg:border-none",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                     href: "#story",
-                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    className: "inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
                                     children: "Story"
                                 })
                             }),
@@ -848,7 +902,7 @@ const HeaderNav = ()=>{
                                 className: "lg:inline-block border-primary border-t-2 lg:border-none",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                     href: "#features",
-                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    className: "inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
                                     children: "Feature"
                                 })
                             }),
@@ -856,7 +910,7 @@ const HeaderNav = ()=>{
                                 className: "lg:inline-block border-primary border-t-2 lg:border-none",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                     href: "#characters",
-                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    className: "inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
                                     children: "Characters"
                                 })
                             }),
@@ -864,7 +918,7 @@ const HeaderNav = ()=>{
                                 className: "lg:inline-block border-primary border-t-2 lg:border-none",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                     href: "#gallery",
-                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    className: "inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
                                     children: "Gallery"
                                 })
                             }),
@@ -872,7 +926,7 @@ const HeaderNav = ()=>{
                                 className: "lg:inline-block border-primary border-t-2 border-b-2 lg:border-none",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                     href: "#news",
-                                    className: "inline-block leading-none py-5 px-10 mr-3.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
+                                    className: "inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
                                     children: "News"
                                 })
                             })
@@ -888,7 +942,7 @@ const HeaderNav = ()=>{
 
 /***/ }),
 
-/***/ 14:
+/***/ 400:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -913,16 +967,42 @@ function randomIntFromInterval(min, max) {
 
 ;// CONCATENATED MODULE: ./helpers/createCanvasLaserElement.ts
 
-const createLaser = (canvasContext, xPosition, color)=>({
+const createPrimarycolor = (opacity)=>`rgba(3, 199, 255, ${opacity})`
+;
+const createSecondarycolor = (opacity)=>`rgba(33, 120, 163, ${opacity})`
+;
+const createTertiarycolor = (opacity)=>`rgba(11, 74, 106, ${opacity})`
+;
+const generateColors = (opacity)=>[
+        createTertiarycolor(opacity),
+        createSecondarycolor(opacity),
+        createPrimarycolor(opacity), 
+    ]
+;
+const createLaser = (canvasContext, xPosition)=>{
+    return {
+        finished: false,
         xPosition,
         beginTipPosition: randomIntFromInterval(-1000, -400),
         height: randomIntFromInterval(250, 400),
         width: randomIntFromInterval(1, 3),
-        color,
+        level: randomIntFromInterval(1, 3),
+        opacity: 1,
+        get color () {
+            return generateColors(this.opacity)[this.level - 1];
+        },
         get endTipPosition () {
             return this.beginTipPosition + this.height;
         },
         draw () {
+            // ending area is aout 75 to 99 % of canvas height
+            const laserEndingArea = randomIntFromInterval(75, 99) / 100 * canvasContext.canvas.height;
+            const isEndTipEnteringEndingArea = this.endTipPosition >= laserEndingArea;
+            if (isEndTipEnteringEndingArea) {
+                // reduce opacity on entering ending area
+                this.opacity -= 0.25;
+                this.finished = this.opacity <= 0;
+            }
             canvasContext.strokeStyle = this.color;
             canvasContext.lineWidth = this.width;
             canvasContext.shadowBlur = 1; //shadow blur always 5
@@ -934,37 +1014,21 @@ const createLaser = (canvasContext, xPosition, color)=>({
             return this;
         },
         animate (distanceMovement) {
-            this.beginTipPosition += distanceMovement;
+            // make movement value is calculated based on level
+            this.beginTipPosition += distanceMovement * this.level;
             return this.draw();
         }
-    })
-;
+    };
+};
 /* harmony default export */ const createCanvasLaserElement = (createLaser);
 
-;// CONCATENATED MODULE: ./utils/detectScrollDirection.ts
-let oldValue = 0;
-let newValue = 0;
-function getScrollDirection() {
-    newValue = window.pageYOffset;
-    if (oldValue < newValue) {
-        return "down";
-    }
-    oldValue = newValue;
-    return "up";
-};
-
-// EXTERNAL MODULE: ./helpers/FpsCtrl.ts
-var FpsCtrl = __webpack_require__(723);
 ;// CONCATENATED MODULE: ./components/LaserRainBackdrop.tsx
 
 
 
 
 
-
-console.log(getScrollDirection);
-
-const LaserRainBackdrop = ({ laserDistance =60 , movementSpeed =20  })=>{
+const LaserRainBackdrop = ({ laserDistance =30 , movementSpeed =5  })=>{
     const canvasRef = (0,external_react_.useRef)(null);
     (0,external_react_.useLayoutEffect)(()=>{
         const canvasElement = (0,getElementRef/* default */.Z)(canvasRef);
@@ -972,48 +1036,80 @@ const LaserRainBackdrop = ({ laserDistance =60 , movementSpeed =20  })=>{
         canvasElement.setAttribute("height", `${window.innerHeight}`);
         // initializing canvas
         const canvasContext = canvasElement.getContext("2d");
-        const PRIMARY_COLOR = "#03c7ff";
-        const SECONDARY_COLOR = "#2e7299";
         let lasers = [];
-        function generateLasers() {
+        function generateLasers(emiterConstant) {
             if (!!canvasContext) {
-                let laserGenerationArea = 0;
+                let laserGenerationAreaBegin = 0;
                 do {
-                    const laserGenerationPoint = randomIntFromInterval(laserGenerationArea, laserGenerationArea + laserDistance);
-                    const color = randomIntFromInterval(0, 1) ? PRIMARY_COLOR : SECONDARY_COLOR;
-                    lasers.push(createCanvasLaserElement(canvasContext, laserGenerationPoint, color));
-                    laserGenerationArea += laserDistance;
-                }while (laserGenerationArea < canvasElement.width);
+                    const laserGenerationAreaEnd = laserDistance * emiterConstant + laserGenerationAreaBegin;
+                    const laserGenerationPoint = randomIntFromInterval(laserGenerationAreaBegin, laserGenerationAreaEnd);
+                    lasers.push(createCanvasLaserElement(canvasContext, laserGenerationPoint));
+                    laserGenerationAreaBegin = laserGenerationAreaEnd;
+                }while (laserGenerationAreaBegin < canvasElement.width);
             }
         }
         let isPaused = false;
-        window.addEventListener("scroll", (e)=>{
-            if (getScrollDirection() === "down") {
-                isPaused = true;
-            } else {
-                isPaused = false;
-            }
+        let distanceConstant = 1;
+        let observer = new IntersectionObserver((entries)=>{
+            entries.forEach((entry)=>{
+                if (entry.intersectionRatio < 0.4) {
+                    isPaused = true;
+                } else {
+                    isPaused = false;
+                    distanceConstant = Math.pow(1 / entry.intersectionRatio, 8);
+                }
+            });
+        }, {
+            threshold: [
+                1,
+                0.95,
+                0.9,
+                0.85,
+                0.8,
+                0.75,
+                0.7,
+                0.65,
+                0.6,
+                0.55,
+                0.5,
+                0.45,
+                0.4,
+                0.35,
+                0.3,
+                0.25,
+                0.25,
+                0.2,
+                0.15,
+                0.1,
+                0.05,
+                0, 
+            ]
         });
+        observer.observe(canvasElement);
         //start animation
         let animation;
         let distanceMovement = 0;
-        const laserRainAnimation = new FpsCtrl/* default */.Z(36, ()=>{
+        const animate = ()=>{
             if (!isPaused) {
                 if (!!canvasContext) {
                     // clear canvas before repainting
                     canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
                 }
                 distanceMovement += movementSpeed;
-                if (distanceMovement > 400) {
-                    generateLasers();
+                const thresholdToGenerateLasers = 250;
+                if (distanceMovement > thresholdToGenerateLasers) {
+                    generateLasers(distanceConstant);
                     distanceMovement = 0;
                 }
                 lasers = lasers.filter((laser)=>{
-                    laser.animate(movementSpeed);
-                    return laser.endTipPosition <= randomIntFromInterval(75, 99) / 100 * canvasElement.height;
+                    return !laser.animate(movementSpeed).finished;
                 });
+            } else {
+                cancelAnimationFrame(animation);
             }
-        });
+            animation = requestAnimationFrame(animate);
+        };
+        animate();
     });
     return /*#__PURE__*/ jsx_runtime_.jsx("canvas", {
         ref: canvasRef,
@@ -1028,18 +1124,18 @@ const LaserRainBackdrop = ({ laserDistance =60 , movementSpeed =20  })=>{
 
 const Landing = ()=>{
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-        className: "mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44",
+        className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44",
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx(components_LaserRainBackdrop, {}),
             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                 className: "text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                 children: [
                     /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "mb-80",
+                        className: "mb-60",
                         children: /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
                             src: "/assets/fractured-core-logo.png",
-                            width: 1265,
-                            height: 155,
+                            width: 950,
+                            height: 116,
                             alt: "Fractured core logo"
                         })
                     }),
@@ -1088,6 +1184,7 @@ var useDidUpdate = __webpack_require__(596);
 
 const Modal = ({ title , date , content , exit  })=>{
     const containerRef = (0,external_react_.useRef)(null);
+    const exitButtonRef = (0,external_react_.useRef)(null);
     const contentRef = (0,external_react_.useRef)(null);
     (0,external_react_.useLayoutEffect)(()=>{
         animate();
@@ -1099,6 +1196,7 @@ const Modal = ({ title , date , content , exit  })=>{
         if (isEntrance) {
             container.removeClass("scale-0");
             contentElement.removeClass("opacity-0");
+            document.body.classList.add("overflow-y-hidden");
         } else {
             container.addClass([
                 "scale-0",
@@ -1109,10 +1207,11 @@ const Modal = ({ title , date , content , exit  })=>{
             if (!!onTransitionEnd) {
                 contentElement.element.addEventListener("transitionend", onTransitionEnd);
             }
+            document.body.classList.remove("overflow-y-hidden");
         }
     }
     function onBackdropClick(event) {
-        if (event.target === containerRef.current) {
+        if (event.target === containerRef.current || event.target === exitButtonRef.current) {
             animate(false, exit);
         }
     }
@@ -1123,34 +1222,76 @@ const Modal = ({ title , date , content , exit  })=>{
     }
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         ref: containerRef,
-        className: "scale-0 transition-transform duration-[167ms] fixed inset-0 backdrop-blur flex justify-center items-center",
+        className: "scale-0 transition-transform duration-[167ms] fixed inset-0 backdrop-blur flex justify-center items-center z-20",
         tabIndex: 0,
         onClick: onBackdropClick,
         onKeyUp: onKeyEscapePressed,
         children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
             className: "absolute w-10/12 h-4/5 px-9 py-8 ",
             children: /*#__PURE__*/ jsx_runtime_.jsx(FuturisticEdge/* default */.Z, {
-                children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                    className: "h-full bg-tertiary px-44 py-32 overflow-auto overscroll-contain",
-                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                        ref: contentRef,
-                        className: "opacity-0 transition-opacity duration-[167ms] delay-[167ms]",
-                        children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("h2", {
-                                className: "text-primary font-normal",
-                                children: title
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("h2", {
-                                className: "text-primary font-normal text-right",
-                                children: date
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                dangerouslySetInnerHTML: {
-                                    __html: content
-                                }
+                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    className: "h-full relative",
+                    children: [
+                        /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                            ref: exitButtonRef,
+                            type: "button",
+                            "aria-label": "Close article",
+                            className: `
+                absolute
+                top-0
+                right-0
+                w-3/12
+                p-7
+                max-w-[100px]
+              `,
+                            onClick: onBackdropClick,
+                            children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                className: `
+                  pointer-events-none
+                  block
+                  relative
+                  w-full
+                  py-3
+                  before:content-['']
+                  before:absolute
+                  before:block
+                  before:bg-primary
+                  before:w-full
+                  before:h-1
+                  before:top-1/2 before:-translate-y-1/2 before:rotate-45
+                  after:content-['']
+                  after:absolute
+                  after:block
+                  after:bg-primary
+                  after:w-full
+                  after:h-1
+                  after:top-1/2 after:-translate-y-1/2 after:-rotate-45
+                `
                             })
-                        ]
-                    })
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                            className: "h-full bg-tertiary px-44 py-32 overflow-auto overscroll-contain",
+                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                ref: contentRef,
+                                className: "opacity-0 transition-opacity duration-[167ms] delay-[167ms]",
+                                children: [
+                                    /*#__PURE__*/ jsx_runtime_.jsx("h2", {
+                                        className: "text-primary font-normal",
+                                        children: title
+                                    }),
+                                    /*#__PURE__*/ jsx_runtime_.jsx("h2", {
+                                        className: "text-primary font-normal text-right",
+                                        children: date
+                                    }),
+                                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                        dangerouslySetInnerHTML: {
+                                            __html: content
+                                        }
+                                    })
+                                ]
+                            })
+                        })
+                    ]
                 })
             })
         })
@@ -1236,27 +1377,30 @@ const News = ({ articles , onLoadMore , loading , error  })=>{
         animateEachNews
     ]);
     (0,useDidUpdate/* default */.Z)(onArticlesAdded);
+    function formatDate(datestring) {
+        const dateObject = new Date(datestring);
+        return `${dateObject.getMonth()}//${dateObject.getDate()}//${dateObject.getFullYear()}`;
+    }
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
         id: "news",
-        className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-96",
+        className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-72",
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "text-center mb-28",
+                className: "text-center mb-20",
                 children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h1", {
                     ref: titleRef,
-                    className: "inline-block mx-auto leading-[0.7] relative text-transparent",
+                    className: "inline-block mx-auto leading-[0.7] lg:leading-[0.73] relative text-transparent",
                     children: [
-                        /*#__PURE__*/ jsx_runtime_.jsx("span", {}),
                         "News",
                         /*#__PURE__*/ jsx_runtime_.jsx("span", {
                             ref: titleRevealerRef,
-                            className: "h-[57px] mt-[2px] bg-primary absolute right-0 top-1/2 -translate-y-1/2 scale-x-0 origin-left transition-transform duration-[333ms]"
+                            className: "h-full lg:h-[96%] lg:mt-px bg-primary absolute right-0 top-1/2 -translate-y-1/2 scale-x-0 origin-left transition-transform duration-[333ms]"
                         })
                     ]
                 })
             }),
             articles.map(({ title , date , content , id  }, index)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("article", {
-                    className: "grid grid-cols-3 gap-24 mb-48",
+                    className: "grid grid-cols-[1fr_2fr] md:grid-cols-[1fr_40%_1fr] lg:grid-cols-[1fr_20%_1fr] gap-4 lg:gap-16 mb-36",
                     children: [
                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                             className: "text-right text-primary",
@@ -1268,28 +1412,28 @@ const News = ({ articles , onLoadMore , loading , error  })=>{
                                 }),
                                 /*#__PURE__*/ jsx_runtime_.jsx("hr", {
                                     ref: newsBottomLineRefs.current[index],
-                                    className: "my-6 border-primary scale-x-0 origin-left transition-transform duration-[417ms]"
+                                    className: "my-4 border-primary scale-x-0 origin-left transition-transform duration-[417ms]"
                                 }),
                                 /*#__PURE__*/ jsx_runtime_.jsx("h2", {
                                     ref: newsDateRefs.current[index],
                                     className: "opacity-0 transition-opacity duration-[250ms] delay-200 font-normal",
-                                    children: date
+                                    children: formatDate(date)
                                 })
                             ]
                         }),
                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                             ref: newsContentRefs.current[index],
-                            className: "relative bg-tertiary p-14 transition-transform scale-0 duration-[167ms]",
+                            className: "relative bg-tertiary p-10 transition-transform scale-0 duration-[167ms]",
                             children: [
                                 /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                    className: "absolute -z-[1] w-[calc(100%+5.6rem)] h-[calc(100%+5.6rem)] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2",
+                                    className: "absolute -z-[1] w-[calc(100%+4.2rem)] h-[calc(100%+4.2rem)] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2",
                                     children: /*#__PURE__*/ jsx_runtime_.jsx(FuturisticEdge/* default */.Z, {})
                                 }),
                                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                                     className: "opacity-0 transition-opacity delay-[250ms]",
                                     children: [
                                         /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                            className: "line-clamp-[16] mb-9",
+                                            className: "line-clamp-[16] mb-7",
                                             dangerouslySetInnerHTML: {
                                                 __html: content
                                             }
@@ -1332,6 +1476,26 @@ const News = ({ articles , onLoadMore , loading , error  })=>{
 
 /***/ }),
 
+/***/ 291:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+const OneScreenContainer = ({ children  })=>{
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+        className: "w-screen h-screen min-h-screen left-1/2 right-1/2 -mx-[50vw] relative mb-12 lg:mb-32",
+        children: children
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneScreenContainer);
+
+
+/***/ }),
+
 /***/ 991:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1344,8 +1508,10 @@ const News = ({ articles , onLoadMore , loading , error  })=>{
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _FuturisticEdge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(164);
-/* harmony import */ var _utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(39);
+/* harmony import */ var _OneScreenContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(291);
+/* harmony import */ var _FuturisticEdge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(164);
+/* harmony import */ var _utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(39);
+
 
 
 
@@ -1369,45 +1535,44 @@ const Story = ({ intro , title ="Story" , background , children  })=>{
             articleRef.current.classList.remove("opacity-0");
         }
     }
-    (0,_utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z)(containerIntroRef, animate);
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-        id: "story",
-        className: "mx-auto relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44",
-        onClick: animate,
+    (0,_utils_useOnScrollEffect__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)(containerIntroRef, animate);
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "mb-52 text-center uppercase",
+                className: "mb-12 lg:mb-36 text-center uppercase",
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                     ref: containerIntroRef,
-                    className: "inline-block px-16 py-12 relative invisible",
-                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_FuturisticEdge__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+                    className: "inline-block px-12 py-9 relative invisible",
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_FuturisticEdge__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                             ref: textIntroRef,
-                            className: "tracking-[0.2em] mb-0 whitespace-nowrap overflow-hidden transition-maxwidth max-w-xs invisible",
+                            className: "tracking-[0.2em] mb-0 lg:whitespace-nowrap overflow-hidden transition-maxwidth max-w-xs invisible",
                             children: intro
                         })
                     })
                 })
             }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "relative",
-                children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        ref: imageParentRef,
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
-                            src: background,
-                            alt: "",
-                            width: "1920",
-                            height: "963",
-                            objectFit: "cover",
-                            className: "clip-path-right"
-                        })
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("article", {
-                        ref: articleRef,
-                        className: "mx-auto absolute inset-y-[15%] w-full transition-opacity opacity-0",
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "container mx-auto",
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                    id: "story",
+                    className: "relative w-full h-full",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            ref: imageParentRef,
+                            className: "absolute w-full h-full inset-0",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
+                                src: background,
+                                alt: "",
+                                width: "1920",
+                                height: "963",
+                                objectFit: "cover",
+                                layout: "fill",
+                                className: "clip-path-right w-full h-full"
+                            })
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
+                            ref: articleRef,
+                            className: "mx-auto absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full max-w-sm md:max-w-md lg:max-w-lg transition-opacity opacity-0",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
                                     className: "text-center",
@@ -1416,8 +1581,8 @@ const Story = ({ intro , title ="Story" , background , children  })=>{
                                 children
                             ]
                         })
-                    })
-                ]
+                    ]
+                })
             })
         ]
     });
@@ -1509,9 +1674,7 @@ async function fetchNews({ page  }) {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fetchNews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(339);
-/* harmony import */ var _utils_useDidUpdate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(596);
-
+/* harmony import */ var _fetchNews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(339);
 
 
 const unionBy = __webpack_require__(830);
@@ -1524,7 +1687,7 @@ function useFetchNews(initialDataArticles) {
     const fetchArticles = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(async ()=>{
         setLoading(true);
         try {
-            const articlesFetched = await (0,_fetchNews__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)({
+            const articlesFetched = await (0,_fetchNews__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({
                 page: newsPage
             });
             // union the articles by id
@@ -1538,7 +1701,12 @@ function useFetchNews(initialDataArticles) {
     }, [
         newsPage
     ]);
-    (0,_utils_useDidUpdate__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(fetchArticles);
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        fetchArticles();
+    }, [
+        fetchArticles
+    ]);
+    // useDidUpdate(fetchArticles);
     const loadMore = ()=>setNewsPage(newsPage + 1)
     ;
     return [
@@ -1567,7 +1735,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_useFetchNews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(644);
 /* harmony import */ var _helpers_fetchNews__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(339);
 /* harmony import */ var _components_HeaderNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(206);
-/* harmony import */ var _components_Landing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
+/* harmony import */ var _components_Landing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(400);
 /* harmony import */ var _components_Story__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(991);
 /* harmony import */ var _components_FeaturesSlider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(444);
 /* harmony import */ var _components_CharactersSlider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(325);
@@ -1867,7 +2035,7 @@ module.exports = require("lodash/unionBy");
 
 /***/ }),
 
-/***/ 429:
+/***/ 957:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head.js");
