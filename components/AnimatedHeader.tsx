@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
 import getElementRef from "../utils/getElementRef";
@@ -85,6 +85,15 @@ const AnimatedHeader: React.FC<{
       .element.addEventListener("transitionend", animateSubtitleSprite);
 
     const containerElement = new ElementSetter(getElementRef(containerRef));
+    const { right, left } = containerElement.element.getBoundingClientRect();
+      const bottomLineWidth = isLeftPositioned
+        ? right
+        : document.documentElement.clientWidth - left;
+
+    const spritesContainerElement = new ElementSetter(getElementRef(spritesContainerRef));
+    spritesContainerElement.addStyle({
+      width: `${bottomLineWidth}px `
+    })
     const cursorElement = new ElementSetter(getElementRef(cursorRef));
     cursorElement.removeClass("invisible");
     const cursorWidth = cursorElement.element.getBoundingClientRect().width;
@@ -96,23 +105,9 @@ const AnimatedHeader: React.FC<{
     });
   }
   useOnScrollEffect(containerRef, animate);
-  useLayoutEffect(() => {
-    if (
-      containerRef.current != null &&
-      spritesContainerRef.current != null &&
-      bottomLineRef.current != null
-    ) {
-      const { right, left } = containerRef.current.getBoundingClientRect();
-      const bottomLineWidth = isLeftPositioned
-        ? right
-        : document.documentElement.clientWidth - left;
-      spritesContainerRef.current.style.width = `${bottomLineWidth}px `;
-    }
-  });
   return (
     <div
-      className={`mb-24 ${isLeftPositioned ? "" : "text-right"}`}
-      onClick={animate}
+      className={`mb-10 lg:mb-16 ${isLeftPositioned ? "" : "text-right"}`}
     >
       <div ref={containerRef} className="relative inline-block mb-4">
         <h1
