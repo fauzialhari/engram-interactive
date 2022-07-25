@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import fetchNews from "./fetchNews";
 import useDidUpdate from "../utils/useDidUpdate";
 const unionBy = require("lodash/unionBy");
@@ -37,7 +37,11 @@ export default function useFetchNews(
       setLoading(false);
     }
   }, [newsPage]);
-  useDidUpdate(fetchArticles);
+  useEffect(()=>{
+    fetchArticles()
+    
+  }, [fetchArticles])
+  // useDidUpdate(fetchArticles);
   const loadMore = () => setNewsPage(newsPage + 1);
   return [articles, loadMore, loading, error];
 }
