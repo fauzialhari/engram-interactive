@@ -154,7 +154,7 @@ const Carousel: React.FC<{
     }
   }
   return (
-    <div className="mb-20">
+    <div>
       <div className="relative pb-[55.3%]">
         <div
           ref={contentRef}

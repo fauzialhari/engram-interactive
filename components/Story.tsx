@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRef } from "react";
+import OneScreenContainer from "./OneScreenContainer";
 import FuturisticEdge from "./FuturisticEdge";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
 const Story: React.FC<{
@@ -7,7 +8,7 @@ const Story: React.FC<{
   title: string;
   background: string;
   children: JSX.Element;
-}> = ({ intro, title="Story", background, children }) => {
+}> = ({ intro, title = "Story", background, children }) => {
   const containerIntroRef = useRef<HTMLDivElement>(null);
   const textIntroRef = useRef<HTMLDivElement>(null);
   const imageParentRef = useRef<HTMLDivElement>(null);
@@ -36,11 +37,7 @@ const Story: React.FC<{
 
   useOnScrollEffect(containerIntroRef, animate);
   return (
-    <section
-      id="story"
-      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-44"
-      onClick={animate}
-    >
+    <>
       <div className="mb-12 lg:mb-36 text-center uppercase">
         <div
           ref={containerIntroRef}
@@ -56,28 +53,29 @@ const Story: React.FC<{
           </FuturisticEdge>
         </div>
       </div>
-      <div className="relative">
-        <div ref={imageParentRef}>
-          <Image
-            src={background}
-            alt=""
-            width="1920"
-            height="963"
-            objectFit="cover"
-            className="clip-path-right"
-          />
-        </div>
-        <article
-          ref={articleRef}
-          className="mx-auto absolute inset-y-[15%] w-full transition-opacity opacity-0"
-        >
-          <div className="container mx-auto">
+      <OneScreenContainer>
+        <section id="story" className="relative w-full h-full">
+          <div ref={imageParentRef} className="absolute w-full h-full inset-0">
+            <Image
+              src={background}
+              alt=""
+              width="1920"
+              height="963"
+              objectFit="cover"
+              layout="fill"
+              className="clip-path-right w-full h-full"
+            />
+          </div>
+          <article
+            ref={articleRef}
+            className="mx-auto absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full max-w-sm md:max-w-md lg:max-w-lg transition-opacity opacity-0"
+          >
             <h1 className="text-center">{title}</h1>
             {children}
-          </div>
-        </article>
-      </div>
-    </section>
+          </article>
+        </section>
+      </OneScreenContainer>
+    </>
   );
 };
 
