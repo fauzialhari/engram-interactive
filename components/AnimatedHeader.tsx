@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
+import getElementRef from "../utils/getElementRef";
+import ElementSetter from "../utils/elementSetter";
 
 const AnimatedHeader: React.FC<{
   text: string;
@@ -61,90 +63,37 @@ const AnimatedHeader: React.FC<{
     }, 2000);
   }
   function animate() {
-    const spriteAnimation = new FpsCtrl(12, ({ frame }) => {
-      if (
-        headerRef.current != null &&
-        bottomLineRef.current != null &&
-        cursorRef.current != null &&
-        containerRef.current != null &&
-        subtitleSpriteRef.current != null &&
-        subtitleRef.current != null
-      ) {
-        const leftSpace = containerRef.current.getBoundingClientRect().left;
-        const containerWidth =
-          containerRef.current.getBoundingClientRect().width;
-        switch (frame) {
-          case 1:
-            bottomLineRef.current.style.transform = "scaleX(3.9%)";
-            cursorRef.current.style.visibility = "visible";
-            containerRef.current.style.width = `${containerWidth}px`;
-            subtitleSpriteRef.current.style.transform =
-              "translateY(6rem) scaleY(0.5)";
-            subtitleSpriteRef.current.style.transformOrigin = "bottom";
-            subtitleSpriteRef.current.classList.remove("invisible");
-            break;
-          case 2:
-            bottomLineRef.current.style.transform = "scaleX(12.74%)";
-            const cursorWidth = cursorRef.current.getBoundingClientRect().width;
-            cursorRef.current.style.transform = `scaleX(${
-              leftSpace / cursorWidth
-            })`;
-            subtitleSpriteRef.current.style.transform =
-              "translateY(6rem) scaleY(1.5)";
-            break;
-          case 3:
-            bottomLineRef.current.style.transform = "scaleX(25.61%)";
-            cursorRef.current.style.removeProperty("visibility");
-            subtitleSpriteRef.current.style.transform =
-              "translateY(3rem) scaleY(3)";
-            subtitleSpriteRef.current.style.transformOrigin = "top";
-            animateTextTyping();
-            break;
-          case 4:
-            bottomLineRef.current.style.transform = "scaleX(36.65%)";
-            break;
-          case 5:
-            bottomLineRef.current.style.transform = "scaleX(57.16%)";
-            subtitleSpriteRef.current.style.transform =
-              "translateY(100%) scaleY(1.25)";
-            subtitleRef.current.style.transform = "translateX(85.8%)";
-            subtitleRef.current.style.opacity = "25%";
-            break;
-          case 6:
-            bottomLineRef.current.style.transform = "scaleX(69.78%)";
-            subtitleSpriteRef.current.style.removeProperty("transform");
-            subtitleRef.current.style.transform = "translateX(71.5%)";
-            subtitleRef.current.style.opacity = "50%";
-            break;
-          case 7:
-            bottomLineRef.current.style.transform = "scaleX(87.01%)";
-            subtitleRef.current.style.transform = "translateX(57.2%)";
-            subtitleRef.current.style.opacity = "75%";
-            break;
-          case 8:
-            bottomLineRef.current.style.transform = "scaleX(95.75%)";
-            subtitleRef.current.style.transform = "translateX(42.9%)";
-            subtitleRef.current.style.opacity = "100%";
-            break;
-          case 9:
-            bottomLineRef.current.style.transform = "scaleX(98.42%)";
-            subtitleRef.current.style.transform = "translateX(28.6%)";
-            break;
-          case 10:
-            bottomLineRef.current.style.transform = "scaleX(100%)";
-            subtitleRef.current.style.transform = "translateX(14.3%)";
-            break;
-          case 11:
-            subtitleRef.current.style.transform = "translateX(0)";
-            break;
-          default:
-            break;
-        }
-      }
+    const bottomLineElement = new ElementSetter(getElementRef(bottomLineRef));
+    bottomLineElement.removeClass("scale-x-0");
+
+    const subtitleElement = new ElementSetter(getElementRef(subtitleRef));
+    subtitleElement.removeClass(["opacity-0", "translate-x-full"]);
+
+    const subtitleSpriteElement = new ElementSetter(
+      getElementRef(subtitleSpriteRef)
+    );
+    const animateSubtitleSprite = () => {
+      subtitleSpriteElement.removeClass(["scale-y-[7]", "translate-y-[6em]"]);
+      subtitleSpriteElement.element.removeEventListener(
+        "transitionend",
+        animateSubtitleSprite
+      );
+    };
+    subtitleSpriteElement
+      .removeClass("invisible")
+      .addClass("scale-y-[7]")
+      .element.addEventListener("transitionend", animateSubtitleSprite);
+
+    const containerElement = new ElementSetter(getElementRef(containerRef));
+    const cursorElement = new ElementSetter(getElementRef(cursorRef));
+    cursorElement.removeClass("invisible");
+    const cursorWidth = cursorElement.element.getBoundingClientRect().width;
+    const leftSpace = containerElement.element.getBoundingClientRect().left;
+    cursorElement.addStyle({ transform: `scaleX(${leftSpace / cursorWidth})` });
+    cursorElement.element.addEventListener("transitionend", () => {
+      cursorElement.addClass("invisible");
+      animateTextTyping();
     });
-    setTimeout(() => {
-      spriteAnimation.stopAnimation();
-    }, 1000);
   }
   useOnScrollEffect(containerRef, animate);
   useLayoutEffect(() => {
@@ -161,7 +110,10 @@ const AnimatedHeader: React.FC<{
     }
   });
   return (
-    <div className={`mb-24 ${isLeftPositioned ? "" : "text-right"}`} onClick={animate}>
+    <div
+      className={`mb-24 ${isLeftPositioned ? "" : "text-right"}`}
+      onClick={animate}
+    >
       <div ref={containerRef} className="relative inline-block mb-4">
         <h1
           ref={headerRef}
@@ -186,7 +138,7 @@ const AnimatedHeader: React.FC<{
         >
           <div
             ref={cursorRef}
-            className={`w-4 h-11 bg-primary invisible ${
+            className={`w-4 h-11 bg-primary invisible transition-transform duration-[83ms] delay-[83ms] ${
               isLeftPositioned ? "origin-left" : "origin-right"
             }`}
           ></div>
@@ -194,7 +146,7 @@ const AnimatedHeader: React.FC<{
             ref={bottomLineRef}
             className={`border-b-2 border-primary w-full scale-x-0 absolute ${
               isLeftPositioned ? "origin-left" : "origin-right"
-            } bottom-0`}
+            } bottom-0 duration-1000`}
           ></div>
         </div>
       </div>
@@ -205,7 +157,7 @@ const AnimatedHeader: React.FC<{
       >
         <span
           ref={subtitleSpriteRef}
-          className={`inline-block invisible w-1 h-[1em] bg-primary align-middle ${
+          className={`invisible inline-block w-1 h-[1em] bg-primary align-middle transition-transform duration-500 translate-y-[6em] origin-bottom ${
             isLeftPositioned ? "mr-28" : "ml-28"
           }`}
         >
@@ -214,7 +166,7 @@ const AnimatedHeader: React.FC<{
         <div className="inline-flex items-center overflow-hidden">
           <p
             ref={subtitleRef}
-            className="uppercase inline-block leading-none opacity-0 translate-x-full mb-0"
+            className="uppercase inline-block leading-none opacity-0 translate-x-full transition-all duration-700 delay-[417ms] mb-0"
           >
             {subtitle}
           </p>
