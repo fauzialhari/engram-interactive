@@ -22,7 +22,7 @@ const Footer: React.FC<{}> = () => {
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
-                <br className="lg:hidden"/>
+                <br className="lg:hidden" />
                 <a href="">Twitter</a>
               </li>
               <li className="text-center lg:text-start">
@@ -32,7 +32,7 @@ const Footer: React.FC<{}> = () => {
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
-                <br className="lg:hidden"/>
+                <br className="lg:hidden" />
                 <a href="" className="inline-block">
                   Facebook
                 </a>
@@ -44,7 +44,7 @@ const Footer: React.FC<{}> = () => {
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
-                <br className="lg:hidden"/>
+                <br className="lg:hidden" />
                 <a href="">Youtube</a>
               </li>
               <li className="text-center lg:text-start">
@@ -54,7 +54,7 @@ const Footer: React.FC<{}> = () => {
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
-                <br className="lg:hidden"/>
+                <br className="lg:hidden" />
                 <a href="">Instagram</a>
               </li>
               <li className="text-center lg:text-start">
@@ -64,7 +64,7 @@ const Footer: React.FC<{}> = () => {
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
-                <br className="lg:hidden"/>
+                <br className="lg:hidden" />
                 <a href="">Discord</a>
               </li>
               <li className="text-center lg:text-start">
@@ -74,17 +74,38 @@ const Footer: React.FC<{}> = () => {
                     className="fa-2xl relative top-1/2 -translate-y-1/2"
                   />
                 </div>
-                <br className="lg:hidden"/>
+                <br className="lg:hidden" />
                 <a href="">Steam</a>
               </li>
             </ol>
           </div>
-          <div className="uppercase self-center xl:w-4/12 xl:text-right">
-            <label htmlFor="" className="mb-5 block">
+          <form
+            action="https://fc.engraminteractive.com/?na=s"
+            method="post"
+            target="_blank"
+            className="uppercase self-center xl:w-4/12 xl:text-right"
+          >
+            <label htmlFor="ne" className="mb-5 block">
               Newsletter
             </label>
-            <input type="email" placeholder="input your email" className="w-full"/>
-          </div>
+            <div className="flex">
+              <input type="hidden" name="nr" value="minimal" />
+              <input type="hidden" name="nlang" value="" />
+              <input
+                type="email"
+                required
+                name="ne"
+                placeholder="input your email"
+                className="grow"
+              />
+              <button
+                type="submit"
+                className="border border-primary bg-primary text-white hover:bg-transparent hover:text-primary"
+              >
+                join
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </footer>
