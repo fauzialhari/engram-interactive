@@ -14,17 +14,17 @@ const Story: React.FC<{
   const imageParentRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLDivElement>(null);
 
-  function animate() {
-    if (
-      containerIntroRef.current != null &&
-      textIntroRef.current != null &&
-      imageParentRef.current != null &&
-      articleRef.current != null
-    ) {
+  function animateIntro() {
+    if (containerIntroRef.current != null && textIntroRef.current != null) {
       containerIntroRef.current.classList.remove("invisible");
       textIntroRef.current.classList.add("max-w-screen-2xl");
       textIntroRef.current.classList.remove("max-w-xs");
       textIntroRef.current.classList.remove("invisible");
+    }
+  }
+
+  function animateStory() {
+    if (imageParentRef.current != null && articleRef.current != null) {
       const imageElement = imageParentRef.current.querySelector(
         "img.clip-path-right"
       ) as HTMLElement | null;
@@ -35,7 +35,8 @@ const Story: React.FC<{
     }
   }
 
-  useOnScrollEffect(containerIntroRef, animate);
+  useOnScrollEffect(containerIntroRef, animateIntro);
+  useOnScrollEffect(articleRef, animateStory);
   return (
     <>
       <div className="mb-12 lg:mb-36 text-center uppercase">
@@ -53,8 +54,8 @@ const Story: React.FC<{
           </FuturisticEdge>
         </div>
       </div>
-      <OneScreenContainer>
-        <section id="story" className="relative w-full h-full">
+      <OneScreenContainer id="story">
+        <section className="relative w-full h-full">
           <div ref={imageParentRef} className="absolute w-full h-full inset-0">
             <Image
               src={background}

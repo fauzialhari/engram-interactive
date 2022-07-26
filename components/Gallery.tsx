@@ -25,9 +25,9 @@ const Gallery: React.FC<{
     }
   };
   return (
-    <OneScreenContainer>
+    <OneScreenContainer id="gallery">
       <div className="container mx-auto h-full w-full flex items-center">
-        <section id="gallery" className="px-5 lg:px-64 w-full">
+        <section className="px-5 lg:px-64 w-full">
           <AnimatedHeader text={title} />
           <div
             ref={imagesContainer}

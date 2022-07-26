@@ -13,9 +13,9 @@ const FeaturesSlider: React.FC<{
   }[];
 }> = ({ featureImages, title = "Features", subtitle }) => {
   return (
-    <OneScreenContainer>
+    <OneScreenContainer id="features">
       <div className="container mx-auto h-full w-full flex items-center">
-        <section id="features" className="px-11 lg:px-64 w-full">
+        <section className="px-11 lg:px-64 w-full">
           <AnimatedHeader text={title} subtitle={subtitle} />
           <Carousel isSlideEffect={true}>
             {featureImages.map(({ url, id, title }) => {

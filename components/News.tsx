@@ -101,7 +101,7 @@ const News: React.FC<{
   return (
     <section
       id="news"
-      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-72"
+      className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-72 pt-24"
     >
       <div className="text-center mb-20">
         <h1

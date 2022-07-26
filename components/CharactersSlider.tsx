@@ -19,13 +19,10 @@ const CharactersSlider: React.FC<{
     setActiveSlide(CarouselActiveSlide);
   }, []);
   return (
-    <OneScreenContainer>
+    <OneScreenContainer id="characters">
       <div className="h-full w-full flex items-center bg-secondarybg">
         <div className="container mx-auto">
-          <section
-            id="characters"
-            className="relative w-full px-11 lg:px-64"
-          >
+          <section className="relative w-full px-11 lg:px-64">
             <AnimatedHeader text={title} subtitle={subtitle} />
             <Carousel animateChildren={animate}>
               {charactersContent.map(
