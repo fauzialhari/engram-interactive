@@ -15,7 +15,7 @@ const Footer: React.FC<{}> = () => {
         <div className="xl:flex">
           <div className="grow mb-6 xl:mb-0">
             <ol className="grid grid-cols-3 gap-3">
-              <li className="text-center">
+              <li className="text-center lg:text-start">
                 <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faTwitter}
@@ -25,7 +25,7 @@ const Footer: React.FC<{}> = () => {
                 <br className="lg:hidden"/>
                 <a href="">Twitter</a>
               </li>
-              <li className="text-center">
+              <li className="text-center lg:text-start">
                 <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faFacebookF}
@@ -37,7 +37,7 @@ const Footer: React.FC<{}> = () => {
                   Facebook
                 </a>
               </li>
-              <li className="text-center">
+              <li className="text-center lg:text-start">
                 <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faYoutube}
@@ -47,7 +47,7 @@ const Footer: React.FC<{}> = () => {
                 <br className="lg:hidden"/>
                 <a href="">Youtube</a>
               </li>
-              <li className="text-center">
+              <li className="text-center lg:text-start">
                 <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faInstagram}
@@ -57,7 +57,7 @@ const Footer: React.FC<{}> = () => {
                 <br className="lg:hidden"/>
                 <a href="">Instagram</a>
               </li>
-              <li className="text-center">
+              <li className="text-center lg:text-start">
                 <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faDiscord}
@@ -67,7 +67,7 @@ const Footer: React.FC<{}> = () => {
                 <br className="lg:hidden"/>
                 <a href="">Discord</a>
               </li>
-              <li className="text-center">
+              <li className="text-center lg:text-start">
                 <div className="w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9">
                   <FontAwesomeIcon
                     icon={faSteam}
