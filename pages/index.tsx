@@ -6,6 +6,7 @@ import fetchNews from "../helpers/fetchNews";
 
 import HeaderNav from "../components/HeaderNav";
 import Landing from "../components/Landing";
+import Intro from "../components/Intro";
 import Story from "../components/Story";
 import FeaturesSlider from "../components/FeaturesSlider";
 import CharactersSlider from "../components/CharactersSlider";
@@ -58,6 +59,7 @@ const Home: NextPage<{
     <main className="container mx-auto">
       <HeaderNav />
       <Landing />
+      <Intro text={story.intro} />
       <Story {...story}>
         <div className="text-center">{parse(story.content)}</div>
       </Story>
