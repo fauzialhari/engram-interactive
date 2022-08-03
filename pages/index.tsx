@@ -57,14 +57,14 @@ const Home: NextPage<{
 }> = ({ gallery, story, features, characters, news }) => {
   const [articles, onLoadMore, loading, error] = useFetchNews(news);
   return (
-    <main className="container mx-auto">
+    <main className="container 2xl:container-relative-size mx-auto">
       <HeaderNav />
       <Landing />
       <Intro text={story.intro} />
+      <Story {...story}>
+        <div className="text-center">{parse(story.content)}</div>
+      </Story>
       <ScrollSnapController>
-        <Story {...story}>
-          <div className="text-center">{parse(story.content)}</div>
-        </Story>
         <FeaturesSlider {...features} />
         <CharactersSlider {...characters} />
         <Gallery {...gallery} />
