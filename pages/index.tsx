@@ -13,6 +13,7 @@ import CharactersSlider from "../components/CharactersSlider";
 import Gallery from "../components/Gallery";
 import News from "../components/News";
 import FooterNav from "../components/FooterNav";
+import ScrollSnapController from "../components/ScrollSnapController";
 const Home: NextPage<{
   gallery: {
     title: string;
@@ -60,13 +61,15 @@ const Home: NextPage<{
       <HeaderNav />
       <Landing />
       <Intro text={story.intro} />
-      <Story {...story}>
-        <div className="text-center">{parse(story.content)}</div>
-      </Story>
-      <FeaturesSlider {...features} />
-      <CharactersSlider {...characters} />
-      <Gallery {...gallery} />
-      <News {...{ articles, onLoadMore, loading, error }} />
+      <ScrollSnapController>
+        <Story {...story}>
+          <div className="text-center">{parse(story.content)}</div>
+        </Story>
+        <FeaturesSlider {...features} />
+        <CharactersSlider {...characters} />
+        <Gallery {...gallery} />
+        <News {...{ articles, onLoadMore, loading, error }} />
+      </ScrollSnapController>
       <FooterNav />
     </main>
   );
