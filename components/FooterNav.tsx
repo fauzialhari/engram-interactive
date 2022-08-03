@@ -100,7 +100,7 @@ const Footer: React.FC<{}> = () => {
               />
               <button
                 type="submit"
-                className="border border-primary bg-primary text-white hover:bg-transparent hover:text-primary"
+                className="border border-primary bg-transparent text-primary hover:bg-primary hover:text-white"
               >
                 join
               </button>
