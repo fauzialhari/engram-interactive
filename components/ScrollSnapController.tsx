@@ -1,5 +1,5 @@
 import { ReactNode, useLayoutEffect, useRef } from "react";
-import ScrollSnap from "../helpers/scrollSnap";
+import ScrollSnap from "../helpers/ScrollSnap";
 import getElementRef from "../utils/getElementRef";
 
 const ScrollSnapController: React.FC<{ children?: ReactNode }> = ({
