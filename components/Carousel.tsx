@@ -1,4 +1,11 @@
-import { Children, ReactNode, useRef, useState, useCallback } from "react";
+import {
+  Children,
+  ReactNode,
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import FpsCtrl from "../helpers/FpsCtrl";
 import getElementRef from "../utils/getElementRef";
 import ElementSetter from "../utils/elementSetter";
@@ -29,7 +36,6 @@ const Carousel: React.FC<{
           contentElement
             .addStyle({
               transform: "scale(0.07)",
-              background: "var(--primary-color)",
             })
             .removeClass("invisible");
           break;
@@ -100,59 +106,56 @@ const Carousel: React.FC<{
     }
   });
   useOnScrollEffect(contentRef, animate);
+
+  const slideDirection = useRef("next");
   function onClickNavigator(direction: "prev" | "next") {
+    slideDirection.current = direction;
     if (direction === "prev" && activeSlide !== 0) {
       setActiveSlide(activeSlide - 1);
     } else if (activeSlide !== Children.toArray(children).length - 1) {
       setActiveSlide(activeSlide + 1);
     }
+  }
+
+  useEffect(() => {
     if (isSlideEffect) {
       const sliderElement = getElementRef(sliderRef);
-      let slideLeftAnimation = 0;
-      const slideSpeed = sliderElement.offsetWidth * 0.06;
-      setOnSliding(true);
-      const slideLeft = () => {
-        slideLeftAnimation = requestAnimationFrame(slideLeft);
-        if (
-          sliderElement.scrollLeft >
-          (activeSlide - 1) * sliderElement.offsetWidth
-        ) {
-          const nextMovement = sliderElement.scrollLeft - slideSpeed;
-          const lastPointTarget = (activeSlide - 1) * sliderElement.offsetWidth;
-          const isNextMoveBeyondLimit = nextMovement < lastPointTarget;
-          sliderElement.scrollTo({
-            left: isNextMoveBeyondLimit ? lastPointTarget : nextMovement,
-          });
-        } else {
-          cancelAnimationFrame(slideLeftAnimation);
-          setOnSliding(false);
-        }
-      };
-      let slideRightAnimation = 0;
-      const slideRight = () => {
-        slideRightAnimation = requestAnimationFrame(slideRight);
-        if (
-          sliderElement.scrollLeft <
-          (activeSlide + 1) * sliderElement.offsetWidth
-        ) {
-          const nextMovement = sliderElement.scrollLeft + slideSpeed;
-          const lastPointTarget = (activeSlide + 1) * sliderElement.offsetWidth;
+      const slides = Array.from(
+        sliderElement.getElementsByClassName("slide")
+      ) as HTMLElement[];
+      const lastPointTarget = slides[activeSlide].offsetLeft;
+      const getNextMovement = () => {
+        const slideSpeed = sliderElement.offsetWidth * 0.06;
+        let nextMovement = sliderElement.scrollLeft;
+        if (lastPointTarget > sliderElement.scrollLeft) {
+          nextMovement = sliderElement.scrollLeft + slideSpeed;
           const isNextMoveBeyondLimit = nextMovement > lastPointTarget;
-          sliderElement.scrollTo({
-            left: isNextMoveBeyondLimit ? lastPointTarget : nextMovement,
-          });
-        } else {
-          cancelAnimationFrame(slideRightAnimation);
+          return isNextMoveBeyondLimit ? lastPointTarget : nextMovement;
+        } else if (lastPointTarget < sliderElement.scrollLeft) {
+          nextMovement = sliderElement.scrollLeft - slideSpeed;
+          const isNextMoveBeyondLimit = nextMovement < lastPointTarget;
+          return isNextMoveBeyondLimit ? lastPointTarget : nextMovement;
+        }
+        return nextMovement;
+      };
+      setOnSliding(true);
+      let slideAnimation = 0;
+      const slide = () => {
+        slideAnimation = requestAnimationFrame(slide);
+        const nextMovement = getNextMovement();
+
+        sliderElement.scrollTo({
+          left: nextMovement,
+          behavior: "smooth",
+        });
+        if (nextMovement === lastPointTarget) {
+          cancelAnimationFrame(slideAnimation);
           setOnSliding(false);
         }
       };
-      if (direction === "prev" && activeSlide !== 0) {
-        slideLeft();
-      } else if (activeSlide !== Children.toArray(children).length - 1) {
-        slideRight();
-      }
+      slide();
     }
-  }
+  }, [activeSlide, isSlideEffect]);
   return (
     <div>
       <div className="relative pb-[55.3%]">
@@ -162,11 +165,11 @@ const Carousel: React.FC<{
         >
           {isSlideEffect ? (
             <div className="h-full px-2 py-4 lg:px-8 lg:py-10 mx-auto">
-              <div ref={sliderRef} className="overflow-hidden h-full">
+              <div ref={sliderRef} className="relative overflow-hidden h-full">
                 <div className="inline whitespace-nowrap">
                   {Children.toArray(children).map((Child, index) => (
                     <div
-                      className="inline-block w-full h-full whitespace-normal"
+                      className="slide inline-block w-full h-full whitespace-normal"
                       key={index}
                     >
                       {Child}

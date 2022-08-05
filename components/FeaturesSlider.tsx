@@ -1,4 +1,3 @@
-import { useState, useCallback } from "react";
 import Image from "next/image";
 import OneScreenContainer from "./OneScreenContainer";
 import AnimatedHeader from "./AnimatedHeader";
@@ -15,26 +14,28 @@ const FeaturesSlider: React.FC<{
   return (
     <OneScreenContainer id="features">
       <div className="container mx-auto h-full w-full flex items-center">
-        <section className="px-11 lg:px-64 w-full">
-          <AnimatedHeader text={title} subtitle={subtitle} />
-          <Carousel isSlideEffect={true}>
-            {featureImages.map(({ url, id, title }) => {
-              return (
-                <div
-                  className="h-full flex justify-center items-center transition-opacity duration-250`"
-                  key={id}
-                >
-                  <Image
-                    src={url}
-                    width="945"
-                    height="477"
-                    objectFit="contain"
-                    alt={title}
-                  />
-                </div>
-              );
-            })}
-          </Carousel>
+        <section className="px-11 lg:px-0 w-full">
+          <div className="lg:max-w-[66%] mx-auto">
+            <AnimatedHeader text={title} subtitle={subtitle} />
+            <Carousel isSlideEffect={true}>
+              {featureImages.map(({ url, id, title }) => {
+                return (
+                  <div
+                    className="h-full flex justify-center items-center transition-opacity duration-250`"
+                    key={id}
+                  >
+                    <Image
+                      src={url}
+                      width={2486}
+                      height={1255}
+                      objectFit="contain"
+                      alt={title}
+                    />
+                  </div>
+                );
+              })}
+            </Carousel>
+          </div>
         </section>
       </div>
     </OneScreenContainer>

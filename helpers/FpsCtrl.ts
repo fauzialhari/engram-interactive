@@ -21,6 +21,7 @@ export default class FpsCtrl {
     }
   
     loop(timestamp: number) {
+      this.tref = requestAnimationFrame(this.loop.bind(this));
       if (this.time === 0) {
         this.time = timestamp;
       } // init start time}
@@ -34,7 +35,6 @@ export default class FpsCtrl {
           frame: this.frame,
         });
       }
-      this.tref = requestAnimationFrame(this.loop.bind(this));
     }
   
     stopAnimation() {

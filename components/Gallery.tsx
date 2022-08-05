@@ -27,27 +27,29 @@ const Gallery: React.FC<{
   return (
     <OneScreenContainer id="gallery">
       <div className="container mx-auto h-full w-full flex items-center">
-        <section className="px-5 lg:px-64 w-full">
-          <AnimatedHeader text={title} />
-          <div
-            ref={imagesContainer}
-            className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-9"
-          >
-            {images.map(({ url, title, id }, index) =>
-              index < 9 ? (
-                <a
-                  key={id}
-                  href=""
-                  aria-label="show"
-                  className={`transition-all duration-[333ms] ${calculateDelayClass(
-                    index
-                  )} ${animating ? "" : "translate-y-3.5 opacity-0"}`}
-                  onClick={(event) => event.preventDefault()}
-                >
-                  <Image src={url} width={358} height={220} alt={title} />
-                </a>
-              ) : null
-            )}
+        <section className="px-5 lg:px-0 w-full">
+          <div className="lg:max-w-[66%] mx-auto">
+            <AnimatedHeader text={title} />
+            <div
+              ref={imagesContainer}
+              className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4"
+            >
+              {images.map(({ url, title, id }, index) =>
+                index < 9 ? (
+                  <a
+                    key={id}
+                    href=""
+                    aria-label="show"
+                    className={`transition-all duration-[333ms] ${calculateDelayClass(
+                      index
+                    )} ${animating ? "" : "translate-y-3.5 opacity-0"}`}
+                    onClick={(event) => event.preventDefault()}
+                  >
+                    <Image src={url} width={942} height={578} alt={title} />
+                  </a>
+                ) : null
+              )}
+            </div>
           </div>
         </section>
       </div>
