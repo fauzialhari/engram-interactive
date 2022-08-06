@@ -1,3 +1,7 @@
+import {
+  getNumberRelativeToScreenWidth,
+  getNumberRelativeToScreenHeight,
+} from "../utils/getNumbersRelativeToScreen";
 import randomIntFromInterval from "../utils/randomIntFromInterval";
 
 export type LaserElement = {
@@ -19,7 +23,7 @@ const createSecondarycolor = (opacity: number) =>
   `rgba(33, 120, 163, ${opacity})`;
 const createTertiarycolor = (opacity: number) =>
   `rgba(11, 74, 106, ${opacity})`;
-const generateColors = (opacity:number) => [
+const generateColors = (opacity: number) => [
   createTertiarycolor(opacity),
   createSecondarycolor(opacity),
   createPrimarycolor(opacity),
@@ -32,30 +36,33 @@ const createLaser = (
   return {
     finished: false,
     xPosition,
-    beginTipPosition: randomIntFromInterval(-1000, -400),
-    height: randomIntFromInterval(250, 400),
+    beginTipPosition: randomIntFromInterval(
+      getNumberRelativeToScreenHeight(-1000),
+      getNumberRelativeToScreenHeight(-400)
+    ),
+    height: randomIntFromInterval(getNumberRelativeToScreenHeight(250), getNumberRelativeToScreenHeight(400)),
     width: randomIntFromInterval(1, 3),
     level: randomIntFromInterval(1, 3),
     opacity: 1,
     get color() {
-      return generateColors(this.opacity)[this.level-1];
+      return generateColors(this.opacity)[this.level - 1];
     },
     get endTipPosition() {
       return this.beginTipPosition + this.height;
     },
     draw() {
-      // ending area is aout 75 to 99 % of canvas height
+      // ending area is about 75 to 99 % of canvas height
       const laserEndingArea =
-        (randomIntFromInterval(75, 99) / 100) * canvasContext.canvas.height;
+        (randomIntFromInterval(85, 99) / 100) * canvasContext.canvas.height;
       const isEndTipEnteringEndingArea = this.endTipPosition >= laserEndingArea;
       if (isEndTipEnteringEndingArea) {
         // reduce opacity on entering ending area
-        this.opacity -=0.25;
+        this.opacity -= 0.25;
         this.finished = this.opacity <= 0;
       }
 
       canvasContext.strokeStyle = this.color;
-      canvasContext.lineWidth = this.width;
+      canvasContext.lineWidth = getNumberRelativeToScreenWidth(this.width);
       canvasContext.shadowBlur = 1; //shadow blur always 5
       canvasContext.shadowColor = this.color;
       canvasContext.beginPath();

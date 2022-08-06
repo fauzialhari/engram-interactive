@@ -3,6 +3,10 @@ import getElementRef from "../utils/getElementRef";
 import createCanvasLaserElement, {
   LaserElement,
 } from "../helpers/createCanvasLaserElement";
+import {
+  getNumberRelativeToScreenWidth,
+  getNumberRelativeToScreenHeight,
+} from "../utils/getNumbersRelativeToScreen";
 import randomIntFromInterval from "../utils/randomIntFromInterval";
 
 const LaserRainBackdrop: React.FC<{
@@ -16,6 +20,10 @@ const LaserRainBackdrop: React.FC<{
     canvasElement.setAttribute("height", `${window.innerHeight}`);
     // initializing canvas
     const canvasContext = canvasElement.getContext("2d");
+    const relativeCanvasWidthLaserDistance =
+      getNumberRelativeToScreenWidth(laserDistance);
+    const relativeCanvasHeightMovementSpeed =
+      getNumberRelativeToScreenHeight(movementSpeed);
 
     let lasers: LaserElement[] = [];
     function generateLasers(emiterConstant: number) {
@@ -24,7 +32,8 @@ const LaserRainBackdrop: React.FC<{
 
         do {
           const laserGenerationAreaEnd =
-            laserDistance * emiterConstant + laserGenerationAreaBegin;
+            relativeCanvasWidthLaserDistance * emiterConstant +
+            laserGenerationAreaBegin;
           const laserGenerationPoint = randomIntFromInterval(
             laserGenerationAreaBegin,
             laserGenerationAreaEnd
@@ -72,14 +81,14 @@ const LaserRainBackdrop: React.FC<{
             canvasElement.height
           );
         }
-        distanceMovement += movementSpeed;
-        const thresholdToGenerateLasers = 250;
+        distanceMovement += relativeCanvasHeightMovementSpeed;
+        const thresholdToGenerateLasers = getNumberRelativeToScreenHeight(250);
         if (distanceMovement > thresholdToGenerateLasers) {
           generateLasers(distanceConstant);
           distanceMovement = 0;
         }
         lasers = lasers.filter((laser) => {
-          return !laser.animate(movementSpeed).finished;
+          return !laser.animate(relativeCanvasHeightMovementSpeed).finished;
         });
       } else {
         cancelAnimationFrame(animation);
