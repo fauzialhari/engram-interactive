@@ -583,7 +583,7 @@ const free_brands_svg_icons_namespaceObject = require("@fortawesome/free-brands-
 
 
 
-const Footer = ()=>{
+const Footer = ({ twitterLink , facebookLink , youtubeLink , instagramLink , discordLink , steamLink ,  })=>{
     return /*#__PURE__*/ jsx_runtime_.jsx("footer", {
         className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-secondarybg pt-14 pb-32",
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
@@ -615,7 +615,7 @@ const Footer = ()=>{
                                                 className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: "",
+                                                href: twitterLink,
                                                 children: "Twitter"
                                             })
                                         ]
@@ -634,7 +634,7 @@ const Footer = ()=>{
                                                 className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: "",
+                                                href: facebookLink,
                                                 className: "inline-block",
                                                 children: "Facebook"
                                             })
@@ -654,7 +654,7 @@ const Footer = ()=>{
                                                 className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: "",
+                                                href: youtubeLink,
                                                 children: "Youtube"
                                             })
                                         ]
@@ -673,7 +673,7 @@ const Footer = ()=>{
                                                 className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: "",
+                                                href: instagramLink,
                                                 children: "Instagram"
                                             })
                                         ]
@@ -692,7 +692,7 @@ const Footer = ()=>{
                                                 className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: "",
+                                                href: discordLink,
                                                 children: "Discord"
                                             })
                                         ]
@@ -711,7 +711,7 @@ const Footer = ()=>{
                                                 className: "lg:hidden"
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: "",
+                                                href: steamLink,
                                                 children: "Steam"
                                             })
                                         ]
@@ -1143,7 +1143,7 @@ const createLaser = (canvasContext, xPosition)=>{
 
 const LaserRainBackdrop = ({ laserDistance =30 , movementSpeed =5  })=>{
     const canvasRef = (0,external_react_.useRef)(null);
-    (0,external_react_.useLayoutEffect)(()=>{
+    (0,external_react_.useEffect)(()=>{
         const canvasElement = (0,getElementRef/* default */.Z)(canvasRef);
         canvasElement.setAttribute("width", `${window.innerWidth}`);
         canvasElement.setAttribute("height", `${window.innerHeight}`);
@@ -1237,7 +1237,7 @@ const LaserRainBackdrop = ({ laserDistance =30 , movementSpeed =5  })=>{
 
 
 
-const Landing = ()=>{
+const Landing = ({ playButtonLink  })=>{
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
         className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-32",
         children: [
@@ -1254,8 +1254,9 @@ const Landing = ()=>{
                             alt: "Fractured core logo"
                         })
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("button", {
-                        role: "button",
+                    /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                        href: playButtonLink,
+                        className: "button",
                         children: "Play Now"
                     })
                 ]
@@ -1301,7 +1302,7 @@ const Modal = ({ title , date , content , exit  })=>{
     const containerRef = (0,external_react_.useRef)(null);
     const exitButtonRef = (0,external_react_.useRef)(null);
     const contentRef = (0,external_react_.useRef)(null);
-    (0,external_react_.useLayoutEffect)(()=>{
+    (0,external_react_.useEffect)(()=>{
         animate();
     }, []);
     function animate(isEntrance = true, onTransitionEnd) {
@@ -1705,7 +1706,7 @@ var getElementRef = __webpack_require__(8752);
 
 const ScrollSnapController = ({ children ,  })=>{
     const scrollSnapRef = (0,external_react_.useRef)(null);
-    (0,external_react_.useLayoutEffect)(()=>{
+    (0,external_react_.useEffect)(()=>{
         const scrollSnapElement = (0,getElementRef/* default */.Z)(scrollSnapRef);
         const scrollSnapChildren = [].slice.call(scrollSnapElement.children);
         new ScrollSnap(scrollSnapChildren, 5000);
@@ -1958,15 +1959,17 @@ html_react_parser__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__
 
 
 
-const Home = ({ gallery , story , features , characters , news  })=>{
+const Home = ({ landing , gallery , story , features , characters , news , footer  })=>{
     const [articles, onLoadMore, loading, error] = (0,_helpers_useFetchNews__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(news);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
         className: "container 2xl:container-relative-size mx-auto",
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_HeaderNav__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {}),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Landing__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {}),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Landing__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
+                playButtonLink: landing.playButtonLink
+            }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Intro__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
-                text: story.intro
+                text: landing.introduction
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Story__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
                 ...story,
@@ -1994,12 +1997,23 @@ const Home = ({ gallery , story , features , characters , news  })=>{
                     })
                 ]
             }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_FooterNav__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {})
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_FooterNav__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {
+                ...footer
+            })
         ]
     });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 const getStaticProps = async ()=>{
+    const landingResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/243");
+    const landing = await landingResponse.json();
+    const parseLanding = ()=>{
+        const { acf: { play_now_button_link , story_introduction  } ,  } = landing;
+        return {
+            playButtonLink: play_now_button_link,
+            introduction: story_introduction
+        };
+    };
     const galleryResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/20");
     const gallery = await galleryResponse.json();
     const parseGallery = ()=>{
@@ -2020,13 +2034,12 @@ const getStaticProps = async ()=>{
     const storyResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/16?_embed");
     const story = await storyResponse.json();
     const parseStory = ()=>{
-        const { title , content , _embedded , acf: { story_introduction  } ,  } = story;
+        const { title , content , _embedded  } = story;
         const background = _embedded["wp:featuredmedia"] ? _embedded["wp:featuredmedia"]["0"].source_url : "";
         return {
             title: title.rendered,
             content: content.rendered,
-            background,
-            intro: story_introduction
+            background
         };
     };
     const featuresResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/49");
@@ -2070,16 +2083,31 @@ const getStaticProps = async ()=>{
             charactersContent
         };
     };
+    const footerResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/253?_embed");
+    const footerJSON = await footerResponse.json();
+    const parseFooter = ()=>{
+        const { acf: { twitter , facebook , youtube , instagram , discord , steam  } ,  } = footerJSON;
+        return {
+            twitterLink: twitter,
+            facebookLink: facebook,
+            youtubeLink: youtube,
+            instagramLink: instagram,
+            discordLink: discord,
+            steamLink: steam
+        };
+    };
     const news = await (0,_helpers_fetchNews__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z)({
         page: _helpers_useFetchNews__WEBPACK_IMPORTED_MODULE_2__/* .INITIAL_PAGE */ .q
     });
     return {
         props: {
+            landing: parseLanding(),
             gallery: parseGallery(),
             story: parseStory(),
             features: parseFeatures(),
             characters: parseCharacters(),
-            news
+            news,
+            footer: parseFooter()
         },
         revalidate: 60
     };
@@ -2249,7 +2277,7 @@ module.exports = require("lodash/unionBy");
 
 /***/ }),
 
-/***/ 5429:
+/***/ 4957:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head.js");

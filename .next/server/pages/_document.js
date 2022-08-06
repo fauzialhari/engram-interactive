@@ -5,7 +5,7 @@ exports.id = 660;
 exports.ids = [660];
 exports.modules = {
 
-/***/ 4957:
+/***/ 892:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -22,12 +22,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1__["default"] {
         return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(next_document__WEBPACK_IMPORTED_MODULE_1__.Html, {
             className: "3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl",
             children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_document__WEBPACK_IMPORTED_MODULE_1__.Head, {
-                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
-                        name: "viewport",
-                        content: "width=device-width, minimum-scale=1"
-                    })
-                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_document__WEBPACK_IMPORTED_MODULE_1__.Head, {}),
                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("body", {
                     className: "bg-mainbg text-white lg:text-lg overflow-x-hidden",
                     children: [
@@ -113,7 +108,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [686,859], () => (__webpack_exec__(4957)));
+var __webpack_exports__ = __webpack_require__.X(0, [686,859], () => (__webpack_exec__(892)));
 module.exports = __webpack_exports__;
 
 })();
