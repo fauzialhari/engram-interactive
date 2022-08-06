@@ -5,12 +5,21 @@ export default function useOnScroll(
   contentRef: RefObject<HTMLElement>,
   callback: () => void
 ) {
-  const onScroll = useCallback(() => {
-    const contentRefTop = getElementRef(contentRef).getBoundingClientRect().top;
-    if (contentRefTop > 0 && contentRefTop < 0.5 * window.innerHeight) {
-      callback();
-      window.removeEventListener("scroll", onScroll);
-    }
+  const callbackOnReveal = useCallback(() => {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            callback();
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+    observer.observe(getElementRef(contentRef));
   }, [callback, contentRef]);
-  useOnRender(() => window.addEventListener("scroll", onScroll));
+  useOnRender(callbackOnReveal);
 }
