@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import getElementRef from "../utils/getElementRef";
 import createCanvasLaserElement, {
   LaserElement,
@@ -14,7 +14,7 @@ const LaserRainBackdrop: React.FC<{
   movementSpeed?: number;
 }> = ({ laserDistance = 30, movementSpeed = 5 }) => {
   const canvasRef = useRef(null);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const canvasElement = getElementRef(canvasRef) as HTMLCanvasElement;
     canvasElement.setAttribute("width", `${window.innerWidth}`);
     canvasElement.setAttribute("height", `${window.innerHeight}`);

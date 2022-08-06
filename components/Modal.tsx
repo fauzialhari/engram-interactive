@@ -1,4 +1,4 @@
-import { KeyboardEvent, useRef, MouseEvent, useLayoutEffect } from "react";
+import { KeyboardEvent, useRef, MouseEvent, useEffect } from "react";
 import FuturisticEdge from "./FuturisticEdge";
 import getElementRef from "../utils/getElementRef";
 import ElementSetter from "../utils/elementSetter";
@@ -11,7 +11,7 @@ const Modal: React.FC<{
   const containerRef = useRef(null);
   const exitButtonRef = useRef(null);
   const contentRef = useRef(null);
-  useLayoutEffect(() => {
+  useEffect(() => {
     animate();
   }, []);
   function animate(isEntrance: boolean = true, onTransitionEnd?: () => void) {
