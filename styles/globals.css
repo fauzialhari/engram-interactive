@@ -27,6 +27,12 @@
   input {
     @apply border border-primary p-3 bg-transparent focus:border-primary;
   }
+  a {
+    @apply text-primary;
+  }
+  a.button {
+    @apply inline-block text-white bg-secondary py-2.5 lg:py-4 px-6 lg:px-9 uppercase disabled:opacity-50 font-bold tracking-button;
+  }
 }
 
 @layer components {

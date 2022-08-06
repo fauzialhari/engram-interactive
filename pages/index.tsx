@@ -15,6 +15,10 @@ import News from "../components/News";
 import FooterNav from "../components/FooterNav";
 import ScrollSnapController from "../components/ScrollSnapController";
 const Home: NextPage<{
+  landing: {
+    playButtonLink: string;
+    introduction: string;
+  };
   gallery: {
     title: string;
     images: {
@@ -24,7 +28,6 @@ const Home: NextPage<{
     }[];
   };
   story: {
-    intro: string;
     title: string;
     background: string;
     content: string;
@@ -54,13 +57,21 @@ const Home: NextPage<{
     content: string;
     id: string;
   }[];
-}> = ({ gallery, story, features, characters, news }) => {
+  footer: {
+    twitterLink: string;
+    facebookLink: string;
+    youtubeLink: string;
+    instagramLink: string;
+    discordLink: string;
+    steamLink: string;
+  };
+}> = ({ landing, gallery, story, features, characters, news, footer }) => {
   const [articles, onLoadMore, loading, error] = useFetchNews(news);
   return (
     <main className="container 2xl:container-relative-size mx-auto">
       <HeaderNav />
-      <Landing />
-      <Intro text={story.intro} />
+      <Landing playButtonLink={landing.playButtonLink} />
+      <Intro text={landing.introduction} />
       <Story {...story}>
         <div className="text-center">{parse(story.content)}</div>
       </Story>
@@ -70,13 +81,27 @@ const Home: NextPage<{
         <Gallery {...gallery} />
         <News {...{ articles, onLoadMore, loading, error }} />
       </ScrollSnapController>
-      <FooterNav />
+      <FooterNav {...footer} />
     </main>
   );
 };
 
 export default Home;
 export const getStaticProps: GetStaticProps = async () => {
+  const landingResponse = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/pages/243"
+  );
+  const landing = await landingResponse.json();
+  const parseLanding = () => {
+    const {
+      acf: { play_now_button_link, story_introduction },
+    } = landing;
+    return {
+      playButtonLink: play_now_button_link,
+      introduction: story_introduction,
+    };
+  };
+
   const galleryResponse = await fetch(
     "https://fc.engraminteractive.com/wp-json/wp/v2/pages/20"
   );
@@ -101,12 +126,7 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const story = await storyResponse.json();
   const parseStory = () => {
-    const {
-      title,
-      content,
-      _embedded,
-      acf: { story_introduction },
-    } = story;
+    const { title, content, _embedded } = story;
     const background = _embedded["wp:featuredmedia"]
       ? _embedded["wp:featuredmedia"]["0"].source_url
       : "";
@@ -114,7 +134,6 @@ export const getStaticProps: GetStaticProps = async () => {
       title: title.rendered,
       content: content.rendered,
       background,
-      intro: story_introduction,
     };
   };
 
@@ -162,15 +181,35 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
+  const footerResponse = await fetch(
+    "https://fc.engraminteractive.com/wp-json/wp/v2/pages/253?_embed"
+  );
+  const footerJSON = await footerResponse.json();
+  const parseFooter = () => {
+    const {
+      acf: { twitter, facebook, youtube, instagram, discord, steam },
+    } = footerJSON;
+    return {
+      twitterLink: twitter,
+      facebookLink: facebook,
+      youtubeLink: youtube,
+      instagramLink: instagram,
+      discordLink: discord,
+      steamLink: steam,
+    };
+  };
+
   const news = await fetchNews({ page: INITIAL_PAGE });
 
   return {
     props: {
+      landing: parseLanding(),
       gallery: parseGallery(),
       story: parseStory(),
       features: parseFeatures(),
       characters: parseCharacters(),
       news,
+      footer: parseFooter(),
     },
     revalidate: 60,
   };
