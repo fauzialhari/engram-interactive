@@ -16,7 +16,8 @@ import FooterNav from "../components/FooterNav";
 import ScrollSnapController from "../components/ScrollSnapController";
 const Home: NextPage<{
   landing: {
-    playButtonLink: string;
+    CTAButtonLink: string;
+    CTAButtonText: string;
     introduction: string;
   };
   gallery: {
@@ -70,7 +71,7 @@ const Home: NextPage<{
   return (
     <main className="container 2xl:container-relative-size mx-auto">
       <HeaderNav />
-      <Landing playButtonLink={landing.playButtonLink} />
+      <Landing CTAButtonLink={landing.CTAButtonLink} CTAButtonText={landing.CTAButtonText}/>
       <Intro text={landing.introduction} />
       <Story {...story}>
         <div className="text-center">{parse(story.content)}</div>
@@ -94,10 +95,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const landing = await landingResponse.json();
   const parseLanding = () => {
     const {
-      acf: { play_now_button_link, story_introduction },
+      acf: { cta_button_link, cta_button_text, story_introduction },
     } = landing;
     return {
-      playButtonLink: play_now_button_link,
+      CTAButtonLink: cta_button_link,
+      CTAButtonText: cta_button_text,
       introduction: story_introduction,
     };
   };

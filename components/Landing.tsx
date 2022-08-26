@@ -2,8 +2,9 @@ import Image from "next/image";
 import LaserRainBackdrop from "./LaserRainBackdrop";
 
 const Landing: React.FC<{
-  playButtonLink: string;
-}> = ({ playButtonLink }) => {
+  CTAButtonLink: string;
+  CTAButtonText?: string;
+}> = ({ CTAButtonLink, CTAButtonText="Play Now" }) => {
   return (
     <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-32">
       <LaserRainBackdrop />
@@ -16,8 +17,8 @@ const Landing: React.FC<{
             alt="Fractured core logo"
           />
         </div>
-        <a href={playButtonLink} className="button">
-          Play Now
+        <a href={CTAButtonLink} className="button">
+          {CTAButtonText}
         </a>
       </div>
     </section>
