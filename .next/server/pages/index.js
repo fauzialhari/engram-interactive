@@ -1252,7 +1252,7 @@ const LaserRainBackdrop = ({ laserDistance =30 , movementSpeed =5  })=>{
 
 
 
-const Landing = ({ playButtonLink  })=>{
+const Landing = ({ CTAButtonLink , CTAButtonText ="Play Now"  })=>{
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
         className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] mb-32",
         children: [
@@ -1270,9 +1270,9 @@ const Landing = ({ playButtonLink  })=>{
                         })
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                        href: playButtonLink,
+                        href: CTAButtonLink,
                         className: "button",
-                        children: "Play Now"
+                        children: CTAButtonText
                     })
                 ]
             })
@@ -1988,7 +1988,8 @@ const Home = ({ landing , gallery , story , features , characters , news , foote
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_HeaderNav__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {}),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Landing__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
-                playButtonLink: landing.playButtonLink
+                CTAButtonLink: landing.CTAButtonLink,
+                CTAButtonText: landing.CTAButtonText
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Intro__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
                 text: landing.introduction
@@ -2030,9 +2031,10 @@ const getStaticProps = async ()=>{
     const landingResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/243");
     const landing = await landingResponse.json();
     const parseLanding = ()=>{
-        const { acf: { play_now_button_link , story_introduction  } ,  } = landing;
+        const { acf: { cta_button_link , cta_button_text , story_introduction  } ,  } = landing;
         return {
-            playButtonLink: play_now_button_link,
+            CTAButtonLink: cta_button_link,
+            CTAButtonText: cta_button_text,
             introduction: story_introduction
         };
     };
