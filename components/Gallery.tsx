@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import useOnScrollEffect from "../utils/useOnScrollEffect";
 import OneScreenContainer from "./OneScreenContainer";
 import AnimatedHeader from "./AnimatedHeader";
+import Modal from "./Modal";
 
 const Gallery: React.FC<{
   images: {
@@ -14,6 +15,7 @@ const Gallery: React.FC<{
 }> = ({ images, title = "Gallery" }) => {
   const imagesContainer = useRef(null);
   const [animating, setAnimating] = useState(false);
+  const [activeImage, setActiveImage] = useState(-1);
   useOnScrollEffect(imagesContainer, () => setAnimating(true));
   const calculateDelayClass = (index: number) => {
     if (index < 3) {
@@ -43,7 +45,10 @@ const Gallery: React.FC<{
                     className={`transition-all duration-[333ms] ${calculateDelayClass(
                       index
                     )} ${animating ? "" : "translate-y-3.5 opacity-0"}`}
-                    onClick={(event) => event.preventDefault()}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setActiveImage(index)
+                    }}
                   >
                     <Image src={url} width={942} height={578} alt={title} />
                   </a>
@@ -51,6 +56,16 @@ const Gallery: React.FC<{
               )}
             </div>
           </div>
+          {activeImage >= 0 ? (
+            <Modal
+              content={`
+                <div class="absolute h-full w-full flex justify-center align-middle">
+                  <img loading="lazy" src="${images[activeImage].url}" alt="${images[activeImage].title}">
+                </div>
+              `}
+              exit={() => setActiveImage(-1)}
+            />
+          ) : null}
         </section>
       </div>
     </OneScreenContainer>

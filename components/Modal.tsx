@@ -3,11 +3,11 @@ import FuturisticEdge from "./FuturisticEdge";
 import getElementRef from "../utils/getElementRef";
 import ElementSetter from "../utils/elementSetter";
 const Modal: React.FC<{
-  title: string;
-  date: string;
-  content: string;
+  title?: string;
+  date?: string;
+  content?: string;
   exit: () => void;
-}> = ({ title, date, content, exit }) => {
+}> = ({ title, date, content="", exit }) => {
   const containerRef = useRef(null);
   const exitButtonRef = useRef(null);
   const contentRef = useRef(null);
@@ -97,10 +97,10 @@ const Modal: React.FC<{
             <div className="h-full bg-tertiary px-44 py-32 overflow-auto overscroll-contain">
               <div
                 ref={contentRef}
-                className="opacity-0 transition-opacity duration-[167ms] delay-[167ms]"
+                className="opacity-0 transition-opacity duration-[167ms] delay-[167ms] relative min-h-full"
               >
-                <h2 className="text-primary font-normal">{title}</h2>
-                <h2 className="text-primary font-normal text-right">{date}</h2>
+                {title && <h2 className="text-primary font-normal">{title}</h2>}
+                {date && <h2 className="text-primary font-normal text-right">{date}</h2>}
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
               </div>
             </div>
