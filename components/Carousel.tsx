@@ -124,18 +124,22 @@ const Carousel: React.FC<{
         sliderElement.getElementsByClassName("slide")
       ) as HTMLElement[];
       const lastPointTarget = slides[activeSlide].offsetLeft;
+      const initialPosition = sliderElement.scrollLeft;
+      let previousMovement = sliderElement.scrollLeft;
       const getNextMovement = () => {
         const slideSpeed = sliderElement.offsetWidth * 0.06;
-        let nextMovement = sliderElement.scrollLeft;
-        if (lastPointTarget > sliderElement.scrollLeft) {
-          nextMovement = sliderElement.scrollLeft + slideSpeed;
+        let nextMovement = previousMovement;
+        
+        if (lastPointTarget > initialPosition) {
+          nextMovement = previousMovement + slideSpeed;
           const isNextMoveBeyondLimit = nextMovement > lastPointTarget;
           return isNextMoveBeyondLimit ? lastPointTarget : nextMovement;
-        } else if (lastPointTarget < sliderElement.scrollLeft) {
-          nextMovement = sliderElement.scrollLeft - slideSpeed;
+        } else if (lastPointTarget < initialPosition) {
+          nextMovement = previousMovement - slideSpeed;
           const isNextMoveBeyondLimit = nextMovement < lastPointTarget;
           return isNextMoveBeyondLimit ? lastPointTarget : nextMovement;
         }
+        console.log(slideSpeed, nextMovement);
         return nextMovement;
       };
       setOnSliding(true);
@@ -148,6 +152,7 @@ const Carousel: React.FC<{
           left: nextMovement,
           behavior: "smooth",
         });
+        previousMovement = nextMovement;
         if (nextMovement === lastPointTarget) {
           cancelAnimationFrame(slideAnimation);
           setOnSliding(false);
