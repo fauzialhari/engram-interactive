@@ -131,10 +131,14 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const story = await storyResponse.json();
   const parseStory = () => {
-    const { title, content, _embedded } = story;
-    const background = _embedded["wp:featuredmedia"]
-      ? _embedded["wp:featuredmedia"]["0"].source_url
-      : "";
+    const {
+      title,
+      content,
+      acf: {
+        bg_image: { url },
+      },
+    } = story;
+    const background = url;
     return {
       title: title.rendered,
       content: content.rendered,

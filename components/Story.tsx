@@ -30,8 +30,6 @@ const Story: React.FC<{
           <Image
             src={background}
             alt=""
-            width="1920"
-            height="963"
             objectFit="cover"
             layout="fill"
             className="clip-path-right w-full h-full"
