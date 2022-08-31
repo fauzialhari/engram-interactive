@@ -568,193 +568,93 @@ const FeaturesSlider = ({ featureImages , title: title1 = "Features" , subtitle 
 
 /***/ }),
 
-/***/ 9690:
+/***/ 1935:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "Z": () => (/* binding */ FooterNav)
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-;// CONCATENATED MODULE: external "@fortawesome/react-fontawesome"
-const react_fontawesome_namespaceObject = require("@fortawesome/react-fontawesome");
-;// CONCATENATED MODULE: external "@fortawesome/free-brands-svg-icons"
-const free_brands_svg_icons_namespaceObject = require("@fortawesome/free-brands-svg-icons");
-;// CONCATENATED MODULE: ./components/FooterNav.tsx
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5675);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
-const Footer = ({ twitterLink , facebookLink , youtubeLink , instagramLink , discordLink , steamLink ,  })=>{
-    return /*#__PURE__*/ jsx_runtime_.jsx("footer", {
+const Footer = ({ socialMedias  })=>{
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("footer", {
         className: "relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-secondarybg pt-14 pb-32",
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
             className: "container mx-auto text-primary",
             children: [
-                /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
                     className: "text-center mb-16",
                     children: "Contact Us"
                 }),
-                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                     className: "xl:flex",
                     children: [
-                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "grow mb-6 xl:mb-0",
-                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("ol", {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ol", {
                                 className: "grid grid-cols-3 gap-3",
-                                children: [
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                children: socialMedias.map(({ icon , text , url , id  })=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
                                         className: "text-center lg:text-start",
                                         children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
-                                                    icon: free_brands_svg_icons_namespaceObject.faTwitter,
-                                                    className: "fa-2xl relative top-1/2 -translate-y-1/2"
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                className: "w-14 h-14 inline-block align-middle text-center mx-auto lg:mr-9",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
+                                                    src: icon,
+                                                    alt: "",
+                                                    width: 56,
+                                                    height: 56
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
                                                 className: "lg:hidden"
                                             }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: twitterLink,
-                                                children: "Twitter"
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                href: url,
+                                                target: "_blank",
+                                                rel: "noreferrer",
+                                                children: text
                                             })
                                         ]
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
-                                        className: "text-center lg:text-start",
-                                        children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
-                                                    icon: free_brands_svg_icons_namespaceObject.faFacebookF,
-                                                    className: "fa-2xl relative top-1/2 -translate-y-1/2"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                                                className: "lg:hidden"
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: facebookLink,
-                                                className: "inline-block",
-                                                children: "Facebook"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
-                                        className: "text-center lg:text-start",
-                                        children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
-                                                    icon: free_brands_svg_icons_namespaceObject.faYoutube,
-                                                    className: "fa-2xl relative top-1/2 -translate-y-1/2"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                                                className: "lg:hidden"
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: youtubeLink,
-                                                children: "Youtube"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
-                                        className: "text-center lg:text-start",
-                                        children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
-                                                    icon: free_brands_svg_icons_namespaceObject.faInstagram,
-                                                    className: "fa-2xl relative top-1/2 -translate-y-1/2"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                                                className: "lg:hidden"
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: instagramLink,
-                                                children: "Instagram"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
-                                        className: "text-center lg:text-start",
-                                        children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
-                                                    icon: free_brands_svg_icons_namespaceObject.faDiscord,
-                                                    className: "fa-2xl relative top-1/2 -translate-y-1/2"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                                                className: "lg:hidden"
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: discordLink,
-                                                children: "Discord"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
-                                        className: "text-center lg:text-start",
-                                        children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "w-14 h-14 inline-block align-middle border border-primary rounded-sm bg-secondary text-center mx-auto lg:mr-9",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_fontawesome_namespaceObject.FontAwesomeIcon, {
-                                                    icon: free_brands_svg_icons_namespaceObject.faSteam,
-                                                    className: "fa-2xl relative top-1/2 -translate-y-1/2"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                                                className: "lg:hidden"
-                                            }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("a", {
-                                                href: steamLink,
-                                                children: "Steam"
-                                            })
-                                        ]
-                                    })
-                                ]
+                                    }, id)
+                                )
                             })
                         }),
-                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("form", {
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
                             action: "https://fc.engraminteractive.com/?na=s",
                             method: "post",
                             target: "_blank",
                             className: "uppercase self-center xl:w-4/12 xl:text-right",
                             children: [
-                                /*#__PURE__*/ jsx_runtime_.jsx("label", {
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                     htmlFor: "ne",
                                     className: "mb-5 block",
                                     children: "Newsletter"
                                 }),
-                                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                     className: "flex",
                                     children: [
-                                        /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                             type: "hidden",
                                             name: "nr",
                                             value: "minimal"
                                         }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                             type: "hidden",
                                             name: "nlang",
                                             value: ""
                                         }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                             type: "email",
                                             required: true,
                                             name: "ne",
                                             placeholder: "input your email",
                                             className: "grow"
                                         }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                             type: "submit",
                                             className: "border border-primary bg-transparent hover:bg-primary hover:text-white",
                                             children: "join"
@@ -769,7 +669,7 @@ const Footer = ({ twitterLink , facebookLink , youtubeLink , instagramLink , dis
         })
     });
 };
-/* harmony default export */ const FooterNav = (Footer);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
 
 
 /***/ }),
@@ -1790,8 +1690,6 @@ const Story = ({ title ="Story" , background , children  })=>{
                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
                         src: background,
                         alt: "",
-                        width: "1920",
-                        height: "963",
                         objectFit: "cover",
                         layout: "fill",
                         className: "clip-path-right w-full h-full"
@@ -1967,7 +1865,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CharactersSlider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2325);
 /* harmony import */ var _components_Gallery__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8068);
 /* harmony import */ var _components_News__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(663);
-/* harmony import */ var _components_FooterNav__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(9690);
+/* harmony import */ var _components_FooterNav__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1935);
 /* harmony import */ var _components_ScrollSnapController__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(6001);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([html_react_parser__WEBPACK_IMPORTED_MODULE_1__]);
 html_react_parser__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
@@ -2062,8 +1960,8 @@ const getStaticProps = async ()=>{
     const storyResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/16?_embed");
     const story = await storyResponse.json();
     const parseStory = ()=>{
-        const { title , content , _embedded  } = story;
-        const background = _embedded["wp:featuredmedia"] ? _embedded["wp:featuredmedia"]["0"].source_url : "";
+        const { title , content , acf: { bg_image: { url  } ,  } ,  } = story;
+        const background = url;
         return {
             title: title.rendered,
             content: content.rendered,
@@ -2114,14 +2012,20 @@ const getStaticProps = async ()=>{
     const footerResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/253?_embed");
     const footerJSON = await footerResponse.json();
     const parseFooter = ()=>{
-        const { acf: { twitter , facebook , youtube , instagram , discord , steam  } ,  } = footerJSON;
+        const { acf: { ...socialMedias } ,  } = footerJSON;
+        const socialMediaKeys = Object.keys(socialMedias).filter((key)=>socialMedias[key].is_shown
+        );
+        const socialMediasContent = socialMediaKeys.map((key)=>{
+            const { icon , text , url  } = socialMedias[key];
+            return {
+                icon,
+                text,
+                url,
+                id: key
+            };
+        });
         return {
-            twitterLink: twitter,
-            facebookLink: facebook,
-            youtubeLink: youtube,
-            instagramLink: instagram,
-            discordLink: discord,
-            steamLink: steam
+            socialMedias: socialMediasContent
         };
     };
     const news = await (0,_helpers_fetchNews__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z)({
@@ -2305,7 +2209,7 @@ module.exports = require("lodash/unionBy");
 
 /***/ }),
 
-/***/ 5429:
+/***/ 4957:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head.js");
