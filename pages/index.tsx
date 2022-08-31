@@ -59,19 +59,22 @@ const Home: NextPage<{
     id: string;
   }[];
   footer: {
-    twitterLink: string;
-    facebookLink: string;
-    youtubeLink: string;
-    instagramLink: string;
-    discordLink: string;
-    steamLink: string;
+    socialMedias: {
+      icon: string;
+      text: string;
+      url: string;
+      id: string;
+    }[];
   };
 }> = ({ landing, gallery, story, features, characters, news, footer }) => {
   const [articles, onLoadMore, loading, error] = useFetchNews(news);
   return (
     <main className="container 2xl:container-relative-size mx-auto">
       <HeaderNav />
-      <Landing CTAButtonLink={landing.CTAButtonLink} CTAButtonText={landing.CTAButtonText}/>
+      <Landing
+        CTAButtonLink={landing.CTAButtonLink}
+        CTAButtonText={landing.CTAButtonText}
+      />
       <Intro text={landing.introduction} />
       <Story {...story}>
         <div className="text-center">{parse(story.content)}</div>
@@ -189,15 +192,17 @@ export const getStaticProps: GetStaticProps = async () => {
   const footerJSON = await footerResponse.json();
   const parseFooter = () => {
     const {
-      acf: { twitter, facebook, youtube, instagram, discord, steam },
+      acf: { ...socialMedias },
     } = footerJSON;
+    const socialMediaKeys = Object.keys(socialMedias).filter(
+      (key) => socialMedias[key].is_shown
+    );
+    const socialMediasContent = socialMediaKeys.map((key) => {
+      const { icon, text, url } = socialMedias[key];
+      return { icon, text, url, id: key };
+    });
     return {
-      twitterLink: twitter,
-      facebookLink: facebook,
-      youtubeLink: youtube,
-      instagramLink: instagram,
-      discordLink: discord,
-      steamLink: steam,
+      socialMedias: socialMediasContent,
     };
   };
 
