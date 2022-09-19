@@ -877,7 +877,7 @@ const HeaderNav = ()=>{
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                     href: "#features",
                                     className: "inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary",
-                                    children: "Feature"
+                                    children: "Features"
                                 })
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
@@ -1576,50 +1576,58 @@ class ScrollSnap {
                 }
             });
         }, {
-            threshold: 0.001
+            threshold: 0.1
         });
         children.forEach((scrollSnapChild)=>{
             scrollSnapObserver.observe(scrollSnapChild);
         });
     }
-    easeOutCubic(currentIteration, startValue, changeInValue, totalIterations) {
-        return changeInValue * (Math.pow(currentIteration / totalIterations - 1, 3) + 1) + startValue;
-    }
-    scrollAnimation = 0;
     animateScroll() {
-        this.scrollAnimation = requestAnimationFrame(this.animateScroll.bind(this));
-        this.calculateNextScrollTarget(this.currentSnapPosition, this.nextSnapPosition);
-        this.scrollIt();
-    }
-    nextScrollTarget = 0;
-    currentIteration = 0;
-    get totalIterations() {
-        const FPS = 60;
-        return Math.round(this.duration / 60);
-    }
-    calculateNextScrollTarget(startFrom, targetScroll) {
-        this.currentIteration += 1;
-        const nextScrollValue = this.easeOutCubic(this.currentIteration, startFrom, targetScroll - startFrom, this.totalIterations);
-        const isAlreadyAchieved = Math.round(nextScrollValue - this.nextScrollTarget) === 0;
-        if (isAlreadyAchieved || this.currentIteration === this.totalIterations) {
-            this.currentIteration = 0;
-            this.nextScrollTarget = targetScroll;
-            cancelAnimationFrame(this.scrollAnimation);
-            window.removeEventListener("scroll", this.scrollIt);
-            this.isScrollInitializationDone = false;
-        } else {
-            this.nextScrollTarget = nextScrollValue;
+        let scrollAnimation;
+        const startFrom = this.currentSnapPosition;
+        const targetScroll = this.nextSnapPosition;
+        let nextScrollTarget = 0;
+        let currentIteration1 = 0;
+        let isScrollInitializationDone = false;
+        const totalIterations1 = (()=>{
+            const FPS = 60;
+            return Math.round(this.duration / 60);
+        })();
+        function easeOutCubic(currentIteration, startValue, changeInValue, totalIterations) {
+            return changeInValue * (Math.pow(currentIteration / totalIterations - 1, 3) + 1) + startValue;
         }
-    }
-    isScrollInitializationDone = false;
-    scrollIt() {
-        window.scrollTo({
-            top: this.nextScrollTarget
-        });
-        if (!this.isScrollInitializationDone) {
-            window.addEventListener("scroll", this.scrollIt);
-            this.isScrollInitializationDone = true;
+        const stopScrolling = (e)=>e.preventDefault()
+        ;
+        function scrollIt() {
+            window.addEventListener("wheel", stopScrolling, {
+                passive: false
+            });
+            window.scrollTo({
+                top: nextScrollTarget
+            });
+            if (!isScrollInitializationDone) {
+                window.addEventListener("scroll", scrollIt);
+                isScrollInitializationDone = true;
+            }
         }
+        const animate = ()=>{
+            scrollAnimation = requestAnimationFrame(animate);
+            currentIteration1 += 1;
+            const nextScrollValue = easeOutCubic(currentIteration1, startFrom, targetScroll - startFrom, totalIterations1);
+            const isAlreadyAchieved = Math.round(nextScrollValue - targetScroll) === 0;
+            if (isAlreadyAchieved || currentIteration1 === totalIterations1) {
+                currentIteration1 = 0;
+                nextScrollTarget = targetScroll;
+                cancelAnimationFrame(scrollAnimation);
+                window.removeEventListener("scroll", scrollIt);
+                isScrollInitializationDone = false;
+                window.removeEventListener("wheel", stopScrolling);
+            } else {
+                nextScrollTarget = nextScrollValue;
+                scrollIt();
+            }
+        };
+        animate();
     }
 };
 
