@@ -79,7 +79,7 @@ const HeaderNav: React.FC<{}> = () => {
                 href="#features"
                 className="inline-block leading-none py-5 px-8 mr-2.5 border border-transparent active:border-primary hover:text-primary hover:border-primary"
               >
-                Feature
+                Features
               </a>
             </li>
             <li className="lg:inline-block border-primary border-t-2 lg:border-none">
