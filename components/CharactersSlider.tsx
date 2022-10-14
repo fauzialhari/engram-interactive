@@ -6,18 +6,25 @@ import AnimatedHeader from "./AnimatedHeader";
 import FuturisticEdge from "./FuturisticEdge";
 const CharactersSlider: React.FC<{
   title?: string;
-  subtitle?: string;
   charactersContent: {
     characterImageUrl: string;
     id: string;
     title: string;
     description: string;
+    subtitle: string;
   }[];
-}> = ({ charactersContent, title = "Characters", subtitle }) => {
+}> = ({ charactersContent, title = "Characters" }) => {
   const [activeSlide, setActiveSlide] = useState(-1);
-  const animate = useCallback((CarouselActiveSlide: number) => {
-    setActiveSlide(CarouselActiveSlide);
-  }, []);
+  const [subtitle, setSubtitle] = useState("");
+  const animate = useCallback(
+    (carouselActiveSlide: number) => {
+      if (activeSlide >= 0) {
+        setSubtitle(charactersContent[activeSlide].subtitle);
+      }
+      setActiveSlide(carouselActiveSlide);
+    },
+    [activeSlide, charactersContent]
+  );
   return (
     <OneScreenContainer id="characters">
       <div className="h-full w-full flex items-center bg-secondarybg">

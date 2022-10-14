@@ -35,21 +35,21 @@ const Home: NextPage<{
   };
   features: {
     title: string;
-    subtitle: string;
     featureImages: {
       url: string;
       id: string;
       title: string;
+      subtitle: string;
     }[];
   };
   characters: {
     title: string;
-    subtitle: string;
     charactersContent: {
       characterImageUrl: string;
       id: string;
       title: string;
       description: string;
+      subtitle: string;
     }[];
   };
   news: {
@@ -153,16 +153,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const parseFeatures = () => {
     const {
       title,
-      acf: { subtitle, pictures },
+      acf: { pictures },
     } = features;
     const pictureKeys = Object.keys(pictures).filter((key) => !!pictures[key]);
     const featureImages = pictureKeys.map((key) => {
-      const { url, id, alt } = pictures[key];
-      return { url, id, title: alt };
+      const { url, id, alt, description } = pictures[key];
+      return { url, id, title: alt, subtitle: description };
     });
     return {
       title: title.rendered,
-      subtitle,
       featureImages,
     };
   };
@@ -181,7 +180,13 @@ export const getStaticProps: GetStaticProps = async () => {
     );
     const charactersContent = charactersKeys.map((key) => {
       const { title, description, image } = characters[key];
-      return { title, description, characterImageUrl: image, id: key };
+      return {
+        title,
+        description,
+        characterImageUrl: image.url,
+        subtitle: image.description,
+        id: key,
+      };
     });
     return {
       title: title.rendered,
