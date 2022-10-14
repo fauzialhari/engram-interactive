@@ -429,11 +429,18 @@ const Carousel = ({ children , isSlideEffect =false , animateChildren  })=>{
 
 
 
-const CharactersSlider = ({ charactersContent , title: title1 = "Characters" , subtitle  })=>{
+const CharactersSlider = ({ charactersContent , title: title1 = "Characters"  })=>{
     const { 0: activeSlide , 1: setActiveSlide  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(-1);
-    const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((CarouselActiveSlide)=>{
-        setActiveSlide(CarouselActiveSlide);
-    }, []);
+    const { 0: subtitle , 1: setSubtitle  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+    const animate = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((carouselActiveSlide)=>{
+        if (activeSlide >= 0) {
+            setSubtitle(charactersContent[activeSlide].subtitle);
+        }
+        setActiveSlide(carouselActiveSlide);
+    }, [
+        activeSlide,
+        charactersContent
+    ]);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
         id: "characters",
         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
@@ -518,18 +525,25 @@ const CharactersSlider = ({ charactersContent , title: title1 = "Characters" , s
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5675);
-/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _OneScreenContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7291);
-/* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6748);
-/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7869);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5675);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _OneScreenContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7291);
+/* harmony import */ var _AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6748);
+/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7869);
 
 
 
 
 
-const FeaturesSlider = ({ featureImages , title: title1 = "Features" , subtitle  })=>{
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, {
+
+const FeaturesSlider = ({ featureImages , title: title1 = "Features"  })=>{
+    const { 0: subtitle , 1: setSubtitle  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+    function setActiveSubtitle(activeSlide) {
+        setSubtitle(featureImages[activeSlide].subtitle);
+    }
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_OneScreenContainer__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
         id: "features",
         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
             className: "container mx-auto h-full w-full flex items-center",
@@ -538,16 +552,17 @@ const FeaturesSlider = ({ featureImages , title: title1 = "Features" , subtitle 
                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                     className: "lg:max-w-[66%] mx-auto",
                     children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_AnimatedHeader__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
                             text: title1,
                             subtitle: subtitle
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Carousel__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
                             isSlideEffect: true,
+                            animateChildren: setActiveSubtitle,
                             children: featureImages.map(({ url , id , title  })=>{
                                 return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "h-full flex justify-center items-center transition-opacity duration-250`",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
                                         src: url,
                                         width: 2486,
                                         height: 1255,
@@ -1971,20 +1986,20 @@ const getStaticProps = async ()=>{
     const featuresResponse = await fetch("https://fc.engraminteractive.com/wp-json/wp/v2/pages/49");
     const features = await featuresResponse.json();
     const parseFeatures = ()=>{
-        const { title , acf: { subtitle , pictures  } ,  } = features;
+        const { title , acf: { pictures  } ,  } = features;
         const pictureKeys = Object.keys(pictures).filter((key)=>!!pictures[key]
         );
         const featureImages = pictureKeys.map((key)=>{
-            const { url , id , alt  } = pictures[key];
+            const { url , id , alt , description  } = pictures[key];
             return {
                 url,
                 id,
-                title: alt
+                title: alt,
+                subtitle: description
             };
         });
         return {
             title: title.rendered,
-            subtitle,
             featureImages
         };
     };
@@ -1999,7 +2014,8 @@ const getStaticProps = async ()=>{
             return {
                 title,
                 description,
-                characterImageUrl: image,
+                characterImageUrl: image.url,
+                subtitle: image.description,
                 id: key
             };
         });
@@ -2209,7 +2225,7 @@ module.exports = require("lodash/unionBy");
 
 /***/ }),
 
-/***/ 4957:
+/***/ 5429:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head.js");
